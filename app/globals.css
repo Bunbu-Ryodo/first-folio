@@ -25,4 +25,5 @@ body {
   color: rgb(var(--foreground-rgb));
   background: #2C292D;
   width: 100%;
+  height: 100%;
 }

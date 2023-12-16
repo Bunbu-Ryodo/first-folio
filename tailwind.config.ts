@@ -28,6 +28,9 @@ const config: Config = {
         'input': '16px',
         'informational': '14px',
         'button': '14px'
+      },
+      height: {
+        'button': '40px'
       }
     },
   },

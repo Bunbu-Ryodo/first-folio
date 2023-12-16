@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
         <body className={`${jetbrains.className}`}>
-        <main className="flex-col container mx-auto">
+        <main className="flex-col h-full container mx-auto">
         <Navbar></Navbar>
           {children}
         </main>
