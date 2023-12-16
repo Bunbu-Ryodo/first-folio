@@ -14,13 +14,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-        <body className={`${jetbrains.className}`}>
-        <main className="flex-col h-full container mx-auto">
+    <html lang="en" className="w-full h-full">
+      <body className={`${jetbrains.className} h-full w-full flex flex-col`}>
         <Navbar></Navbar>
+        <main className="flex-col h-full container mx-auto"> 
           {children}
         </main>
-        </body>
+      </body>
     </html>
   )
 }

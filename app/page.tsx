@@ -6,26 +6,20 @@ import './animation.css';
 export default function Home() {
   return (
     <main className="h-full flex items-center container font-light">
-      <div className="flex flex-col text-display w-3/6 mr-[17px]">
-        <p><span className="text-monokaiPink">Build </span><span className="text-monokaiBlue">a job</span></p>
-        <p><span className="text-monokaiBlue">winning </span><span className="text-monokaiYellow">portfolio.</span></p>
-        <div className="h-[72px] overflow-hidden">
+      <div className="flex flex-col justify-center lg:justify-start text-displayMobile w-full lg:text-display lg:w-3/6 lg:mr-[17px] p-2">
+        <p className="mx-auto md:mx-0"><span className="text-monokaiPink">Build </span><span className="text-monokaiBlue">a job</span></p>
+        <p className="mx-auto md:mx-0"><span className="text-monokaiBlue">winning </span><span className="text-monokaiYellow">portfolio.</span></p>
+        <div className="hidden xl:block xl:h-[72px] xl:overflow-hidden">
           <ul className="list">
-            <li className="text-monokaiGreen list-item">Show Off Your Skills.</li>
+            <li className="text-monokaiGreen list-item">Show off your skills.</li>
             <li className="text-monokaiGreen list-item">Network.</li>
-            <li className="text-monokaiGreen list-item">Win Clients.</li>
-            <li className="text-monokaiGreen list-item">Get Hired.</li>
+            <li className="text-monokaiGreen list-item">Win clients.</li>
+            <li className="text-monokaiGreen list-item">Get hired.</li>
           </ul>
         </div>
-      <Link href="/login"><button className="bg-monokaiGreen text-input text-monokaiBlack rounded w-3/6 h-button">Start()</button></Link>
+      <Link href="/login" className="w-full flex"><button className="mx-auto md:mx-0 mt-4 bg-monokaiGreen text-input text-monokaiBlack rounded w-80 h-button hover:bg-buttonGreenHover active:bg-btutonGreenActive">Start()</button></Link>
       </div>
-      <div className="flex w-3/6 ml-[17px]">
-        <Image
-          src={portfolio_preview}
-          alt={"Portfolio Preview"}
-          width="800"
-          height="600"
-        ></Image>
+      <div className="hidden lg:flex w-3/6 ml-[17px]">
       </div>
       
     </main>
