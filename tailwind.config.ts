@@ -13,6 +13,34 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        'monokaiGreen': '#A9DC76',
+        'monokaiBlack': '#2C292D',
+        'monokaiPink': '#FF6188',
+        'monokaiOrange': '#FC9867',
+        'monokaiBlue': '#78DCE8',
+        'monokaiPurple': '#AB9DF2',
+        'monokaiYellow': '#FFD866',
+        'gunMetal': '#292F36',
+        'indianRed': '#D16666',
+        'buttonGreenHover': '#B2D094',
+        'buttonGreenActive': '#95D654',
+        'gunMetalHover': '#2F343A',
+        'gunMetalActive': '#20252B'
+
+      },
+      fontSize: {
+        'display': '48px',
+        'displayMobile': '24px',
+        'navbar': '16px',
+        'header': '20px',
+        'input': '16px',
+        'informational': '14px',
+        'button': '14px'
+      },
+      height: {
+        'button': '40px'
+      }
     },
   },
   plugins: [],
