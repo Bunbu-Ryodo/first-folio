@@ -33,13 +33,25 @@ const config: Config = {
         'display': '48px',
         'displayMobile': '24px',
         'navbar': '16px',
-        'header': '20px',
+        'header': '36px',
         'input': '16px',
         'informational': '14px',
         'button': '14px'
       },
       height: {
-        'button': '40px'
+        'button': '40px',
+        'headerBanner': '40px',
+        'loginForm': '352px'
+      },
+      padding: {
+        'inputX': '16px',
+        'inputY': '12px'
+      },
+      margin: {
+        'inputLabel': '8px',
+        'titleHeader': '32px',
+        'formInput': '24px',
+        'informational': '16px'
       }
     },
   },

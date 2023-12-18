@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 interface DropdownProps {
     isOpen: boolean;
@@ -15,10 +16,10 @@ const Dropdown: React.FC<DropdownProps> =  ({ isOpen, onClose, onSelect }) => {
     };
   
     return (
-      <div className={`dropdown ${isOpen ? 'block' : 'hidden '} bg-gunMetal border border-indianRed absolute mt-2 p-2 right-12`}>
-        <div className="hover:bg-gunMetalHover active:bg-gunMetalActive p-2 cursor-pointer">Home</div>
+      <div className={`dropdown ${isOpen ? 'block' : 'hidden '} bg-gunMetal border-2 border-indianRed absolute mt-2 p-2 right-12`}>
+        <Link href="/"><div className="hover:bg-gunMetalHover active:bg-gunMetalActive p-2 cursor-pointer">Home</div></Link>
         <div className="hover:bg-gunMetalHover active:bg-gunMetalActive p-2 cursor-pointer">Dashboard</div>
-        <div className="hover:bg-gunMetalHover active:bg-gunMetalActive p-2 cursor-pointer">Sign In</div>
+        <Link href="/login"><div className="hover:bg-gunMetalHover active:bg-gunMetalActive p-2 cursor-pointer">Sign In</div></Link>
       </div>
     );
   };
@@ -45,7 +46,7 @@ export default function Navbar(){
     
     return(
         <div className="flex w-full justify-between items-center bg-gunMetal text-navbar font-light text-indianRed h-[54px] px-16">
-        <span>First-Folio.io</span>
+        <Link href="/">First-Folio.io</Link>
         <div className="nav-container">
           <div className={`icon nav-icon-1 ${isDropdownOpen ? 'open' : ''}`} onClick={toggleDropdown}>
                 <span></span>

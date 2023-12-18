@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import portfolio_preview from '@/public/portfolio_preview.png';
-import './animation.css';
+
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
             <li className="text-monokaiGreen list-item">Get hired.</li>
           </ul>
         </div>
-      <Link href="/login" className="w-full flex"><button className="mx-auto md:mx-0 mt-4 bg-monokaiGreen text-input text-monokaiBlack rounded w-80 h-button hover:bg-buttonGreenHover active:bg-btutonGreenActive">Start()</button></Link>
+      <Link href="/login" className="w-full flex"><button className="mx-auto md:mx-0 mt-4 bg-monokaiGreen text-input text-monokaiBlack rounded w-80 h-button hover:bg-buttonGreenHover active:bg-buttonGreenActive">Start()</button></Link>
       </div>
       <div className="hidden lg:flex w-3/6 ml-[17px]">
       </div>
