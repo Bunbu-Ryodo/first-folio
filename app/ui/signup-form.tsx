@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { useDebouncedCallback } from 'use-debounce';
@@ -19,8 +19,6 @@ export default function SignUpForm() {
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
         checkPasswordsMatch();
-        
-    
     };
 
     const handleConfirmPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
