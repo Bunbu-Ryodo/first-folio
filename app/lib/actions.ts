@@ -1,21 +1,10 @@
 "use server"
 
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient, Prisma } = require('@prisma/client')
 const { z } = require('zod')
-const { revalidatePath } = require('next/cache')
 const { redirect } = require ('next/navigation');
 
-
 const prisma = new PrismaClient()
-
-const FormSchema = z.object({
-  id: z.string(),
-  email: z.string(),
-  password: z.string().min(12),
-})
-
-const CreateUser = FormSchema.omit({id: true});
-
 
 export type State = {
   errors?: {
@@ -26,20 +15,31 @@ export type State = {
   message?: string | null;
 };
 
+const CreateUser = z.object({
+  email: z.string(),
+  password: z.string().min(8),
+  confirmPassword: z.string().min(8)
+  })
+  .refine((data: any) => data.password === data.confirmPassword, {
+    message: "The passwords you have entered do not match.",
+    path: ["confirmPassword"]
+  });
+
 export async function createUser(prevState: State, formData: FormData){
     const validatedFields = CreateUser.safeParse({
           email: formData.get('email'),
-          password: formData.get('password')
+          password: formData.get('password'),
+          confirmPassword: formData.get('confirmPassword')
         })
     
-        if(!validatedFields.success){
-          return { message: 'Failed to create user' }
+        if (!validatedFields.success) {
+          return {
+            errors: validatedFields.error.flatten().fieldErrors,
+            message: 'Fields missing, please try again.',
+          };
         }
     
         const { email, password } = validatedFields.data
-    
-        console.log(email, "Email");
-        console.log(password, "Password");
     
         try {
           await prisma.User.create({
@@ -47,54 +47,19 @@ export async function createUser(prevState: State, formData: FormData){
               email: email,
               password: password
             }
-     
           })
-          revalidatePath('/');
-          return { message: 'Registered user'}
-        } catch(e) {
-          return { message: 'Failed to create user' }
+        } catch(e: any) {
+          if (e instanceof Prisma.PrismaClientKnownRequestError) {
+            if (e.code === 'P2002') {
+              if(!formData.get('email'))
+              { 
+                return { errors: { email: ['You must use an email to sign up'] }, message: 'Fields missing, please try again.'}
+
+              }
+                return { errors: { email: ['A new user cannot be created with this email'] }, message: ''}
+            }
+          }
         }
-}
-
-// export async function createUser(prevState: any, formData: FormData){
-//     console.log("Do we even get here?");
-
-
-//     const validatedFields = CreateUser.safeParse({
-//       email: formData.get('email'),
-//       password: formData.get('password')
-//     })
-
-//     if(!validatedFields.success){
-//       return { message: 'Failed to create user' }
-//     }
-
-//     const { email, password } = validatedFields.data
-
-//     console.log(email, "Email");
-//     console.log(password, "Password");
-
-//     try {
-//       await prisma.User.create({
-//         email:  'faggot@aol.com',
-//         password: '1235'
-//       })
-
-//       revalidatePath('/');
-//       return { message: 'Registered user'}
-//     } catch(e) {
-//       return { message: 'Failed to create user' }
-//     }
-// }
-
-
-
-// main()
-  // .then(async () => {
-  //   await prisma.$disconnect()
-  // })
-  // .catch(async (e) => {
-  //   console.error(e)
-  //   await prisma.$disconnect()
-  //   process.exit(1)
-  // })
+        redirect('/introduce');
+      }
+      
