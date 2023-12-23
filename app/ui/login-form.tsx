@@ -31,13 +31,28 @@ export default function LoginForm() {
                 <form action={dispatch} className="w-full">
                     <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">&lt;Email&gt;</label><br></br>
                     <input type="email" name="email" onChange={handleSetEmail} className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"></input>
+                    {state?.errors && state.errors?.email && state.errors.email.map((error: string) => (
+                        <div key={error} className="opacity-0 animate-fade-in mt-2 mb-2 text-monokaiPurple">
+                        {error}
+                        </div>
+                    ))}
                     <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">&lt;Password&gt;</label><br></br>
                     <input type="password" name="password" onChange={handlePasswordChange} className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-informational text-input"></input>
+                    {state?.errors && state.errors?.password && state.errors.password.map((error: string) => (
+                        <div key={error} className="opacity-0 animate-fade-in mt-2 mb-2 text-monokaiPurple">
+                            {error}
+                        </div>
+                    ))}
                     <div className="w-full"><a href="#" className="text-monokaiPurple underline text-informational">Forgot Password?</a></div>
                     <div className="flex w-full justify-between mt-formInput">
                     <SubmitButton label="Login()" ></SubmitButton>
                     <Link href="/register" className="flex-1 ml-[16px]"><button className="w-full bg-transparent border-2 border-monokaiGreen text-monokaiGreen rounded h-button hover:bg-gunMetalHover active:bg-gunMetalActive text-button">Register()</button></Link>
                     </div>
+                    {state?.message && state.message &&
+                        <div key={state.message} className="mt-2 mb-2 text-informational text-monokaiPurple">
+                            {state.message}
+                        </div>
+                    }
                 </form>
             </div>
     )
