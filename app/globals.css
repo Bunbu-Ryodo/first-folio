@@ -20,3 +20,24 @@ body {
   color: rgb(var(--foreground-rgb));
   background: #2C292D;
 }
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn ease-in-out 0.25s forwards;
+}
+
+.animate-fade-in-slower {
+  animation: fadeIn ease-in-out 0.5s forwards;
+}
+
+.animate-fade-in-slowest {
+  animation: fadeIn ease-in-out 1s forwards;
+}
