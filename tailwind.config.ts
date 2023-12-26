@@ -35,7 +35,7 @@ const config: Config = {
         'navbar': '16px',
         'header': '36px',
         'input': '16px',
-        'informational': '14px',
+        'informational': '16px',
         'button': '14px'
       },
       height: {
