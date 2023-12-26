@@ -71,6 +71,7 @@ export async function createUser(prevState: State, formData: FormData){
         }
         revalidatePath('/register');
         redirect('/introduce');
+        return { errors: {}, message: null }
       }
 
       const LoginUser = z.object({
@@ -122,5 +123,6 @@ export async function createUser(prevState: State, formData: FormData){
 
         revalidatePath('/login');
         redirect('/introduce');
+        return { errors: {}, message: null }
       }
       
