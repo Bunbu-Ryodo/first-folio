@@ -13,8 +13,6 @@ const initialState = {
 }
 
 export default function SignUpForm() {
-    
-    const { pending } = useFormStatus();
     const [state, dispatch] = useFormState(createUser, initialState);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
