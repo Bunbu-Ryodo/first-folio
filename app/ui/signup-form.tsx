@@ -13,8 +13,6 @@ const initialState = {
 }
 
 export default function SignUpForm() {
-    
-    const { pending } = useFormStatus();
     const [state, dispatch] = useFormState(createUser, initialState);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -78,12 +76,6 @@ export default function SignUpForm() {
                     <SubmitButton label="Register()" ></SubmitButton>
                     <Link href="/login" className="flex-1 ml-[16px]"><button className="w-full bg-transparent border-2 border-monokaiGreen text-monokaiGreen rounded h-button hover:bg-gunMetalHover active:bg-gunMetalActive text-button">Back To Login()</button></Link>
                     </div>
-
-                    {/* {state?.message && state.message &&
-                        <div key={state.message} className="mt-2 mb-2 text-informational text-monokaiPurple">
-                            {state.message}
-                        </div>
-                    } */}
                 </form>
             </div>
     )

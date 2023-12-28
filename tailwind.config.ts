@@ -32,7 +32,7 @@ const config: Config = {
       fontSize: {
         'display': '48px',
         'displayMobile': '24px',
-        'navbar': '16px',
+        'navbar': '14px',
         'header': '36px',
         'input': '16px',
         'informational': '16px',

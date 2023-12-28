@@ -59,7 +59,6 @@
     transition: .1s;
     margin: 10px 10px;
     cursor: pointer;
-    display: inline-block;
   }
   .nav-icon-1 span{
     width: 5px;
