@@ -30,6 +30,15 @@ const CreateUser = z.object({
 
   //Could try using .nonempty() in future as per vercel official tutorial
 
+export async function getUser(email: string){
+  const user = await prisma.User.findUnique({
+    where: {
+      email: email
+    }
+  })
+  return user;
+}
+
 export async function createUser(prevState: State, formData: FormData){
 
 
@@ -70,7 +79,7 @@ export async function createUser(prevState: State, formData: FormData){
           }
         }
         revalidatePath('/register');
-        redirect('/introduce');
+        redirect('/login');
         return { errors: {}, message: null }
       }
 
@@ -80,49 +89,49 @@ export async function createUser(prevState: State, formData: FormData){
       })
 
 
-      export async function loginUser(prevState: State, formData: FormData){
+      // export async function loginUser(prevState: State, formData: FormData){
 
         
-        const validatedFields = LoginUser.safeParse({
-          email: formData.get('email'),
-          password: formData.get('password')
-        })
+      //   const validatedFields = LoginUser.safeParse({
+      //     email: formData.get('email'),
+      //     password: formData.get('password')
+      //   })
         
-        if(!validatedFields.success){
-          return {
-            errors: validatedFields.error.flatten().fieldErrors,
-            message: 'Please enter your login email and password'
-          }
-        }
+      //   if(!validatedFields.success){
+      //     return {
+      //       errors: validatedFields.error.flatten().fieldErrors,
+      //       message: 'Please enter your login email and password'
+      //     }
+      //   }
 
-        const { email, password } = validatedFields.data;
+      //   const { email, password } = validatedFields.data;
 
-        try {
-          const user = await prisma.user.findUnique({
-            where: {
-              email: email
-            }
-          })
-          //If weird errors, try moving this outside try
-          if(user){
-            const hashedPassword = user.password
+      //   try {
+      //     const user = await prisma.user.findUnique({
+      //       where: {
+      //         email: email
+      //       }
+      //     })
+      //     //If weird errors, try moving this outside try
+      //     if(user){
+      //       const hashedPassword = user.password
 
-            bcrypt.compare(password, hashedPassword).then(function(hash: boolean){
-              if(hash == false){
-                return { errors: { password: ['Password is incorrect']}, message: 'Invalid password, please try again'}
-              } else {
-                return { errors: {}, message: 'Log in successful'}
-              }
-            })
-          } else {
-            return { errors: { email: ['No user with that email exists']}, message: 'Invalid login, please try again'}
-          }
-        } catch(e: any){
-            return { errors: {}, message: 'Unable to login please try again' }
-        }
+      //       bcrypt.compare(password, hashedPassword).then(function(hash: boolean){
+      //         if(hash == false){
+      //           return { errors: { password: ['Password is incorrect']}, message: 'Invalid password, please try again'}
+      //         } else {
+      //           return { errors: {}, message: 'Log in successful'}
+      //         }
+      //       })
+      //     } else {
+      //       return { errors: { email: ['No user with that email exists']}, message: 'Invalid login, please try again'}
+      //     }
+      //   } catch(e: any){
+      //       return { errors: {}, message: 'Unable to login please try again' }
+      //   }
 
-        revalidatePath('/login');
-        redirect('/introduce');
-        return { errors: {}, message: null }
-      }
+      //   revalidatePath('/login');
+      //   redirect('/introduce');
+      //   return { errors: {}, message: null }
+      // }
       
