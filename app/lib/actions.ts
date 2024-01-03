@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 
 const prisma = new PrismaClient()
 
-export type State = {
+type RegisterState = {
   errors?: {
     email?: string[];
     password?: string[];
@@ -17,6 +17,14 @@ export type State = {
   message?: string | null;
   loading?: boolean
 };
+
+type ChangeEmailState = {
+  errors?: {
+    email?: string[];
+    confirmEmail?: string[];
+  }
+  message?: string | null;
+}
 
 const CreateUser = z.object({
   email: z.string().email(),
@@ -30,7 +38,17 @@ const CreateUser = z.object({
 
   //Could try using .nonempty() in future as per vercel official tutorial
 
-export async function getUser(email: string){
+  const ChangeEmail = z.object({
+    currentEmail: z.string().email(),
+    email: z.string().email(),
+    confirmEmail: z.string().email()
+    .refine((data: any) => data.email === data.confirmEmail, {
+      message: "Emails do not match",
+      path: ["confirmEmail"]
+    })
+  });
+
+  export async function getUser(email: string){
   const user = await prisma.User.findUnique({
     where: {
       email: email
@@ -39,9 +57,38 @@ export async function getUser(email: string){
   return user;
 }
 
-export async function createUser(prevState: State, formData: FormData){
+export async function changeEmail(prevState: ChangeEmailState, formData: FormData){
+  const validatedFields = ChangeEmail.safeParse({
+    currentEmail: formData.get('currentEmail'),
+    email: formData.get('email'),
+    confirmEmail: formData.get('confirmEmail')
+  })
 
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Fields missing, please try again.',
+    };
+  }
 
+  const { currentEmail, email, confirmEmail } = validatedFields.data;
+
+  try {
+    const updateUser = await prisma.user.update({
+      where: {
+        email: currentEmail
+      }, 
+      data: {
+        email: confirmEmail
+      }
+    })
+  } catch (e: any){
+    return { errors: {}, message: 'Something went wrong, please try again.' }
+  }
+  return { errors: {}, message: `Email changed to ${confirmEmail}` }
+}
+
+export async function createUser(prevState: RegisterState, formData: FormData){
     const validatedFields = CreateUser.safeParse({
           email: formData.get('email'),
           password: formData.get('password'),
@@ -87,51 +134,4 @@ export async function createUser(prevState: State, formData: FormData){
         email: z.string().email(),
         password: z.string().min(8)
       })
-
-
-      // export async function loginUser(prevState: State, formData: FormData){
-
-        
-      //   const validatedFields = LoginUser.safeParse({
-      //     email: formData.get('email'),
-      //     password: formData.get('password')
-      //   })
-        
-      //   if(!validatedFields.success){
-      //     return {
-      //       errors: validatedFields.error.flatten().fieldErrors,
-      //       message: 'Please enter your login email and password'
-      //     }
-      //   }
-
-      //   const { email, password } = validatedFields.data;
-
-      //   try {
-      //     const user = await prisma.user.findUnique({
-      //       where: {
-      //         email: email
-      //       }
-      //     })
-      //     //If weird errors, try moving this outside try
-      //     if(user){
-      //       const hashedPassword = user.password
-
-      //       bcrypt.compare(password, hashedPassword).then(function(hash: boolean){
-      //         if(hash == false){
-      //           return { errors: { password: ['Password is incorrect']}, message: 'Invalid password, please try again'}
-      //         } else {
-      //           return { errors: {}, message: 'Log in successful'}
-      //         }
-      //       })
-      //     } else {
-      //       return { errors: { email: ['No user with that email exists']}, message: 'Invalid login, please try again'}
-      //     }
-      //   } catch(e: any){
-      //       return { errors: {}, message: 'Unable to login please try again' }
-      //   }
-
-      //   revalidatePath('/login');
-      //   redirect('/introduce');
-      //   return { errors: {}, message: null }
-      // }
       
