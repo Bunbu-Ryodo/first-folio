@@ -15,3 +15,12 @@ type RegisterState = {
     }
     message?: string | null;
   }
+
+  type ChangePasswordState = {
+    errors?: {
+      currentPassword?: string[];
+      newPassword?: string[];
+      confirmPassword?: string[];
+    }
+    message?: string | null;
+  }
