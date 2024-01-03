@@ -20,7 +20,7 @@ export default async function RootLayout({
   const activeSession = !!session;
   return (
     <html lang="en" className="w-full h-full">
-      <body className={`${jetbrains.className} h-full w-full flex flex-col`}>
+      <body className={`${jetbrains.className} h-full w-full`}>
         <Navbar session={activeSession}></Navbar>
         <main className="h-full container mx-auto">
           {children}

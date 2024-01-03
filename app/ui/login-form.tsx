@@ -28,7 +28,7 @@ export default function LoginForm() {
     }
 
     return (
-            <div className="flex flex-col md-w:1/3 max-[352px]">
+            <div className="flex flex-col md:w-1/3 max-[352px]">
                 <div className="flex flex-col justify-center w-full text-monokaiYellow text-header font-medium text-center p-2 h-headerBanner mb-titleHeader"><span className="opacity-0 animate-fade-in-slower">Login</span></div>
                 <form onSubmit={handleSubmit} className="w-full">
                     <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">&lt;Email&gt;</label><br></br>
