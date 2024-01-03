@@ -5,26 +5,27 @@ const { z } = require('zod')
 const { redirect } = require('next/navigation');
 const { revalidatePath } = require('next/cache');
 const bcrypt = require('bcrypt');
+const { Registerstate, ChangeEmailState } = require('@/app/lib/action-types');
 
 const prisma = new PrismaClient()
 
-type RegisterState = {
-  errors?: {
-    email?: string[];
-    password?: string[];
-    confirmPassword?: string[];
-  };
-  message?: string | null;
-  loading?: boolean
-};
+// type RegisterState = {
+//   errors?: {
+//     email?: string[];
+//     password?: string[];
+//     confirmPassword?: string[];
+//   };
+//   message?: string | null;
+//   loading?: boolean
+// };
 
-type ChangeEmailState = {
-  errors?: {
-    email?: string[];
-    confirmEmail?: string[];
-  }
-  message?: string | null;
-}
+// type ChangeEmailState = {
+//   errors?: {
+//     email?: string[];
+//     confirmEmail?: string[];
+//   }
+//   message?: string | null;
+// }
 
 const CreateUser = z.object({
   email: z.string().email(),
