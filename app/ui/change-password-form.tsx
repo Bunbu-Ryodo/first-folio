@@ -10,7 +10,7 @@ const initialState = {
 export default function ChangePasswordForm(){
     const [state, dispatch] = useFormState(changePassword, initialState);
     return(
-        <div className="flex flex-col items-center w-full md:w-1/2">
+        <div className="flex flex-col items-center w-full mt-[24px] mr-[16px] md:w-1/2">
         <div className="flex flex-col justify-center w-full text-monokaiYellow text-displayMobile md:text-header font-medium text-center p-2 h-headerBanner mb-titleHeader"><span className="opacity-0 animate-fade-in-slower">Change Your Password</span></div>
         <form action={dispatch}>
             <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">&lt;Enter Current Password&gt;</label><br></br>

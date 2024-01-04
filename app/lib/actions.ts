@@ -25,22 +25,22 @@ const CreateUser = z.object({
 
   const ChangeEmail = z.object({
     currentEmail: z.string().email(),
-    email: z.string().email(),
+    newEmail: z.string().email(),
     confirmEmail: z.string().email()
-    .refine((data: any) => data.email === data.confirmEmail, {
+  })
+    .refine((data: any) => data.newEmail === data.confirmEmail, {
       message: "Emails do not match",
       path: ["confirmEmail"]
-    })
   });
 
   const ChangePassword = z.object({
     currentPassword: z.string().min(8),
     newPassword: z.string().min(8),
     confirmPassword: z.string().min(8)
+  })
     .refine((data: any) => data.newPassword === data.confirmPassword, {
       message: "Passwords don't match",
       path: ["confirmPassword"]
-    })
   });
 
   export async function getUser(email: string){
@@ -56,11 +56,12 @@ export async function changeEmail(prevState: ChangeEmailState, formData: FormDat
 
   const validatedFields = ChangeEmail.safeParse({
     currentEmail: formData.get('currentEmail'),
-    email: formData.get('email'),
+    newEmail: formData.get('newEmail'),
     confirmEmail: formData.get('confirmEmail')
   })
 
   if (!validatedFields.success) {
+    console.log("I shouldn't see this");
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: 'Fields missing, please try again.',
@@ -177,8 +178,8 @@ export async function createUser(prevState: RegisterState, formData: FormData){
         return { errors: {}, message: null }
       }
 
-      const LoginUser = z.object({
-        email: z.string().email(),
-        password: z.string().min(8)
-      })
+      // const LoginUser = z.object({
+      //   email: z.string().email(),
+      //   password: z.string().min(8)
+      // })
       
