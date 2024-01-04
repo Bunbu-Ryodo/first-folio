@@ -51,7 +51,8 @@ const config: Config = {
         'inputLabel': '8px',
         'titleHeader': '32px',
         'formInput': '24px',
-        'informational': '16px'
+        'informational': '16px',
+        'buttons': '12px'
       }
     },
   },
