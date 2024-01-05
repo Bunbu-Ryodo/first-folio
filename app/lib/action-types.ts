@@ -24,3 +24,10 @@ type RegisterState = {
     }
     message?: string | null;
   }
+
+  type GenericState = {
+    errors?: {
+      fail?: string[];
+    }
+    message?: string | null
+  }

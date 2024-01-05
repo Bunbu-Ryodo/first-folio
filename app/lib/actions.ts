@@ -43,6 +43,95 @@ const CreateUser = z.object({
       path: ["confirmPassword"]
   });
 
+
+  const SaveIntro = z.object({
+    name: z.string(),
+    job_title: z.string(),
+    bio: z.string()
+  })
+
+  async function getUserId(){
+    const session = await getServerSession();
+    const userEmail = session?.user?.email;
+
+    const user = await prisma.User.findUnique({
+      where: {
+        email: userEmail 
+      }
+    })
+
+    return user.id;
+  }
+
+  export async function getIntroduction(){
+    const userId = await getUserId();
+    
+    const introduce = await prisma.Introduce.findUnique({
+      where: {
+        personId: userId
+      }
+    })
+
+    return introduce;
+  }
+
+  export async function saveIntroduction(prevState: GenericState, formData: FormData){
+    const userId = await getUserId();
+
+    const validatedFields = SaveIntro.safeParse({
+      name: formData.get('name'),
+      job_title: formData.get('job_title'),
+      bio: formData.get('bio')
+    })
+
+    if (!validatedFields.success) {
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        message: 'Submit anything you like so long as its a string'
+      };
+    }
+
+    const { name, job_title, bio } = validatedFields.data;
+
+    try {
+      const introduce = await prisma.Introduce.findUnique({
+        where: {
+          personId: userId
+        }
+      });
+
+      if(introduce){
+        await prisma.Introduce.update({
+          where: {
+            personId: userId
+          }, 
+          data: {
+            name: name,
+            job_title: job_title,
+            bio: bio
+          }
+        })
+      } else {
+        await prisma.Introduce.create({
+          data: {
+            name: name,
+            job_title: job_title,
+            bio: bio,
+            personId: userId       
+          }
+        })
+      }
+    } catch(e) {
+      console.log(e);
+      return {errors: {fail: ["Something went wrong"]}, message: "Something went wrong, please try again"}
+    }
+
+    revalidatePath('/introduce');
+    redirect('/tech');
+    return {errors: {}, message: null}
+  }
+
+
   export async function getUser(email: string){
     const user = await prisma.User.findUnique({
       where: {
@@ -61,7 +150,6 @@ export async function changeEmail(prevState: ChangeEmailState, formData: FormDat
   })
 
   if (!validatedFields.success) {
-    console.log("I shouldn't see this");
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: 'Fields missing, please try again.',

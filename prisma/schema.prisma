@@ -15,7 +15,7 @@ model User {
   id      String      @id @default(uuid())
   email   String   @unique
   password    String
-  introduce Introduce[]
+  introduce Introduce?
 }
 
 model Introduce {
@@ -24,5 +24,5 @@ model Introduce {
   job_title String? @db.VarChar(255)
   bio String? @db.VarChar(255)
   person User @relation(fields: [personId], references: [id])
-  personId String
+  personId String @unique
 }

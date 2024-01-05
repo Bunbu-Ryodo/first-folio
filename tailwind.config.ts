@@ -36,12 +36,14 @@ const config: Config = {
         'header': '36px',
         'input': '16px',
         'informational': '16px',
-        'button': '14px'
+        'button': '14px',
+        'breadCrumb': '12px'
       },
       height: {
         'button': '40px',
         'headerBanner': '40px',
-        'loginForm': '352px'
+        'loginForm': '352px',
+        'smallTextarea': '96px'
       },
       padding: {
         'inputX': '16px',
@@ -51,6 +53,7 @@ const config: Config = {
         'inputLabel': '8px',
         'titleHeader': '32px',
         'formInput': '24px',
+        'textarea': '16px',
         'informational': '16px',
         'buttons': '12px'
       }
