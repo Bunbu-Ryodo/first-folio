@@ -43,7 +43,8 @@ const config: Config = {
         'button': '40px',
         'headerBanner': '40px',
         'loginForm': '352px',
-        'smallTextarea': '96px'
+        'smallTextarea': '96px',
+        'largeTextarea': '270px'
       },
       padding: {
         'inputX': '16px',
@@ -51,14 +52,19 @@ const config: Config = {
       },
       margin: {
         'inputLabel': '8px',
+        'checkbox': '8px',
         'titleHeader': '32px',
         'formInput': '24px',
         'textarea': '16px',
         'informational': '16px',
-        'buttons': '12px'
+        'buttons': '12px',
+        'breadcrumbs': '8px',
+        'nextButton': '16px'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
 }
 export default config

@@ -1,3 +1,13 @@
+import BreadCrumbs from '@/app/ui/breadcrumbs';
+import NextButton from '@/app/ui/next-button';
+import TechForm from '@/app/ui/tech-form'
+
 export default function Tech(){
-    return(<h1>Hello</h1>)
+    return(
+        <main className="h-full flex-col container font-light">
+            <BreadCrumbs links={["mystuff", "introduce"]} current={"tech"}></BreadCrumbs>
+            <NextButton link={"projects"}></NextButton>
+            <TechForm></TechForm>
+        </main>
+    )
 }
