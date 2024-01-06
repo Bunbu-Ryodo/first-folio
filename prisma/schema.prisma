@@ -31,6 +31,7 @@ model Introduce {
 model Tech {
   id  Int   @id @default(autoincrement())
   technologies String[]
+  experience String?
   developer User @relation(fields: [developerId], references:[id])
   developerId String @unique
 }
