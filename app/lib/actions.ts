@@ -50,6 +50,11 @@ const CreateUser = z.object({
     bio: z.string()
   })
 
+  const Tech = z.object({
+    experience: z.string(),
+    technologies: z.array(z.string())
+  })
+
   async function getUserId(){
     const session = await getServerSession();
     const userEmail = session?.user?.email;
@@ -61,6 +66,69 @@ const CreateUser = z.object({
     })
 
     return user.id;
+  }
+
+  export async function getTech(){
+    const userId = await getUserId();
+    const tech = await prisma.Tech.findUnique({
+      where: {
+        developerId: userId
+      }
+    })
+    return tech;
+  }
+
+  export async function saveTech(prevState: GenericState, formData: FormData){
+    const userId = await getUserId();
+
+    const validatedFields = Tech.safeParse({
+      experience: formData.get('experience'),
+      technologies: [...formData.getAll('technologies')].map(String)
+    })
+
+    if(!validatedFields.success){
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        message: 'Stop trying to break the form, you\'re not clever'
+      }
+    }
+
+    const { experience, technologies } = validatedFields.data;
+
+    try {
+      const tech = await prisma.Tech.findUnique({
+        where: {
+          developerId: userId
+        }
+      })
+
+      if(tech){
+        await prisma.Tech.update({
+          where: {
+            developerId: userId
+          }, 
+          data: {
+            experience: experience,
+            technologies: technologies
+          }
+        })
+      } else {
+        await prisma.Tech.create({
+          data: {
+            experience: experience,
+            technologies: technologies,
+            developerId: userId
+          }
+        })
+      }
+    } catch(e){
+      console.log(e);
+      return {errors: {fail: ["Something went wrong"]}, message: "Something went wrong, please try again"}
+    }
+
+    revalidatePath('/tech');
+    redirect('/projects');
+    return { errors: {}, message: null }
   }
 
   export async function getIntroduction(){

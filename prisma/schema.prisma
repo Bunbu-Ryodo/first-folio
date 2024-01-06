@@ -16,6 +16,7 @@ model User {
   email   String   @unique
   password    String
   introduce Introduce?
+  tech Tech?
 }
 
 model Introduce {
@@ -25,4 +26,12 @@ model Introduce {
   bio String? @db.VarChar(255)
   person User @relation(fields: [personId], references: [id])
   personId String @unique
+}
+
+model Tech {
+  id  Int   @id @default(autoincrement())
+  technologies String[]
+  experience String?
+  developer User @relation(fields: [developerId], references:[id])
+  developerId String @unique
 }

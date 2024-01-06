@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function BreadCrumbs({links, current}: {links: string[], current: string}){
     return(
-        <div className="w-full flex">
+        <div className="w-full flex ml-breadcrumbs mt-breadcrumbs">
             {links.map((link, index) => (
                 <>
                 <Link className="text-monokaiBlue text-breadCrumb" href={`/${link}`} key={index}>
