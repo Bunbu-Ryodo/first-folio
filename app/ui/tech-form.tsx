@@ -12,8 +12,9 @@ const initialState = {
     errors: {}, message: null
 }
 
-export default function TechForm(){
+export default function TechForm({initialTechnologies, initialExperience}: {initialTechnologies: string[], initialExperience: string}){
     const [state, dispatch] = useFormState(saveTech, initialState);
+    const [experience, setExperience] = useState(initialExperience);
 
     return(
         <div className="flex flex-col w-full h-full">
@@ -26,7 +27,7 @@ export default function TechForm(){
                             <div className="flex flex-wrap mb-formInput">
                                 {
                                     technologies.map((technology, index) => 
-                                        <TechnologyCheckbox key={index} value={technology.value} id={technology.id}></TechnologyCheckbox>
+                                        <TechnologyCheckbox initialTechnologies={initialTechnologies} key={index} value={technology.value} id={technology.id}></TechnologyCheckbox>
                                     )
                                 }
                             </div>
@@ -35,7 +36,7 @@ export default function TechForm(){
                     <div className="flex w-full md:w-1/2 justify-center md:justify-start">
                         <div className="flex flex-col w-full md:w-2/3 mx-2">
                             <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">&lt;Describe your Skillset/Experience&gt;</label><br></br>
-                            <textarea name="experience" className="h-largeTextarea opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"></textarea>
+                            <textarea value={experience} onChange={(e) => setExperience(e.target.value)} name="experience" className="h-largeTextarea opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"></textarea>
                             <div className="flex w-full justify-between">
                                 <SubmitButton label="Save Progress()"></SubmitButton>
                                 <Link href="/projects" className="flex-1 ml-[16px]"><button className="w-full bg-transparent border-2 border-monokaiGreen text-monokaiGreen rounded h-button hover:bg-gunMetalHover active:bg-gunMetalActive text-button">Skip()</button></Link>

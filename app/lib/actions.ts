@@ -68,21 +68,23 @@ const CreateUser = z.object({
     return user.id;
   }
 
+  export async function getTech(){
+    const userId = await getUserId();
+    const tech = await prisma.Tech.findUnique({
+      where: {
+        developerId: userId
+      }
+    })
+    return tech;
+  }
 
   export async function saveTech(prevState: GenericState, formData: FormData){
     const userId = await getUserId();
-
-    console.log(userId);
-    console.log(formData.get('experience'));
-    console.log(Array.isArray(formData.getAll('technologies')));
 
     const validatedFields = Tech.safeParse({
       experience: formData.get('experience'),
       technologies: [...formData.getAll('technologies')].map(String)
     })
-
-
-    console.log(validatedFields.error);
 
     if(!validatedFields.success){
       return {
@@ -99,8 +101,6 @@ const CreateUser = z.object({
           developerId: userId
         }
       })
-
-      console.log(tech, "Does tech exist")
 
       if(tech){
         await prisma.Tech.update({
