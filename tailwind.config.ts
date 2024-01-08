@@ -23,6 +23,8 @@ const config: Config = {
         'monokaiYellow': '#FFD866',
         'gunMetal': '#292F36',
         'indianRed': '#D16666',
+        'buttonPinkHover': '#FF809F',
+        'buttonPinkActive': '#FF4472',
         'buttonGreenHover': '#B2D094',
         'buttonGreenActive': '#95D654',
         'gunMetalHover': '#2F343A',
@@ -63,7 +65,9 @@ const config: Config = {
         'informational': '16px',
         'buttons': '12px',
         'breadcrumbs': '8px',
-        'nextButton': '16px'
+        'nextButton': '16px',
+        'projectForm': '12px',
+        'nextButton-y': '24px'
       }
     },
   },

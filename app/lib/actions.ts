@@ -78,6 +78,11 @@ const CreateUser = z.object({
     return tech;
   }
 
+  export async function getProjects(){
+    const projects = await prisma.Project.findMany();
+    return projects;
+  }
+  
   export async function saveTech(prevState: GenericState, formData: FormData){
     const userId = await getUserId();
 
