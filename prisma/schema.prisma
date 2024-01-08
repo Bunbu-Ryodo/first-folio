@@ -17,6 +17,7 @@ model User {
   password    String
   introduce Introduce?
   tech Tech?
+  projects Project[]
 }
 
 model Introduce {
@@ -34,4 +35,14 @@ model Tech {
   experience String?
   developer User @relation(fields: [developerId], references:[id])
   developerId String @unique
+}
+
+model Project {
+  id  Int   @id @default(autoincrement())
+  title String
+  repo  String
+  url String
+  images Bytes[]
+  creator User @relation(fields: [creatorId], references:[id])
+  creatorId String @unique
 }

@@ -44,7 +44,11 @@ const config: Config = {
         'headerBanner': '40px',
         'loginForm': '352px',
         'smallTextarea': '96px',
-        'largeTextarea': '270px'
+        'largeTextarea': '270px',
+        'projectTextarea': '260px'
+      },
+      width: {
+        'halfWithGap': "47.5%"
       },
       padding: {
         'inputX': '16px',
