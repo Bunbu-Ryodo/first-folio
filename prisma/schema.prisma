@@ -39,10 +39,11 @@ model Tech {
 
 model Project {
   id  Int   @id @default(autoincrement())
-  title String
-  repo  String
-  url String
+  title String?
+  repo  String?
+  url String?
+  description String?
   images Bytes[]
   creator User @relation(fields: [creatorId], references:[id])
-  creatorId String @unique
+  creatorId String 
 }

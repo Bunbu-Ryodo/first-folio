@@ -55,6 +55,17 @@ const CreateUser = z.object({
     technologies: z.array(z.string())
   })
 
+  const Project = z.object({
+    id: z.number().nullable(),
+    title: z.string(),
+    repo: z.string(),
+    url: z.string(),
+    description: z.string(),
+    // images: z.array(z.string())
+  })
+
+  //Images may fail to validate, if so investigate docs
+
   async function getUserId(){
     const session = await getServerSession();
     const userEmail = session?.user?.email;
@@ -78,8 +89,107 @@ const CreateUser = z.object({
     return tech;
   }
 
+  export async function addNewProject(){
+    const userId = await getUserId();
+    
+    const project = await prisma.Project.create({
+        data: {
+          creatorId: userId
+        }
+      })
+
+    console.log(project, "Project??");
+    revalidatePath('/projects')
+    return { errors: {}, message: null}
+  }
+
+
+
+  export async function saveProject(prevState: GenericState, formData: FormData){
+    const userId = await getUserId();
+
+    const validatedFields = Project.safeParse({
+      id: Number(formData.get('id')),
+      title: formData.get('title'),
+      repo: formData.get('repo'),
+      description: formData.get('description'),
+      url: formData.get('url'),
+      images: formData.getAll('images')
+    })
+
+    // console.log(formData.get('id'));
+    // console.log(formData.get('title'));
+    // console.log(formData.get('repo'));
+    // console.log(formData.get('url'));
+    // console.log(formData.getAll('images'));
+
+    if(!validatedFields.success){
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        message: 'Stop trying to break the form you\'re not clever'
+      }
+    }
+    
+    const { id, title, repo, description, url, images } = validatedFields.data;
+
+    try {
+      console.log(id, "Is Id true?")
+      if(id){
+        const project = await prisma.Project.findMany({
+          where: {
+            creatorId: userId
+          }
+        })
+
+        if(project){
+          await prisma.Project.update({
+            where: {
+              id: 4, 
+              creatorId: userId
+            },
+            data: {
+              title: title,
+              repo: repo, 
+              url: url,
+              description: description,
+              images: images
+            }
+          })
+        }
+      } else {
+        console.log("Id is not true");
+
+        await prisma.Project.create({
+          data: {
+            title: title,
+            repo: repo,
+            url: url,
+            description: description,
+            creatorId: userId,
+            images: images
+          }
+          // images: images
+        })
+      }
+    } catch(e: any) {
+      console.log(e)
+      return { errors: {}, message: "Something went wrong, please try again" }
+    }
+    revalidatePath('/projects')
+    return { errors: {}, message: null }
+  }
+
   export async function getProjects(){
-    const projects = await prisma.Project.findMany();
+    const userId = await getUserId();
+    const projects = await prisma.Project.findMany({
+      where: {
+        creatorId: userId
+      }
+    });
+
+    if(projects){
+      console.log(typeof projects[0].id, "I expect the id of the project in the database is a number");
+    }
     return projects;
   }
   

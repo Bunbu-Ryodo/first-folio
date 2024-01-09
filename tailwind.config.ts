@@ -67,6 +67,7 @@ const config: Config = {
         'breadcrumbs': '8px',
         'nextButton': '16px',
         'projectForm': '12px',
+        'separateProjectForms': '36px',
         'nextButton-y': '24px'
       }
     },
