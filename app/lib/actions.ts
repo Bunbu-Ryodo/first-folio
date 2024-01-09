@@ -147,7 +147,7 @@ const CreateUser = z.object({
         if(project){
           await prisma.Project.update({
             where: {
-              id: 4, 
+              id: id, 
               creatorId: userId
             },
             data: {
