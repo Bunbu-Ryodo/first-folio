@@ -98,9 +98,19 @@ const CreateUser = z.object({
         }
       })
 
-    console.log(project, "Project??");
     revalidatePath('/projects')
     return { errors: {}, message: null}
+  }
+
+  export async function deleteProject(id: number){
+    if(id){
+      await prisma.Project.delete({
+        where: {
+          id: id 
+        }
+      })
+    }
+    revalidatePath('/projects')
   }
 
 
@@ -117,12 +127,6 @@ const CreateUser = z.object({
       images: formData.getAll('images')
     })
 
-    // console.log(formData.get('id'));
-    // console.log(formData.get('title'));
-    // console.log(formData.get('repo'));
-    // console.log(formData.get('url'));
-    // console.log(formData.getAll('images'));
-
     if(!validatedFields.success){
       return {
         errors: validatedFields.error.flatten().fieldErrors,
@@ -133,7 +137,6 @@ const CreateUser = z.object({
     const { id, title, repo, description, url, images } = validatedFields.data;
 
     try {
-      console.log(id, "Is Id true?")
       if(id){
         const project = await prisma.Project.findMany({
           where: {
@@ -148,8 +151,8 @@ const CreateUser = z.object({
               creatorId: userId
             },
             data: {
-              title: title,
-              repo: repo, 
+              title: title, 
+              repo: repo,
               url: url,
               description: description,
               images: images
@@ -157,8 +160,6 @@ const CreateUser = z.object({
           })
         }
       } else {
-        console.log("Id is not true");
-
         await prisma.Project.create({
           data: {
             title: title,
@@ -187,9 +188,6 @@ const CreateUser = z.object({
       }
     });
 
-    if(projects){
-      console.log(typeof projects[0].id, "I expect the id of the project in the database is a number");
-    }
     return projects;
   }
   
@@ -325,7 +323,6 @@ const CreateUser = z.object({
 }
 
 export async function changeEmail(prevState: ChangeEmailState, formData: FormData){
-
   const validatedFields = ChangeEmail.safeParse({
     currentEmail: formData.get('currentEmail'),
     newEmail: formData.get('newEmail'),

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import SubmitButton from '@/app/ui/SubmitButton'
 import Link from 'next/link';
-import { saveProject } from '@/app/lib/actions';
+import { saveProject, deleteProject } from '@/app/lib/actions';
 import { useFormState } from 'react-dom';
 
 const initialState = {
@@ -26,6 +26,13 @@ export default function ProjectForm({id, initialTitle, initialRepo, initialUrl, 
     const [url, setUrl] = useState(initialUrl);
     const [description, setDescription] = useState(initialDescription);
     const [images, setImages] = useState(initialImages);
+
+    // async function remove(){
+    //     if(id) {
+    //         await deleteProject(id);
+    //     }
+    //     console.log("Project Deleted");
+    // }
 
     return (
         <form action={dispatch}>
