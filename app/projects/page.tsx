@@ -3,6 +3,7 @@ import NextButton from '@/app/ui/next-button';
 import ProjectForm from '@/app/ui/project-form';
 import { getProjects } from '@/app/lib/actions';
 import AddProject from '@/app/ui/add-new-project';
+import RemoveProject from '@/app/ui/remove-project';
 
 
 type Project = {
@@ -25,6 +26,8 @@ export default async function Projects(){
             <div className="flex flex-col justify-center w-full text-monokaiYellow text-header font-medium text-center p-2 h-headerBanner mb-titleHeader"><span className="opacity-0 animate-fade-in-slower">Showcase Your Work</span></div>
             {
                 projects && projects.reverse().map((project: Project) => (
+                    <>
+                    <RemoveProject id={project.id}></RemoveProject>
                     <ProjectForm
                         key={project.id}
                         id={project.id}
@@ -34,6 +37,7 @@ export default async function Projects(){
                         initialDescription={project.description}
                         initialImages={project.images}
                     ></ProjectForm>
+                    </>
                 ))
             }
             {

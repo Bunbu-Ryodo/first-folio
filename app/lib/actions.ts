@@ -64,6 +64,10 @@ const CreateUser = z.object({
     // images: z.array(z.string())
   })
 
+  const DeleteProject = z.object({
+    id: z.number()
+  })
+
   //Images may fail to validate, if so investigate docs
 
   async function getUserId(){
@@ -102,18 +106,47 @@ const CreateUser = z.object({
     return { errors: {}, message: null}
   }
 
-  export async function deleteProject(id: number){
-    if(id){
-      await prisma.Project.delete({
-        where: {
-          id: id 
-        }
-      })
+  export async function deleteProject(prevState: GenericState, formData: FormData){
+    const userId = await getUserId();
+
+    console.log("Before validating the fields");
+
+    const validatedFields = DeleteProject.safeParse({
+      id: Number(formData.get('id'))
+    })
+
+    if(!validatedFields.success){
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        message: 'Stop trying to break the form you\'re not clever'
+      }
+    }
+
+    console.log("Successfully validated the fields");
+
+    const { id } = validatedFields.data;
+
+    try {
+
+      console.log("Attempting delete");
+      if(id){
+        await prisma.Project.delete({
+          where: {
+            id: id,
+            creatorId: userId
+          }
+        })
+      } else {
+        console.log("No id found");
+        return { errors: {}, message: "Stop trying to break the form you're not clever"}
+      }
+    } catch(e) {
+      console.log(e)
+      return { errors: {}, message: "Someting went wrong"}
     }
     revalidatePath('/projects')
+    return { errors: {}, message: null }
   }
-
-
 
   export async function saveProject(prevState: GenericState, formData: FormData){
     const userId = await getUserId();

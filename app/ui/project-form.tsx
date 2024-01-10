@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import SubmitButton from '@/app/ui/SubmitButton'
 import Link from 'next/link';
-import { saveProject, deleteProject } from '@/app/lib/actions';
+import { saveProject } from '@/app/lib/actions';
+import RemoveProject from '@/app/ui/remove-project';
 import { useFormState } from 'react-dom';
 
 const initialState = {
@@ -27,16 +28,9 @@ export default function ProjectForm({id, initialTitle, initialRepo, initialUrl, 
     const [description, setDescription] = useState(initialDescription);
     const [images, setImages] = useState(initialImages);
 
-    // async function remove(){
-    //     if(id) {
-    //         await deleteProject(id);
-    //     }
-    //     console.log("Project Deleted");
-    // }
-
     return (
         <form action={dispatch}>
-            <div className="flex flex-col w-full items-center mb-separateProjectForms">
+            <div className="flex flex-col w-full items-center">
                 <div className="flex flex-row w-2/3 flex-wrap border-b-[1px] border-monokaiBlue">
                     <div className="items-center flex flex-col w-full md:w-1/2 md:items-end px-2">
                         <div className="w-full md:w-3/4 min-w-[320px]">
@@ -94,9 +88,6 @@ export default function ProjectForm({id, initialTitle, initialRepo, initialUrl, 
                         <div className="w-full md:w-3/4 min-w-[320px]">
                             <SubmitButton label="Save()"></SubmitButton>
                         </div>
-                    </div>
-                    <div className="items-center flex flex-col md:items-start w-full md:w-1/2 px-2 mb-separateProjectForms">
-                        <button className="w-full md:w-3/4 min-w-[320px] bg-monokaiPink text-monokaiBlack rounded h-button hover:bg-buttonPinkHover active:bg-buttonPinkActive text-button">Delete()</button>
                     </div>
                     <div className="items-center hidden md:items-end w-full px-2">
                         <input type="number" name="id" value={id ? id : ''} className="hidden opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input" readOnly></input>
