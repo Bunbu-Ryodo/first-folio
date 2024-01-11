@@ -12,7 +12,7 @@ type Project = {
     url?: string | undefined
     repo?: string | undefined
     description?: string | undefined
-    images?: string | undefined
+    images?: File[] | undefined
 }
 
 export default async function Projects(){
@@ -49,7 +49,7 @@ export default async function Projects(){
                         initialRepo={""}
                         initialUrl={""}
                         initialDescription={""}
-                        initialImages={""}
+                        initialImages={[]}
                     ></ProjectForm>
                 )
             }

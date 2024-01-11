@@ -61,7 +61,6 @@ const CreateUser = z.object({
     repo: z.string(),
     url: z.string(),
     description: z.string(),
-    // images: z.array(z.string())
   })
 
   const DeleteProject = z.object({
@@ -109,8 +108,6 @@ const CreateUser = z.object({
   export async function deleteProject(prevState: GenericState, formData: FormData){
     const userId = await getUserId();
 
-    console.log("Before validating the fields");
-
     const validatedFields = DeleteProject.safeParse({
       id: Number(formData.get('id'))
     })
@@ -122,13 +119,9 @@ const CreateUser = z.object({
       }
     }
 
-    console.log("Successfully validated the fields");
-
     const { id } = validatedFields.data;
 
     try {
-
-      console.log("Attempting delete");
       if(id){
         await prisma.Project.delete({
           where: {
@@ -157,7 +150,6 @@ const CreateUser = z.object({
       repo: formData.get('repo'),
       description: formData.get('description'),
       url: formData.get('url'),
-      images: formData.getAll('images')
     })
 
     if(!validatedFields.success){
@@ -166,8 +158,32 @@ const CreateUser = z.object({
         message: 'Stop trying to break the form you\'re not clever'
       }
     }
+
+    async function turnToBytes(image: File){
+      const bytes = await image.arrayBuffer();
+      const buffer = Buffer.from(bytes)
+      return buffer;
+    }
+
+    let images: any = [];
+
+    if (formData.getAll('images')) {
+      const imagePromises = Array.from(formData.entries())
+        .filter(([name]) => name === 'images')
+        .map(async ([, value]) => {
+          if (value instanceof File) {
+            const bytes = await value.arrayBuffer();
+            const buffer = Buffer.from(bytes);
+            const bytesFormat = Buffer.from(buffer).toString('base64');
+            console.log(bytesFormat, "Buffer");
+            return bytesFormat;
+          }
+        });
     
-    const { id, title, repo, description, url, images } = validatedFields.data;
+      images = await Promise.all(imagePromises);
+    }
+
+    const { id, title, repo, description, url } = validatedFields.data;
 
     try {
       if(id){
@@ -188,7 +204,7 @@ const CreateUser = z.object({
               repo: repo,
               url: url,
               description: description,
-              images: images
+              images: images ? images : []
             }
           })
         }
@@ -200,7 +216,6 @@ const CreateUser = z.object({
             url: url,
             description: description,
             creatorId: userId,
-            images: images
           }
           // images: images
         })
@@ -478,9 +493,4 @@ export async function createUser(prevState: RegisterState, formData: FormData){
         redirect('/login');
         return { errors: {}, message: null }
       }
-
-      // const LoginUser = z.object({
-      //   email: z.string().email(),
-      //   password: z.string().min(8)
-      // })
       

@@ -18,7 +18,7 @@ export default function ProjectForm({id, initialTitle, initialRepo, initialUrl, 
         initialRepo: string | undefined, 
         initialUrl: string | undefined, 
         initialDescription: string | undefined, 
-        initialImages: string | undefined
+        initialImages: File[] | undefined
     }
     ){
     const [state, dispatch] = useFormState(saveProject, initialState);
@@ -53,14 +53,30 @@ export default function ProjectForm({id, initialTitle, initialRepo, initialUrl, 
                         </div>
                     </div>
                     <div className="items-center flex flex-col w-full md:w-1/2 md:items-end px-2">
-                            <input type="file" name="images" onChange={(e) => setImages(e.target.value)} accept="image/jpg, image/png" className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
+                            <input type="file" name="images" onChange={(e) => {
+                                if (e.target.files && e.target.files.length > 0) {
+                                    const newImages = images ? [...images] : [];
+                                    newImages[0] = e.target.files[0]; 
+                                    console.log(newImages)
+                                    setImages(newImages);
+                                }
+                            }} accept="image/jpg, image/png" className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
                                 file:bg-gunMetal file:text-monokaiPink
                                 hover:file:gunMetalHover
                             "></input>
-                            <input type="file" name="images" accept="image/jpg, image/png" className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
+                            <input type="file" name="images" 
+                                onChange={(e) => {
+                                    if (e.target.files && e.target.files.length > 0) {
+                                        const newImages = images ? [...images] : [];
+                                        newImages[1] = e.target.files[1]; 
+                                        console.log(newImages)
+                                        setImages(newImages);
+                                    }
+                                }}
+                                accept="image/jpg, image/png" className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
@@ -69,14 +85,30 @@ export default function ProjectForm({id, initialTitle, initialRepo, initialUrl, 
                             "></input>
                     </div>
                     <div className="items-center flex flex-col md:items-start w-full md:w-1/2">
-                            <input type="file" name="images" accept="image/jpg, image/png" className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
+                            <input type="file" name="images" onChange={(e) => {
+                                    if (e.target.files && e.target.files.length > 0) {
+                                        const newImages = images ? [...images] : [];
+                                        newImages[2] = e.target.files[2]; 
+                                        console.log(newImages)
+                                        setImages(newImages);
+                                    }
+                                }}
+                            accept="image/jpg, image/png" className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
                                 file:bg-gunMetal file:text-monokaiPink
                                 hover:file:bg-gunMetalHover
                             "></input>
-                            <input type="file" name="images" accept="image/jpg, image/png" className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
+                            <input type="file" name="images" onChange={(e) => {
+                                    if (e.target.files && e.target.files.length > 0) {
+                                        const newImages = images ? [...images] : [];
+                                        newImages[3] = e.target.files[3]; 
+                                        console.log(newImages)
+                                        setImages(newImages);
+                                    }
+                                }}
+                            accept="image/jpg, image/png" className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
