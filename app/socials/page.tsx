@@ -1,5 +1,3 @@
-export default function Socials(){
-    return(
-        <h1>Hello</h1>
-    )
+export default function Socials() {
+  return <h1>Hello</h1>;
 }

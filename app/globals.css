@@ -18,15 +18,15 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #2C292D;
+  background: #2c292d;
 }
 
 @keyframes fadeIn {
   from {
-      opacity: 0;
+    opacity: 0;
   }
   to {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
