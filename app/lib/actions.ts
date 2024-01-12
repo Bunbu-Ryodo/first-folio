@@ -65,6 +65,14 @@ const DeleteProject = z.object({
   id: z.number(),
 });
 
+const Socials = z.object({
+  contact_email: z.string(),
+  x: z.string(),
+  instagram: z.string(),
+  facebook: z.string(),
+  linked_in: z.string(),
+});
+
 async function getUserId() {
   const session = await getServerSession();
   const userEmail = session?.user?.email;
@@ -78,6 +86,90 @@ async function getUserId() {
   return user.id;
 }
 
+export async function saveSocials(prevState: GenericState, formData: FormData) {
+  const userId = await getUserId();
+
+  const validatedFields = Socials.safeParse({
+    contact_email: formData.get("contact_email"),
+    x: formData.get("x"),
+    instagram: formData.get("instagram"),
+    facebook: formData.get("facebook"),
+    linked_in: formData.get("linked_in"),
+    website: formData.get("website"),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Stop trying tobreak the form you're not clever",
+    };
+  }
+
+  const { contact_email, x, instagram, facebook, linked_in, website } =
+    validatedFields.data;
+
+  try {
+    const socials = await prisma.Socials.findMany({
+      where: {
+        jobSeekerId: userId,
+      },
+    });
+
+    if (socials) {
+      await prisma.Socials.update({
+        where: {
+          jobSeekerId: userId,
+        },
+        data: {
+          contact_email: contact_email,
+          x: x,
+          instagram: instagram,
+          facebook: facebook,
+          linked_in: linked_in,
+          website: website,
+        },
+      });
+    } else {
+      await prisma.Socials.create({
+        data: {
+          contact_email: contact_email,
+          x: x,
+          instagram: instagram,
+          facebook: facebook,
+          linked_in: linked_in,
+          website: website,
+        },
+      });
+    }
+  } catch (e: any) {
+    console.log(e);
+    return { errors: {}, message: "Something went wrong, please try again" };
+  }
+  revalidatePath("/socials");
+  redirect("/cv");
+  return { errors: {}, message: null };
+}
+
+export async function getSocials() {
+  const userId = await getUserId();
+  const socials = await prisma.Socials.findUnique({
+    where: {
+      contactId: userId,
+    },
+  });
+
+  if (socials) return socials;
+  else
+    return {
+      contact_email: "",
+      x: "",
+      instagram: "",
+      facebook: "",
+      linked_in: "",
+      website: "",
+    };
+}
+
 export async function getTech() {
   const userId = await getUserId();
   const tech = await prisma.Tech.findUnique({
@@ -85,7 +177,9 @@ export async function getTech() {
       developerId: userId,
     },
   });
-  return tech;
+
+  if (tech) return tech;
+  else return { technologies: [], experience: "" };
 }
 
 export async function addNewProject() {
@@ -186,8 +280,6 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
 
   const { id, title, repo, description, url } = validatedFields.data;
 
-  console.log("Where's my data???");
-
   try {
     if (id) {
       const project = await prisma.Project.findMany({
@@ -212,9 +304,7 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
         });
       }
     } else {
-      console.log(id, title, repo, description, url, images);
-
-      const newProject = await prisma.Project.create({
+      await prisma.Project.create({
         data: {
           title: title,
           repo: repo,
@@ -224,11 +314,6 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
           images: images ? images : [],
         },
       });
-
-      console.log(
-        newProject,
-        "This is new project, is there anything weird???"
-      );
     }
   } catch (e: any) {
     console.log(e);
@@ -314,7 +399,8 @@ export async function getIntroduction() {
     },
   });
 
-  return introduce;
+  if (introduce) return introduce;
+  else return { name: "", job_title: "", bio: "" };
 }
 
 export async function saveIntroduction(
