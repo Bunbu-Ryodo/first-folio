@@ -1,33 +1,33 @@
 type RegisterState = {
-    errors?: {
-      email?: string[];
-      password?: string[];
-      confirmPassword?: string[];
-    };
-    message?: string | null;
-    loading?: boolean
+  errors?: {
+    email?: string[];
+    password?: string[];
+    confirmPassword?: string[];
   };
-  
-  type ChangeEmailState = {
-    errors?: {
-      email?: string[];
-      confirmEmail?: string[];
-    }
-    message?: string | null;
-  }
+  message?: string | null;
+  loading?: boolean;
+};
 
-  type ChangePasswordState = {
-    errors?: {
-      currentPassword?: string[];
-      newPassword?: string[];
-      confirmPassword?: string[];
-    }
-    message?: string | null;
-  }
+type ChangeEmailState = {
+  errors?: {
+    email?: string[];
+    confirmEmail?: string[];
+  };
+  message?: string | null;
+};
 
-  type GenericState = {
-    errors?: {
-      fail?: string[];
-    }
-    message?: string | null
-  }
+type ChangePasswordState = {
+  errors?: {
+    currentPassword?: string[];
+    newPassword?: string[];
+    confirmPassword?: string[];
+  };
+  message?: string | null;
+};
+
+type GenericState = {
+  errors?: {
+    fail?: string[];
+  };
+  message?: string | null;
+};
