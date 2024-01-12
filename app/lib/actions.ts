@@ -5,7 +5,6 @@ const { z } = require('zod')
 const { redirect } = require('next/navigation');
 const { revalidatePath } = require('next/cache');
 const bcrypt = require('bcrypt');
-const { Registerstate, ChangeEmailState, ChangePasswordState } = require('@/app/lib/action-types');
 import { getServerSession } from 'next-auth';
 
 
@@ -66,8 +65,6 @@ const CreateUser = z.object({
   const DeleteProject = z.object({
     id: z.number()
   })
-
-  //Images may fail to validate, if so investigate docs
 
   async function getUserId(){
     const session = await getServerSession();
@@ -175,7 +172,6 @@ const CreateUser = z.object({
             const bytes = await value.arrayBuffer();
             const buffer = Buffer.from(bytes);
             const bytesFormat = Buffer.from(buffer).toString('base64');
-            console.log(bytesFormat, "Buffer");
             return bytesFormat;
           }
         });
@@ -184,6 +180,9 @@ const CreateUser = z.object({
     }
 
     const { id, title, repo, description, url } = validatedFields.data;
+
+    
+    console.log("Where's my data???");
 
     try {
       if(id){
@@ -209,16 +208,21 @@ const CreateUser = z.object({
           })
         }
       } else {
-        await prisma.Project.create({
+        console.log(id, title, repo, description, url, images); 
+
+        
+        const newProject = await prisma.Project.create({
           data: {
             title: title,
             repo: repo,
             url: url,
             description: description,
             creatorId: userId,
+            images: images ? images : []
           }
-          // images: images
         })
+
+        console.log(newProject, "This is new project, is there anything weird???");
       }
     } catch(e: any) {
       console.log(e)

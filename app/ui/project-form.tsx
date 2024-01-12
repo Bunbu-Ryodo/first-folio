@@ -11,14 +11,13 @@ const initialState = {
 }
 //Initial Images may be the culprit if TypeScript throws an error on loading the projects
 
-export default function ProjectForm({id, initialTitle, initialRepo, initialUrl, initialDescription, initialImages}: 
+export default function ProjectForm({id, initialTitle, initialRepo, initialUrl, initialDescription}: 
     {
         id: number | undefined,
         initialTitle: string | undefined, 
         initialRepo: string | undefined, 
         initialUrl: string | undefined, 
         initialDescription: string | undefined, 
-        initialImages: File[] | undefined
     }
     ){
     const [state, dispatch] = useFormState(saveProject, initialState);
@@ -26,7 +25,7 @@ export default function ProjectForm({id, initialTitle, initialRepo, initialUrl, 
     const [repo, setRepo] = useState(initialRepo);
     const [url, setUrl] = useState(initialUrl);
     const [description, setDescription] = useState(initialDescription);
-    const [images, setImages] = useState(initialImages);
+    const [images, setImages] = useState<(File | undefined)[]>([]);
 
     return (
         <form action={dispatch}>
@@ -53,7 +52,8 @@ export default function ProjectForm({id, initialTitle, initialRepo, initialUrl, 
                         </div>
                     </div>
                     <div className="items-center flex flex-col w-full md:w-1/2 md:items-end px-2">
-                            <input type="file" name="images" onChange={(e) => {
+                            <input type="file" name="images" 
+                                onChange={(e) => {
                                 if (e.target.files && e.target.files.length > 0) {
                                     const newImages = images ? [...images] : [];
                                     newImages[0] = e.target.files[0]; 
@@ -125,6 +125,11 @@ export default function ProjectForm({id, initialTitle, initialRepo, initialUrl, 
                         <input type="number" name="id" value={id ? id : ''} className="hidden opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input" readOnly></input>
                     </div>
                 </div>
+                {state?.message && 
+                <div key={state.message} className="opacity-0 animate-fade-in mt-2 mb-2 text-monokaiPurple">
+                    {state.message}
+                </div>
+                }
             </div>
         </form>
     )

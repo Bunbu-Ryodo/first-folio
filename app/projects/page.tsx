@@ -2,7 +2,7 @@ import BreadCrumbs from '@/app/ui/breadcrumbs';
 import NextButton from '@/app/ui/next-button';
 import ProjectForm from '@/app/ui/project-form';
 import { getProjects } from '@/app/lib/actions';
-import AddProject from '@/app/ui/add-new-project';
+import AddProject from '@/app/ui/projects/add-new-project';
 import RemoveProject from '@/app/ui/remove-project';
 
 
@@ -17,7 +17,6 @@ type Project = {
 
 export default async function Projects(){
     const projects = await getProjects();
-
 
     return(
         <main className="h-full flex-col container font-light">
@@ -35,7 +34,6 @@ export default async function Projects(){
                         initialRepo={project.repo}
                         initialUrl={project.url}
                         initialDescription={project.description}
-                        initialImages={project.images}
                     ></ProjectForm>
                     </>
                 ))
@@ -49,7 +47,6 @@ export default async function Projects(){
                         initialRepo={""}
                         initialUrl={""}
                         initialDescription={""}
-                        initialImages={[]}
                     ></ProjectForm>
                 )
             }
