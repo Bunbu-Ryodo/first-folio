@@ -23,6 +23,8 @@ const config: Config = {
         'monokaiYellow': '#FFD866',
         'gunMetal': '#292F36',
         'indianRed': '#D16666',
+        'buttonPinkHover': '#FF809F',
+        'buttonPinkActive': '#FF4472',
         'buttonGreenHover': '#B2D094',
         'buttonGreenActive': '#95D654',
         'gunMetalHover': '#2F343A',
@@ -44,7 +46,11 @@ const config: Config = {
         'headerBanner': '40px',
         'loginForm': '352px',
         'smallTextarea': '96px',
-        'largeTextarea': '270px'
+        'largeTextarea': '270px',
+        'projectTextarea': '260px'
+      },
+      width: {
+        'halfWithGap': "47.5%"
       },
       padding: {
         'inputX': '16px',
@@ -59,7 +65,10 @@ const config: Config = {
         'informational': '16px',
         'buttons': '12px',
         'breadcrumbs': '8px',
-        'nextButton': '16px'
+        'nextButton': '16px',
+        'projectForm': '12px',
+        'separateProjectForms': '36px',
+        'nextButton-y': '24px'
       }
     },
   },

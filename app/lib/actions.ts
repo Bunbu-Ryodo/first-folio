@@ -5,7 +5,6 @@ const { z } = require('zod')
 const { redirect } = require('next/navigation');
 const { revalidatePath } = require('next/cache');
 const bcrypt = require('bcrypt');
-const { Registerstate, ChangeEmailState, ChangePasswordState } = require('@/app/lib/action-types');
 import { getServerSession } from 'next-auth';
 
 
@@ -55,6 +54,18 @@ const CreateUser = z.object({
     technologies: z.array(z.string())
   })
 
+  const Project = z.object({
+    id: z.number().nullable(),
+    title: z.string(),
+    repo: z.string(),
+    url: z.string(),
+    description: z.string(),
+  })
+
+  const DeleteProject = z.object({
+    id: z.number()
+  })
+
   async function getUserId(){
     const session = await getServerSession();
     const userEmail = session?.user?.email;
@@ -78,6 +89,160 @@ const CreateUser = z.object({
     return tech;
   }
 
+  export async function addNewProject(){
+    const userId = await getUserId();
+    
+    const project = await prisma.Project.create({
+        data: {
+          creatorId: userId
+        }
+      })
+
+    revalidatePath('/projects')
+    return { errors: {}, message: null}
+  }
+
+  export async function deleteProject(prevState: GenericState, formData: FormData){
+    const userId = await getUserId();
+
+    const validatedFields = DeleteProject.safeParse({
+      id: Number(formData.get('id'))
+    })
+
+    if(!validatedFields.success){
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        message: 'Stop trying to break the form you\'re not clever'
+      }
+    }
+
+    const { id } = validatedFields.data;
+
+    try {
+      if(id){
+        await prisma.Project.delete({
+          where: {
+            id: id,
+            creatorId: userId
+          }
+        })
+      } else {
+        console.log("No id found");
+        return { errors: {}, message: "Stop trying to break the form you're not clever"}
+      }
+    } catch(e) {
+      console.log(e)
+      return { errors: {}, message: "Someting went wrong"}
+    }
+    revalidatePath('/projects')
+    return { errors: {}, message: null }
+  }
+
+  export async function saveProject(prevState: GenericState, formData: FormData){
+    const userId = await getUserId();
+
+    const validatedFields = Project.safeParse({
+      id: Number(formData.get('id')),
+      title: formData.get('title'),
+      repo: formData.get('repo'),
+      description: formData.get('description'),
+      url: formData.get('url'),
+    })
+
+    if(!validatedFields.success){
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        message: 'Stop trying to break the form you\'re not clever'
+      }
+    }
+
+    async function turnToBytes(image: File){
+      const bytes = await image.arrayBuffer();
+      const buffer = Buffer.from(bytes)
+      return buffer;
+    }
+
+    let images: any = [];
+
+    if (formData.getAll('images')) {
+      const imagePromises = Array.from(formData.entries())
+        .filter(([name]) => name === 'images')
+        .map(async ([, value]) => {
+          if (value instanceof File) {
+            const bytes = await value.arrayBuffer();
+            const buffer = Buffer.from(bytes);
+            const bytesFormat = Buffer.from(buffer).toString('base64');
+            return bytesFormat;
+          }
+        });
+    
+      images = await Promise.all(imagePromises);
+    }
+
+    const { id, title, repo, description, url } = validatedFields.data;
+
+    
+    console.log("Where's my data???");
+
+    try {
+      if(id){
+        const project = await prisma.Project.findMany({
+          where: {
+            creatorId: userId
+          }
+        })
+
+        if(project){
+          await prisma.Project.update({
+            where: {
+              id: id, 
+              creatorId: userId
+            },
+            data: {
+              title: title, 
+              repo: repo,
+              url: url,
+              description: description,
+              images: images ? images : []
+            }
+          })
+        }
+      } else {
+        console.log(id, title, repo, description, url, images); 
+
+        
+        const newProject = await prisma.Project.create({
+          data: {
+            title: title,
+            repo: repo,
+            url: url,
+            description: description,
+            creatorId: userId,
+            images: images ? images : []
+          }
+        })
+
+        console.log(newProject, "This is new project, is there anything weird???");
+      }
+    } catch(e: any) {
+      console.log(e)
+      return { errors: {}, message: "Something went wrong, please try again" }
+    }
+    revalidatePath('/projects')
+    return { errors: {}, message: null }
+  }
+
+  export async function getProjects(){
+    const userId = await getUserId();
+    const projects = await prisma.Project.findMany({
+      where: {
+        creatorId: userId
+      }
+    });
+
+    return projects;
+  }
+  
   export async function saveTech(prevState: GenericState, formData: FormData){
     const userId = await getUserId();
 
@@ -210,7 +375,6 @@ const CreateUser = z.object({
 }
 
 export async function changeEmail(prevState: ChangeEmailState, formData: FormData){
-
   const validatedFields = ChangeEmail.safeParse({
     currentEmail: formData.get('currentEmail'),
     newEmail: formData.get('newEmail'),
@@ -333,9 +497,4 @@ export async function createUser(prevState: RegisterState, formData: FormData){
         redirect('/login');
         return { errors: {}, message: null }
       }
-
-      // const LoginUser = z.object({
-      //   email: z.string().email(),
-      //   password: z.string().min(8)
-      // })
       

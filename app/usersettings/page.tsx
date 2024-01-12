@@ -1,9 +1,6 @@
 import { getServerSession } from 'next-auth';
-import SubmitButton from '@/app/ui/SubmitButton';
 import ChangeEmailForm from '@/app/ui/change-email-form';
 import ChangePasswordForm from '@/app/ui/change-password-form';
-
-
 
 
 export default async function UserSettings(){
