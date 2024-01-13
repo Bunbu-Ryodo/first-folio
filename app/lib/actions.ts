@@ -86,6 +86,60 @@ async function getUserId() {
   return user.id;
 }
 
+export async function uploadCV(prevState: GenericState, formData: FormData) {
+  const userId = await getUserId();
+
+  const cvPromise = Array.from(formData.entries())
+    .filter(([name]) => name === "cv")
+    .map(async ([, value]) => {
+      if (value instanceof File) {
+        const bytes = await value.arrayBuffer();
+        const buffer = Buffer.from(bytes);
+        const bytesFormat = Buffer.from(buffer).toString("base64");
+        return bytesFormat;
+      }
+    });
+
+  const cv = await Promise.all(cvPromise);
+
+  if (!cv[0])
+    return {
+      errors: { fail: "Upload Failed" },
+      message: "No CV Selected. Please try again.",
+    };
+
+  const existingCV = await prisma.CV.findMany({
+    where: {
+      jobSeekerId: userId,
+    },
+  });
+
+  try {
+    if (existingCV.length) {
+      await prisma.CV.update({
+        where: {
+          jobSeekerId: userId,
+        },
+        data: {
+          cv: cv[0],
+        },
+      });
+    } else {
+      await prisma.CV.create({
+        data: {
+          cv: cv[0],
+          jobSeekerId: userId,
+        },
+      });
+    }
+  } catch (e) {
+    console.log(e);
+    return { errors: {}, message: "" };
+  }
+  revalidatePath("/cv");
+  redirect("/howtouse");
+  return { errors: {}, message: "" };
+}
 export async function saveSocials(prevState: GenericState, formData: FormData) {
   const userId = await getUserId();
 
@@ -111,14 +165,14 @@ export async function saveSocials(prevState: GenericState, formData: FormData) {
   try {
     const socials = await prisma.Socials.findMany({
       where: {
-        jobSeekerId: userId,
+        contactId: userId,
       },
     });
 
-    if (socials) {
+    if (socials.length) {
       await prisma.Socials.update({
         where: {
-          jobSeekerId: userId,
+          contactId: userId,
         },
         data: {
           contact_email: contact_email,
@@ -138,6 +192,7 @@ export async function saveSocials(prevState: GenericState, formData: FormData) {
           facebook: facebook,
           linked_in: linked_in,
           website: website,
+          contactId: userId,
         },
       });
     }
@@ -223,7 +278,6 @@ export async function deleteProject(
         },
       });
     } else {
-      console.log("No id found");
       return {
         errors: {},
         message: "Stop trying to break the form you're not clever",
@@ -320,7 +374,7 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
     return { errors: {}, message: "Something went wrong, please try again" };
   }
   revalidatePath("/projects");
-  return { errors: {}, message: null };
+  return { errors: {}, message: "Project details and images saved" };
 }
 
 export async function getProjects() {

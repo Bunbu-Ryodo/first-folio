@@ -9,8 +9,11 @@ export default async function Socials() {
 
   return (
     <main className="h-full flex-col justify-center items-center container font-light">
-      <BreadCrumbs links={["mystuff"]} current="introduce"></BreadCrumbs>
-      <NextButton link={"cv"}></NextButton>
+      <BreadCrumbs
+        links={["mystuff", "introduce", "tech", "projects"]}
+        current="socials"
+      ></BreadCrumbs>
+      <NextButton link={"/cv"}></NextButton>
       <div className="w-full h-full flex justify-center items-center">
         <SocialsForm
           initialEmail={contact_email}
