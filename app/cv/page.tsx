@@ -10,7 +10,7 @@ export default async function CV() {
         links={["mystuff", "introduce", "tech", "projects", "socials"]}
         current="cv"
       ></BreadCrumbs>
-      <NextButton link={"#"}></NextButton>
+      <NextButton link="howtouse"></NextButton>
       <div className="w-full h-full flex justify-center items-center">
         <CVForm></CVForm>
       </div>

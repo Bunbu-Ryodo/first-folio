@@ -13,7 +13,7 @@ export default async function Socials() {
         links={["mystuff", "introduce", "tech", "projects"]}
         current="socials"
       ></BreadCrumbs>
-      <NextButton link={"/cv"}></NextButton>
+      <NextButton link={"cv"}></NextButton>
       <div className="w-full h-full flex justify-center items-center">
         <SocialsForm
           initialEmail={contact_email}

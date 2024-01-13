@@ -107,7 +107,7 @@ export default function SocialsForm({
         ></input>
         <div className="flex w-full justify-between">
           <SubmitButton label="Save Progress()"></SubmitButton>
-          <Link href="/tech" className="flex-1 ml-[16px]">
+          <Link href="/cv" className="flex-1 ml-[16px]">
             <button className="w-full bg-transparent border-2 border-monokaiGreen text-monokaiGreen rounded h-button hover:bg-gunMetalHover active:bg-gunMetalActive text-button">
               Skip()
             </button>
