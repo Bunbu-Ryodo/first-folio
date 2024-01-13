@@ -8,7 +8,7 @@ import { useFormState } from "react-dom";
 
 const initialState = {
   errors: {},
-  message: null,
+  message: "",
 };
 //Initial Images may be the culprit if TypeScript throws an error on loading the projects
 
@@ -189,15 +189,17 @@ export default function ProjectForm({
               readOnly
             ></input>
           </div>
-        </div>
-        {state?.message && (
-          <div
-            key={state.message}
-            className="opacity-0 animate-fade-in mt-2 mb-2 text-monokaiPurple"
-          >
-            {state.message}
+          <div className="flex justify-center w-full mb-formInput">
+            {state?.message && (
+              <div
+                key={state.message}
+                className="opacity-0 animate-fade-in mt-2 mb-2 text-monokaiPurple"
+              >
+                {state.message}
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </form>
   );
