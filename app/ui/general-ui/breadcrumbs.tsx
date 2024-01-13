@@ -16,8 +16,13 @@ export default function BreadCrumbs({
             href={`/${link}`}
             key={"Link" + `${index}`}
           >
-            <span className="underline">{`${link}.tsx`}</span>
-            <span className="no-underline px-2">&gt;</span>
+            <span
+              key={"Span1" + `${index}`}
+              className="underline"
+            >{`${link}.tsx`}</span>
+            <span key={"Span2" + `${index}`} className="no-underline px-2">
+              &gt;
+            </span>
           </Link>
         </>
       ))}
