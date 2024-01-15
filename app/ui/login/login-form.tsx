@@ -59,7 +59,7 @@ export default function LoginForm() {
           </a>
         </div>
         <div className="flex w-full justify-between mt-formInput">
-          <SubmitButton label="Login()"></SubmitButton>
+          <SubmitButton noFlex1={false} label="Login()"></SubmitButton>
           <Link href="/register" className="flex-1 ml-[16px]">
             <button className="w-full bg-transparent border-2 border-monokaiGreen text-monokaiGreen rounded h-button hover:bg-gunMetalHover active:bg-gunMetalActive text-button">
               Register()

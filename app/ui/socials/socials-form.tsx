@@ -106,7 +106,7 @@ export default function SocialsForm({
           className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
         <div className="flex w-full justify-between">
-          <SubmitButton label="Save Progress()"></SubmitButton>
+          <SubmitButton noFlex1={false} label="Save Progress()"></SubmitButton>
           <Link href="/cv" className="flex-1 ml-[16px]">
             <button className="w-full bg-transparent border-2 border-monokaiGreen text-monokaiGreen rounded h-button hover:bg-gunMetalHover active:bg-gunMetalActive text-button">
               Skip()

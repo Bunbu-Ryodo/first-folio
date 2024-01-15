@@ -55,7 +55,7 @@ export default function ChangePasswordForm() {
               {error}
             </div>
           ))}
-        <SubmitButton label="Reset Password"></SubmitButton>
+        <SubmitButton noFlex1={false} label="Reset Password"></SubmitButton>
         {state?.message && (
           <div
             key={state.message}

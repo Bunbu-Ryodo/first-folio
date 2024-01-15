@@ -73,7 +73,7 @@ export default function ChangeEmail({
               {error}
             </div>
           ))}
-        <SubmitButton label="Save New Email"></SubmitButton>
+        <SubmitButton noFlex1={false} label="Save New Email"></SubmitButton>
         {state?.message && (
           <div
             key={state.message}
