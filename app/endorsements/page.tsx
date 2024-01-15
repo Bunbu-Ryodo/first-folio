@@ -37,9 +37,9 @@ export default async function Endorsements() {
           {endorsements &&
             endorsements
               .reverse()
-              .map((endorsement: Endorsement, index) => (
+              .map((endorsement: Endorsement, index: number) => (
                 <EndorsementForm
-                  key={endorsement.id}
+                  index={index}
                   id={endorsement.id}
                   initialName={endorsement.name}
                   initialComments={endorsement.comments}
