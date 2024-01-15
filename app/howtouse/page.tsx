@@ -19,7 +19,7 @@ export default function HowToUse() {
         </p>
         <p className="opacity-0 animate-fade-in-slowest text-center text-howToUse text-monokaiGreen">
           Copy & Paste the URL into your CV/LinkedIn/social media, or anywhere
-          else you'd like to use it
+          else you&apos;d like to use it
         </p>
         <p className="opacity-0 animate-fade-in-slowest-2x text-center text-howToUse text-monokaiOrange">
           Purchase your own domain and point it at this URL if you like
