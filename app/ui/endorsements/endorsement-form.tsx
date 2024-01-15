@@ -9,10 +9,12 @@ const initialState = { errors: {}, message: "" };
 
 export default function EndorsementForm({
   id,
+  index,
   initialName,
   initialComments,
 }: {
   id: number | undefined;
+  index: number;
   initialName: string | undefined;
   initialComments: string | undefined;
 }) {
@@ -21,7 +23,7 @@ export default function EndorsementForm({
   const [comments, setComments] = useState(initialComments);
 
   return (
-    <form action={dispatch} className="w-full mb-12">
+    <form action={dispatch} key={index} className="w-full mb-12">
       <div className="flex flex-col w-full">
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
           &lt;Name of Referee/Company&gt;
