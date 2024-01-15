@@ -177,7 +177,7 @@ export default function ProjectForm({
           </div>
           <div className="items-center flex flex-col md:items-end w-full md:w-1/2 px-2 mb-formInput">
             <div className="w-full md:w-3/4 min-w-[320px]">
-              <SubmitButton label="Save()"></SubmitButton>
+              <SubmitButton noFlex1={false} label="Save()"></SubmitButton>
             </div>
           </div>
           <div className="items-center hidden md:items-end w-full px-2">

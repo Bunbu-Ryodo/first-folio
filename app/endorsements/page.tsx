@@ -1,8 +1,25 @@
 import BreadCrumbs from "@/app/ui/general-ui/breadcrumbs";
 import NextButton from "@/app/ui/general-ui/next-button";
-import EndorsementsFormContainer from "@/app/ui/endorsements/endorsements-form-container";
+import EndorsementForm from "@/app/ui/endorsements/endorsement-form";
+import { getEndorsements } from "@/app/lib/actions";
 
-export default function Endorsements() {
+type Endorsement = {
+  id: number;
+  name?: string | undefined;
+  comments?: string | undefined;
+};
+
+export default async function Endorsements() {
+  const endorsements = await getEndorsements();
+
+  if (endorsements.length < 3) {
+    const fill = 3 - endorsements.length;
+    for (let i = 0; i < fill; i++) {
+      endorsements.push([
+        { id: undefined, initialName: "", initialComments: "" },
+      ]);
+    }
+  }
   return (
     <main className="h-full container font-light">
       <BreadCrumbs
@@ -15,7 +32,20 @@ export default function Endorsements() {
           Share Up to 3 Endorsements
         </span>
       </div>
-      <EndorsementsFormContainer></EndorsementsFormContainer>
+      <div className="flex w-full flex-col items-center">
+        <div className="w-full md:w-1/2 flex flex-col items-center px-2">
+          {endorsements &&
+            endorsements
+              .reverse()
+              .map((endorsement: Endorsement) => (
+                <EndorsementForm
+                  id={endorsement.id}
+                  initialName={endorsement.name}
+                  initialComments={endorsement.comments}
+                ></EndorsementForm>
+              ))}
+        </div>
+      </div>
     </main>
   );
 }

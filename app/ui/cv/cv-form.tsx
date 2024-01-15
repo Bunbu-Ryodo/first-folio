@@ -37,7 +37,7 @@ export default function CVForm() {
                                 hover:file:gunMetalHover
                             "
           ></input>
-          <SubmitButton label="UploadCV"></SubmitButton>
+          <SubmitButton noFlex1={false} label="UploadCV"></SubmitButton>
           {state?.message && (
             <div
               key={state.message}

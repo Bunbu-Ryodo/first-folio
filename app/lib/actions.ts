@@ -73,6 +73,12 @@ const Socials = z.object({
   linked_in: z.string(),
 });
 
+const Endorsements = z.object({
+  id: z.number().nullable(),
+  name: z.string(),
+  comments: z.string(),
+});
+
 async function getUserId() {
   const session = await getServerSession();
   const userEmail = session?.user?.email;
@@ -84,6 +90,80 @@ async function getUserId() {
   });
 
   return user.id;
+}
+
+export async function saveEndorsements(
+  prevState: GenericState,
+  formData: FormData
+) {
+  const userId = await getUserId();
+
+  const validatedFields = Endorsements.safeParse({
+    id: Number(formData.get("id")),
+    name: formData.get("name"),
+    comments: formData.get("comments"),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.errors.flatten().fieldErrors,
+      message: "Stop trying to break the form you're not clever",
+    };
+  }
+
+  const { name, comments, id } = validatedFields.data;
+
+  try {
+    if (id) {
+      const endorsement = await prisma.Endorsement.findUnique({
+        where: {
+          candidateId: userId,
+          id: id,
+        },
+      });
+
+      if (endorsement) {
+        await prisma.Endorsement.update({
+          where: {
+            id: id,
+            candidateId: userId,
+          },
+          data: {
+            name: name,
+            comments: comments,
+          },
+        });
+      }
+    } else {
+      await prisma.Endorsement.create({
+        data: {
+          name: name,
+          comments: comments,
+          candidateId: userId,
+        },
+      });
+    }
+  } catch (e) {
+    console.log(e);
+    return {
+      errors: { fail: ["Endorsement did not save"] },
+      message: "Something went wrong please try again",
+    };
+  }
+  revalidatePath("/endorsements");
+  return { errors: {}, message: "" };
+}
+
+export async function getEndorsements() {
+  const userId = await getUserId();
+
+  const endorsements = await prisma.Endorsement.findMany({
+    where: {
+      candidateId: userId,
+    },
+  });
+
+  if (endorsements) return endorsements;
 }
 
 export async function uploadCV(prevState: GenericState, formData: FormData) {
