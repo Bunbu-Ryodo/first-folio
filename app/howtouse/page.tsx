@@ -11,18 +11,20 @@ export default function HowToUse() {
       ></BreadCrumbs>
       <NextButton link="#"></NextButton>
       <div className="flex flex-col w-full md:w-1/3 h-full items-center justify-center">
-        <span className="text-monokaiYellow text-header">How To Use</span>
-        <p className="text-center text-howToUse text-monokaiBlue">
+        <span className="opacity-0 animate-fade-in text-monokaiYellow text-header">
+          How To Use
+        </span>
+        <p className="opacity-0 animate-fade-in-slower text-center text-howToUse text-monokaiBlue">
           The next page will take you to your portfolio!
         </p>
-        <p className="text-center text-howToUse text-monokaiGreen">
+        <p className="opacity-0 animate-fade-in-slowest text-center text-howToUse text-monokaiGreen">
           Copy & Paste the URL into your CV/LinkedIn/social media, or anywhere
           else you'd like to use it
         </p>
-        <p className="text-center text-howToUse text-monokaiOrange">
+        <p className="opacity-0 animate-fade-in-slowest-2x text-center text-howToUse text-monokaiOrange">
           Purchase your own domain and point it at this URL if you like
         </p>
-        <p className="text-center text-howToUse text-monokaiPurple">
+        <p className="opacity-0 animate-fade-in-slowest-3x text-center text-howToUse text-monokaiPurple">
           Good luck
         </p>
         <Link className="w-full" href="/usersettings">

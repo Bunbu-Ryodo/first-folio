@@ -63,3 +63,11 @@ body {
 .animate-fade-in-slowest {
   animation: fadeIn ease-in-out 1s forwards;
 }
+
+.animate-fade-in-slowest-2x {
+  animation: fadeIn ease-in-out 1.5s forwards;
+}
+
+.animate-fade-in-slowest-3x {
+  animation: fadeIn ease-in-out 1.75s forwards;
+}
