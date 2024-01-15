@@ -7,7 +7,7 @@ export default async function Introduce() {
   const { name, job_title, bio } = await getIntroduction();
 
   return (
-    <main className="h-full flex-col justify-center items-center container font-light">
+    <main className="h-full container font-light">
       <BreadCrumbs links={["mystuff"]} current="introduce"></BreadCrumbs>
       <NextButton link={"tech"}></NextButton>
       <div className="w-full h-full flex justify-center items-center">

@@ -6,7 +6,15 @@ export default function HowToUse() {
   return (
     <main className="flex h-full flex-col justify-center items-center container font-light">
       <BreadCrumbs
-        links={["mystuff", "introduce", "tech", "projects", "socials", "cv"]}
+        links={[
+          "mystuff",
+          "introduce",
+          "tech",
+          "projects",
+          "endorsements",
+          "socials",
+          "cv",
+        ]}
         current="how-to-use"
       ></BreadCrumbs>
       <NextButton link="#"></NextButton>

@@ -10,7 +10,7 @@ export default async function Socials() {
   return (
     <main className="h-full flex-col justify-center items-center container font-light">
       <BreadCrumbs
-        links={["mystuff", "introduce", "tech", "projects"]}
+        links={["mystuff", "introduce", "tech", "projects", "endorsements"]}
         current="socials"
       ></BreadCrumbs>
       <NextButton link={"cv"}></NextButton>

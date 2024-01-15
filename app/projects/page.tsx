@@ -18,12 +18,12 @@ export default async function Projects() {
   const projects = await getProjects();
 
   return (
-    <main className="h-full flex-col container font-light">
+    <main className="h-full container font-light">
       <BreadCrumbs
         links={["mystuff", "introduce", "tech"]}
         current={"projects"}
       ></BreadCrumbs>
-      <NextButton link={"socials"}></NextButton>
+      <NextButton link={"endorsements"}></NextButton>
       <div className="flex flex-col justify-center w-full text-monokaiYellow text-header font-medium text-center p-2 h-headerBanner mb-titleHeader">
         <span className="opacity-0 animate-fade-in-slower">
           Showcase Your Work

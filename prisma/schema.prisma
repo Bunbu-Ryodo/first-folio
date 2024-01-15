@@ -20,6 +20,7 @@ model User {
   projects Project[]
   socials Socials?
   cv CV?
+  endorsements Endorsement[]
 }
 
 model Introduce {
@@ -67,4 +68,12 @@ model CV {
   cv Bytes?
   jobSeeker User @relation(fields: [jobSeekerId], references: [id])
   jobSeekerId String @unique
+}
+
+model Endorsement {
+  id Int @id @default(autoincrement())
+  name String?
+  comments String?
+  candidate User @relation(fields: [candidateId], references: [id])
+  candidateId String 
 }
