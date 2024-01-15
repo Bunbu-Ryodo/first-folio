@@ -213,7 +213,7 @@ export async function getSocials() {
     },
   });
 
-  if (socials) return socials;
+  if (socials.length) return socials;
   else
     return {
       contact_email: "",

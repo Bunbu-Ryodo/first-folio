@@ -32,9 +32,12 @@ export default async function Projects() {
       {projects &&
         projects.reverse().map((project: Project) => (
           <>
-            <RemoveProject id={project.id}></RemoveProject>
+            <RemoveProject
+              key={`Remove-${project.id}`}
+              id={project.id}
+            ></RemoveProject>
             <ProjectForm
-              key={project.id}
+              key={`Old-${project.id}`}
               id={project.id}
               initialTitle={project.title}
               initialRepo={project.repo}
