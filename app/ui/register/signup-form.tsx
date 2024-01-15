@@ -128,7 +128,7 @@ export default function SignUpForm() {
             </div>
           ))}
         <div className="flex w-full justify-between mt-formInput">
-          <SubmitButton label="Register()"></SubmitButton>
+          <SubmitButton noFlex1={false} label="Register()"></SubmitButton>
           <Link href="/login" className="flex-1 ml-[16px]">
             <button className="w-full bg-transparent border-2 border-monokaiGreen text-monokaiGreen rounded h-button hover:bg-gunMetalHover active:bg-gunMetalActive text-button">
               Back To Login()

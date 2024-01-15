@@ -48,6 +48,7 @@ const config: Config = {
         smallTextarea: "96px",
         largeTextarea: "270px",
         projectTextarea: "260px",
+        endorsementTextarea: "160px",
       },
       width: {
         halfWithGap: "47.5%",
