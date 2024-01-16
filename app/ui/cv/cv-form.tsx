@@ -14,7 +14,7 @@ export default function CVForm() {
   const [state, dispatch] = useFormState(uploadCV, initialState);
   const [cv, setCV] = useState<File>();
   return (
-    <div className="flex flex-col md:w-1/3">
+    <div className="flex flex-col md:w-1/3 px-2">
       <form action={dispatch}>
         <div className="w-full">
           <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">

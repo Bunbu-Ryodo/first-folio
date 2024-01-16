@@ -25,7 +25,9 @@ export default function TechForm({
   return (
     <div className="flex flex-col w-full h-full">
       <div className="flex w-full justify-center mb-titleHeader">
-        <span className="text-header text-monokaiYellow">Tech Stack</span>
+        <span className="text-displayMobile md:text-header text-monokaiYellow">
+          Tech Stack
+        </span>
       </div>
       <form action={dispatch}>
         <div className="flex flex-col md:flex-row w-full h-full">

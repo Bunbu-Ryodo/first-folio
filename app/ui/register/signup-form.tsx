@@ -47,8 +47,8 @@ export default function SignUpForm() {
   }, 300);
 
   return (
-    <div className="flex flex-col md:w-1/2 lg:w-1/3">
-      <div className="flex flex-col justify-center w-full text-monokaiYellow text-header font-medium text-center p-2 h-headerBanner mb-titleHeader">
+    <div className="flex flex-col md:w-1/2 lg:w-1/3 px-2">
+      <div className="flex flex-col justify-center w-full text-monokaiYellow text-header text-center p-2 h-headerBanner mb-titleHeader">
         <span className="opacity-0 animate-fade-in-slower">Register</span>
       </div>
       <form action={dispatch} className="w-full">

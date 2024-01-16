@@ -154,16 +154,45 @@ export async function saveEndorsements(
   return { errors: {}, message: "" };
 }
 
-export async function getEndorsements() {
+export async function getPortfolioData() {
   const userId = await getUserId();
+  const introduction = await getIntroduction(userId);
+  const tech = await getTech(userId);
+  const projects = await getProjects(userId);
+  const endorsements = await getEndorsements(userId);
+  const socials = await getSocials(userId);
 
-  const endorsements = await prisma.Endorsement.findMany({
-    where: {
-      candidateId: userId,
-    },
-  });
+  const portfolioData = {
+    introduction: introduction,
+    tech: tech,
+    projects: projects,
+    endorsements: endorsements,
+    socials: socials,
+  };
 
-  if (endorsements) return endorsements;
+  return portfolioData;
+}
+
+export async function getEndorsements(id?: string) {
+  if (id) {
+    const endorsements = await prisma.Endorsement.findMany({
+      where: {
+        candidateId: id,
+      },
+    });
+
+    if (endorsements) return endorsements;
+  } else {
+    const userId = await getUserId();
+
+    const endorsements = await prisma.Endorsement.findMany({
+      where: {
+        candidateId: userId,
+      },
+    });
+
+    if (endorsements) return endorsements;
+  }
 }
 
 export async function uploadCV(prevState: GenericState, formData: FormData) {
@@ -285,36 +314,66 @@ export async function saveSocials(prevState: GenericState, formData: FormData) {
   return { errors: {}, message: null };
 }
 
-export async function getSocials() {
-  const userId = await getUserId();
-  const socials = await prisma.Socials.findUnique({
-    where: {
-      contactId: userId,
-    },
-  });
+export async function getSocials(id?: string) {
+  if (id) {
+    const socials = await prisma.Socials.findUnique({
+      where: {
+        contactId: id,
+      },
+    });
 
-  if (socials.length) return socials;
-  else
-    return {
-      contact_email: "",
-      x: "",
-      instagram: "",
-      facebook: "",
-      linked_in: "",
-      website: "",
-    };
+    if (socials.length) return socials;
+    else
+      return {
+        contact_email: "",
+        x: "",
+        instagram: "",
+        facebook: "",
+        linked_in: "",
+        website: "",
+      };
+  } else {
+    const userId = await getUserId();
+    const socials = await prisma.Socials.findUnique({
+      where: {
+        contactId: userId,
+      },
+    });
+
+    if (socials.length) return socials;
+    else
+      return {
+        contact_email: "",
+        x: "",
+        instagram: "",
+        facebook: "",
+        linked_in: "",
+        website: "",
+      };
+  }
 }
 
-export async function getTech() {
-  const userId = await getUserId();
-  const tech = await prisma.Tech.findUnique({
-    where: {
-      developerId: userId,
-    },
-  });
+export async function getTech(id?: string) {
+  if (id) {
+    const tech = await prisma.Tech.findUnique({
+      where: {
+        developerId: id,
+      },
+    });
 
-  if (tech) return tech;
-  else return { technologies: [], experience: "" };
+    if (tech) return tech;
+    else return { technologies: [], experience: "" };
+  } else {
+    const userId = await getUserId();
+    const tech = await prisma.Tech.findUnique({
+      where: {
+        developerId: userId,
+      },
+    });
+
+    if (tech) return tech;
+    else return { technologies: [], experience: "" };
+  }
 }
 
 export async function addNewProject() {
@@ -457,15 +516,25 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
   return { errors: {}, message: "Project details and images saved" };
 }
 
-export async function getProjects() {
-  const userId = await getUserId();
-  const projects = await prisma.Project.findMany({
-    where: {
-      creatorId: userId,
-    },
-  });
+export async function getProjects(id?: string) {
+  if (id) {
+    const projects = await prisma.Project.findMany({
+      where: {
+        creatorId: id,
+      },
+    });
 
-  return projects;
+    return projects;
+  } else {
+    const userId = await getUserId();
+    const projects = await prisma.Project.findMany({
+      where: {
+        creatorId: userId,
+      },
+    });
+
+    return projects;
+  }
 }
 
 export async function saveTech(prevState: GenericState, formData: FormData) {
@@ -524,17 +593,26 @@ export async function saveTech(prevState: GenericState, formData: FormData) {
   return { errors: {}, message: null };
 }
 
-export async function getIntroduction() {
-  const userId = await getUserId();
+export async function getIntroduction(id?: string) {
+  if (id) {
+    const introduction = await prisma.Introduce.findUnique({
+      where: {
+        personId: id,
+      },
+    });
 
-  const introduce = await prisma.Introduce.findUnique({
-    where: {
-      personId: userId,
-    },
-  });
-
-  if (introduce) return introduce;
-  else return { name: "", job_title: "", bio: "" };
+    if (introduction) return introduction;
+    else return { name: "", job_title: "", bio: "" };
+  } else {
+    const userId = await getUserId();
+    const introduction = await prisma.Introduce.findUnique({
+      where: {
+        personId: userId,
+      },
+    });
+    if (introduction) return introduction;
+    else return { name: "", job_title: "", bio: "" };
+  }
 }
 
 export async function saveIntroduction(
