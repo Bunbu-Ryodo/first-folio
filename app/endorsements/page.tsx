@@ -27,7 +27,7 @@ export default async function Endorsements() {
         current="endorsements"
       ></BreadCrumbs>
       <NextButton link="socials"></NextButton>
-      <div className="flex flex-col justify-center w-full text-monokaiYellow text-header font-medium text-center p-2 h-headerBanner mb-titleHeader">
+      <div className="flex flex-col justify-center w-full text-monokaiYellow text-displayMobile md:text-header text-center p-2 h-headerBanner mb-titleHeader">
         <span className="opacity-0 animate-fade-in-slower">
           Share Up to 3 Endorsements
         </span>

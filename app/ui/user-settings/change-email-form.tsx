@@ -28,7 +28,7 @@ export default function ChangeEmail({
   const [state, dispatch] = useFormState(changeEmail, initialState);
   return (
     <div className="flex flex-col items-center w-full mt-[24px] mr-[16px] md:w-1/2">
-      <div className="w-full text-monokaiYellow text-displayMobile md:text-header font-medium text-center p-2 h-headerBanner mb-titleHeader">
+      <div className="w-full text-monokaiYellow text-displayMobile md:text-header text-center p-2 h-headerBanner mb-titleHeader">
         <span className="opacity-0 animate-fade-in-slower">
           Change Your Email
         </span>
