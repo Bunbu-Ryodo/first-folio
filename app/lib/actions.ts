@@ -161,6 +161,7 @@ export async function getPortfolioData() {
   const projects = await getProjects(userId);
   const endorsements = await getEndorsements(userId);
   const socials = await getSocials(userId);
+  const cv = await getCV(userId);
 
   const portfolioData = {
     introduction: introduction,
@@ -168,9 +169,21 @@ export async function getPortfolioData() {
     projects: projects,
     endorsements: endorsements,
     socials: socials,
+    cv: cv,
   };
 
   return portfolioData;
+}
+
+export async function getCV(id: string) {
+  const cv = await prisma.CV.findUnique({
+    where: {
+      jobSeekerId: id,
+    },
+  });
+
+  if (cv) return cv;
+  else return "";
 }
 
 export async function getEndorsements(id?: string) {

@@ -17,10 +17,12 @@ export default async function RootLayout({
   const session = await getServerSession();
   const activeSession = !!session;
   return (
-    <html lang="en" className="w-full h-full">
-      <body className={`${robotoMono.className} h-full w-full`}>
-        <Header></Header>
-        <main className="h-full container mx-auto">{children}</main>
+    <html lang="en">
+      <body className={`${robotoMono.className} min-h-screen w-full`}>
+        <main className="flex h-full flex-1 flex-col">
+          <Header></Header>
+          {children}
+        </main>
       </body>
     </html>
   );

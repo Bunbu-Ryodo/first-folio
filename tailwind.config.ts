@@ -42,6 +42,7 @@ const config: Config = {
         portfolioBlackActive: "#191918",
       },
       fontSize: {
+        portfolioDisplay: "72px",
         display: "48px",
         displayMobile: "24px",
         navbar: "14px",
@@ -51,6 +52,7 @@ const config: Config = {
         howToUse: "18px",
         button: "14px",
         breadCrumb: "12px",
+        copy: "24px",
       },
       height: {
         button: "40px",
@@ -60,9 +62,11 @@ const config: Config = {
         largeTextarea: "270px",
         projectTextarea: "260px",
         endorsementTextarea: "160px",
+        iconHeight: "24px",
       },
       width: {
         halfWithGap: "47.5%",
+        iconWidth: "24px",
       },
       padding: {
         inputX: "16px",
