@@ -3,9 +3,11 @@ import PortfolioHero from "@/app/ui/portfolio/portfolio-hero";
 
 export default async function Portfolio() {
   const portfolioData = await getPortfolioData();
-  const { introduction, tech, projects, endorsements, socials, cv } =
-    portfolioData;
-  console.log(portfolioData);
+  const { introduction, tech, projects, endorsements, socials } = portfolioData;
+
+  // const blob = new Blob([cv.data], { type: "application/pdf" });
+  // const file = new File([cv.data], "cv.pdf", { type: "application/pdf" });
+
   return (
     <>
       <PortfolioHero
@@ -13,7 +15,6 @@ export default async function Portfolio() {
         job_title={introduction.job_title}
         bio={introduction.bio}
         socials={socials}
-        cv={cv}
       ></PortfolioHero>
     </>
   );

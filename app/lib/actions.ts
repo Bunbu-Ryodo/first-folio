@@ -79,7 +79,7 @@ const Endorsements = z.object({
   comments: z.string(),
 });
 
-async function getUserId() {
+export async function getUserId() {
   const session = await getServerSession();
   const userEmail = session?.user?.email;
 
@@ -161,7 +161,6 @@ export async function getPortfolioData() {
   const projects = await getProjects(userId);
   const endorsements = await getEndorsements(userId);
   const socials = await getSocials(userId);
-  const cv = await getCV(userId);
 
   const portfolioData = {
     introduction: introduction,
@@ -169,20 +168,20 @@ export async function getPortfolioData() {
     projects: projects,
     endorsements: endorsements,
     socials: socials,
-    cv: cv,
   };
 
   return portfolioData;
 }
 
-export async function getCV(id: string) {
+export async function getCV() {
+  const userId = await getUserId();
   const cv = await prisma.CV.findUnique({
     where: {
-      jobSeekerId: id,
+      jobSeekerId: userId,
     },
   });
 
-  if (cv) return cv;
+  if (cv) return cv.cv;
   else return "";
 }
 
