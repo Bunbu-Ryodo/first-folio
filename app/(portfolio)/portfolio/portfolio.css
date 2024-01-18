@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+
+body {
+  color: #242423;
+  background: #f9f8f1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-fade-in-out {
+  animation: fadeInOut 2.75s ease-in-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn ease-in-out 0.25s forwards;
+}
+
+.animate-fade-in-slower {
+  animation: fadeIn ease-in-out 0.5s forwards;
+}
+
+.animate-fade-in-slowest {
+  animation: fadeIn ease-in-out 1s forwards;
+}
+
+.animate-fade-in-slowest-2x {
+  animation: fadeIn ease-in-out 1.5s forwards;
+}
+
+.animate-fade-in-slowest-3x {
+  animation: fadeIn ease-in-out 1.75s forwards;
+}
