@@ -1,7 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { getCV } from "@/app/lib/actions";
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
   const buffer = await getCV();
   const headers = new Headers();
   headers.append("Content-Disposition", 'attachment; filename="cv.pdf"');
