@@ -53,6 +53,8 @@ const config: Config = {
         button: "14px",
         breadCrumb: "12px",
         copy: "24px",
+        endorsement: "24px",
+        mobileEndorsement: "16px",
       },
       height: {
         button: "40px",
@@ -63,6 +65,7 @@ const config: Config = {
         projectTextarea: "260px",
         endorsementTextarea: "160px",
         iconHeight: "24px",
+        testimonials: "250vh",
       },
       width: {
         halfWithGap: "47.5%",
@@ -85,6 +88,7 @@ const config: Config = {
         projectForm: "12px",
         separateProjectForms: "36px",
         "nextButton-y": "24px",
+        testimonials: "36px",
       },
     },
   },
