@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { robotoMono } from "@/app/ui/fonts";
+import { robotoMono, sourceSerif } from "@/app/ui/fonts";
 
 type Endorsement = {
   id: number;
@@ -31,10 +31,12 @@ export default function Testimonials({
 
   const getFadeClass = (index: number) => {
     const positionThresholds = [20, 60, 80];
-    const threshold = positionThresholds[index] * (window.innerHeight / 100);
+    if (window != undefined) {
+      const threshold = positionThresholds[index] * (window.innerHeight / 100);
 
-    if (scrollPosition > threshold) {
-      return "animate-fade-in-slowest";
+      if (scrollPosition > threshold) {
+        return "animate-fade-in-slowest";
+      }
     }
 
     return "";
@@ -43,6 +45,15 @@ export default function Testimonials({
     <div className="h-testimonials">
       <div className="sticky top-0">
         <div className="flex flex-col w-full px-8 py-8">
+          <div className="flex flex-row justify-center items-center">
+            <h1
+              className={`opacity-0 text-display ${
+                sourceSerif.className
+              } mb-testimonialsHeader ${getFadeClass(0)}`}
+            >
+              Testimonials
+            </h1>
+          </div>
           <div className="flex flex-col w-full items-center justify-center mb-testimonials">
             <span
               className={`opacity-0 ${robotoMono.className} ${getFadeClass(
@@ -54,7 +65,9 @@ export default function Testimonials({
             <span
               className={`opacity-0 ${
                 robotoMono.className
-              } text-mobileEndorsement md:text-endorsement ${getFadeClass(0)}`}
+              } text-mobileEndorsement md:text-endorsement italic ${getFadeClass(
+                0
+              )}`}
             >
               {endorsements[0].name ? `${endorsements[0].name}` : ""}
             </span>
@@ -75,7 +88,7 @@ export default function Testimonials({
               <span
                 className={`opacity-0 ${
                   robotoMono.className
-                } text-mobileEndorsement md:text-endorsement ${getFadeClass(
+                } text-mobileEndorsement md:text-endorsement italic ${getFadeClass(
                   1
                 )}`}
               >
@@ -97,7 +110,7 @@ export default function Testimonials({
               <span
                 className={`opacity-0 ${
                   robotoMono.className
-                } text-mobileEndorsement md:text-endorsement ${getFadeClass(
+                } text-mobileEndorsement md:text-endorsement italic ${getFadeClass(
                   2
                 )}`}
               >

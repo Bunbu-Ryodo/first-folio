@@ -45,11 +45,13 @@ export default function PortfolioHero({
 
   return (
     <div className="px-16 py-16 border-b-[1px] border-portfolioBlack">
-      <h1 className={`${sourceSerif.className} text-portfolioDisplay`}>
+      <h1
+        className={`${sourceSerif.className} text-display md:text-portfolioDisplay`}
+      >
         {name}
       </h1>
-      <h1 className={`text-portfolioDisplay`}>{job_title}</h1>
-      <h1 className="text-copy">{bio}</h1>
+      <h1 className="text-display md:text-portfolioDisplay">{job_title}</h1>
+      <h1 className="text-copyMobile md:text-copy mb-bio">{bio}</h1>
       <div className="flex flex-row w-full justify-between">
         <div className="socials-container flex flex-row">
           <a href={socials.x} className="pr-2 py-2">
