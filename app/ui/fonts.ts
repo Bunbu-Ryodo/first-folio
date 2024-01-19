@@ -14,5 +14,6 @@ export const sourceSerif = Source_Serif_4({
 
 export const robotoMono = Roboto_Mono({
   weight: ["400"],
+  style: ["italic", "normal"],
   subsets: ["latin"],
 });
