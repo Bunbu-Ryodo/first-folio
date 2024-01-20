@@ -360,8 +360,7 @@ export async function getSocials(id?: string) {
         contactId: userId,
       },
     });
-
-    if (socials.length) return socials;
+    if (socials) return socials;
     else
       return {
         contact_email: "",
