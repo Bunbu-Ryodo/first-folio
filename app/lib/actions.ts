@@ -71,6 +71,7 @@ const Socials = z.object({
   instagram: z.string(),
   facebook: z.string(),
   linked_in: z.string(),
+  website: z.string(),
 });
 
 const Endorsements = z.object({
