@@ -49,9 +49,9 @@ export default function Testimonials({
         <div className="flex flex-col w-full px-8 py-8">
           <div className="flex flex-row justify-center items-center">
             <h1
-              className={`opacity-0 text-display ${
-                sourceSerif.className
-              } mb-testimonialsHeader ${getFadeClass(0)}`}
+              className={`opacity-0 text-display mb-testimonialsHeader ${getFadeClass(
+                0
+              )}`}
             >
               Testimonials
             </h1>

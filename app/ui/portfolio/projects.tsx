@@ -30,7 +30,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
     <div className="flex flex-col w-full p-8">
       <div className="flex justify-center items-center">
         <h1
-          className={`text-display ${sourceSerif.className} mb-testimonialsHeader`}
+          className={`text-display mb-testimonialsHeader`}
         >
           Projects
         </h1>
