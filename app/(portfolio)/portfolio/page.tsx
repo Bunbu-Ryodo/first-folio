@@ -2,14 +2,11 @@ import { getPortfolioData } from "@/app/lib/actions";
 import PortfolioHero from "@/app/ui/portfolio/portfolio-hero";
 import Testimonials from "@/app/ui/portfolio/testimonials";
 import Tech from "@/app/ui/portfolio/tech";
+import Projects from "@/app/ui/portfolio/projects";
 
 export default async function Portfolio() {
   const portfolioData = await getPortfolioData();
   const { introduction, tech, projects, endorsements, socials } = portfolioData;
-  console.log(portfolioData, "Portfolio Data");
-
-  // const blob = new Blob([cv.data], { type: "application/pdf" });
-  // const file = new File([cv.data], "cv.pdf", { type: "application/pdf" });
 
   return (
     <>
@@ -21,6 +18,7 @@ export default async function Portfolio() {
       ></PortfolioHero>
       <Testimonials endorsements={endorsements}></Testimonials>
       <Tech tech={tech}></Tech>
+      <Projects projects={projects}></Projects>
     </>
   );
 }

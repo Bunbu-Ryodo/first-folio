@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { robotoMono, sourceSerif } from "@/app/ui/fonts";
-import SkillTag from "@/app/ui/portfolio/skill-tag";
 
 type Tech = {
   id: number;
@@ -13,7 +12,6 @@ type Tech = {
 export default function Tech({ tech }: { tech: Tech }) {
   const { technologies, experience } = tech;
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [visibleSkills, setVisibleSkills] = useState<number[]>([]);
 
   const handleScroll = () => {
     const currentPosition =
@@ -40,29 +38,6 @@ export default function Tech({ tech }: { tech: Tech }) {
     }
 
     return "";
-  };
-
-  useEffect(() => {
-    const techSection = document.getElementById("techSection");
-    const threshold = 300;
-
-    if (techSection && techSection.getBoundingClientRect().top <= threshold) {
-      const newVisibleSkills = technologies?.map((_skill, index) =>
-        setTimeout(
-          () => setVisibleSkills((prevSkills) => [...prevSkills, index]),
-          500 * (index + 1)
-        )
-      );
-      // Clear timeouts on component unmount
-      return () => newVisibleSkills?.forEach(clearTimeout);
-    }
-
-    return;
-  }, [technologies]);
-
-  const popSkillTag = (index: number) => {
-    console.log("Pop");
-    return visibleSkills.includes(index) ? "animate-sudden-appear" : "";
   };
 
   return (

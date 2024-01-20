@@ -162,10 +162,19 @@ export async function getPortfolioData() {
   const endorsements = await getEndorsements(userId);
   const socials = await getSocials(userId);
 
+  const noImages = projects.map((project: any) => {
+    return {
+      title: project.title,
+      repo: project.repo,
+      url: project.url,
+      description: project.description,
+    };
+  });
+
   const portfolioData = {
     introduction: introduction,
     tech: tech,
-    projects: projects,
+    projects: noImages,
     endorsements: endorsements,
     socials: socials,
   };
@@ -528,6 +537,15 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
   return { errors: {}, message: "Project details and images saved" };
 }
 
+export async function getProjectImages(id: number) {
+  const project = await prisma.Project.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  return project.images;
+}
 export async function getProjects(id?: string) {
   if (id) {
     const projects = await prisma.Project.findMany({
