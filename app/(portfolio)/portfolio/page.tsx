@@ -1,7 +1,7 @@
 import { getPortfolioData } from "@/app/lib/actions";
 import PortfolioHero from "@/app/ui/portfolio/portfolio-hero";
 import Testimonials from "@/app/ui/portfolio/testimonials";
-import Test from "@/app/ui/portfolio/test";
+import Tech from "@/app/ui/portfolio/tech";
 
 export default async function Portfolio() {
   const portfolioData = await getPortfolioData();
@@ -20,7 +20,7 @@ export default async function Portfolio() {
         socials={socials}
       ></PortfolioHero>
       <Testimonials endorsements={endorsements}></Testimonials>
-      <Test></Test>
+      <Tech tech={tech}></Tech>
     </>
   );
 }

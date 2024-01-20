@@ -48,6 +48,10 @@ body {
   }
 }
 
+.animate-sudden-appear {
+  animation: fadeIn 0.1s ease-in-out forwards;
+}
+
 .animate-fade-in-out {
   animation: fadeInOut 2.75s ease-in-out forwards;
 }

@@ -32,6 +32,8 @@ export default function Testimonials({
   const getFadeClass = (index: number) => {
     const positionThresholds = [20, 60, 80];
     if (window != undefined) {
+      // console.log(positionThresholds[index], "Position thresholds");
+      // console.log(window.innerHeight / 100, "Hmm");
       const threshold = positionThresholds[index] * (window.innerHeight / 100);
 
       if (scrollPosition > threshold) {

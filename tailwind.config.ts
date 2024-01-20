@@ -56,6 +56,8 @@ const config: Config = {
         copyMobile: "16px",
         endorsement: "24px",
         mobileEndorsement: "16px",
+        experienceMobile: "16px",
+        experience: "24px",
       },
       height: {
         button: "40px",
