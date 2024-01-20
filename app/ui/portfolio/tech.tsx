@@ -93,6 +93,7 @@ export default function Tech({ tech }: { tech: Tech }) {
           <div className="flex flex-row w-full md:w-1/3 items-center justify-center p-8 flex-wrap">
             {technologies?.map((skill: string, index) => (
               <div
+                key={`technology-${index}`}
                 className={`opacity-0 flex items-center justify-center bg-portfolioBlack h-button rounded-full text-portfolioWhite min-w-[160px] w-fit mx-2 my-2 ${getFadeClass(
                   2
                 )}`}
