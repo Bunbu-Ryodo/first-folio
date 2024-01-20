@@ -343,7 +343,7 @@ export async function getSocials(id?: string) {
       },
     });
 
-    if (socials.length) return socials;
+    if (socials) return socials;
     else
       return {
         contact_email: "",
