@@ -94,6 +94,7 @@ const config: Config = {
         testimonials: "36px",
         bio: "24px",
         testimonialsHeader: "24px",
+        projectTile: "24px",
       },
     },
   },
