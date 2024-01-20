@@ -7,6 +7,7 @@ import Projects from "@/app/ui/portfolio/projects";
 export default async function Portfolio() {
   const portfolioData = await getPortfolioData();
   const { introduction, tech, projects, endorsements, socials } = portfolioData;
+  console.log(socials, "Where are they???");
 
   return (
     <>
