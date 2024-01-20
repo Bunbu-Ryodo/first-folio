@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { robotoMono, sourceSerif } from "@/app/ui/fonts";
 
 type Tech = {
   id: number;
@@ -49,9 +48,9 @@ export default function Tech({ tech }: { tech: Tech }) {
         <div className="flex flex-col w-full px-8 py-8 items-center justify-center">
           <div className="flex justify-center items-center">
             <h1
-              className={`opacity-0 text-display ${
-                sourceSerif.className
-              } mb-testimonialsHeader ${getFadeClass(0)} `}
+              className={`opacity-0 text-display mb-testimonialsHeader ${getFadeClass(
+                0
+              )} `}
             >
               Skills
             </h1>
