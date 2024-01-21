@@ -10,7 +10,6 @@ import {
 } from "react-icons/fa6";
 import { TbWorldWww } from "react-icons/tb";
 import { LuDownload } from "react-icons/lu";
-import { getCV } from "@/app/lib/actions";
 
 type Socials = {
   contact_email: string;
@@ -26,23 +25,14 @@ export default function PortfolioHero({
   job_title,
   bio,
   socials,
+  cvUrl,
 }: {
   name: string;
   job_title: string;
   bio: string;
   socials: Socials;
+  cvUrl: string;
 }) {
-  const handleClick = async () => {
-    const response = await fetch("/api/downloadpdf");
-    const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "cv.pdf";
-    link.click();
-    window.URL.revokeObjectURL(url);
-  };
-
   return (
     <div className="px-16 py-16 border-b-[1px] border-portfolioBlack">
       <h1
@@ -72,12 +62,13 @@ export default function PortfolioHero({
         </div>
         <div className="flex flex-row items-center cursor-pointer">
           <LuDownload className="h-iconHeight w-iconWidth" />
-          <button
-            onClick={handleClick}
+          <a
+            href={cvUrl}
             className="px-2 underline hover:text-portfolioGrey"
+            download
           >
             Download CV
-          </button>
+          </a>
         </div>
       </div>
     </div>

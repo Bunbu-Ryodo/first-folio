@@ -163,37 +163,39 @@ export async function getPortfolioData() {
   const projects = await getProjects(userId);
   const endorsements = await getEndorsements(userId);
   const socials = await getSocials(userId);
-
-  const noImages = projects.map((project: any) => {
-    return {
-      title: project.title,
-      repo: project.repo,
-      url: project.url,
-      description: project.description,
-    };
-  });
+  const cv = await getCV(userId);
 
   const portfolioData = {
     introduction: introduction,
     tech: tech,
-    projects: noImages,
+    projects: projects,
     endorsements: endorsements,
     socials: socials,
+    cv: cv,
   };
 
   return portfolioData;
 }
 
-export async function getCV() {
-  const userId = await getUserId();
-  const cv = await prisma.CV.findUnique({
-    where: {
-      jobSeekerId: userId,
-    },
-  });
-
-  if (cv) return cv.cv;
-  else return "";
+export async function getCV(id?: string) {
+  if (id) {
+    const cv = await prisma.CV.findUnique({
+      where: {
+        jobSeekerId: id,
+      },
+    });
+    if (cv) return cv;
+    else return "";
+  } else {
+    const userId = await getUserId();
+    const cv = await prisma.CV.findUnique({
+      where: {
+        jobSeekerId: userId,
+      },
+    });
+    if (cv) return cv;
+    else return "";
+  }
 }
 
 export async function getEndorsements(id?: string) {
@@ -221,45 +223,46 @@ export async function getEndorsements(id?: string) {
 export async function uploadCV(prevState: GenericState, formData: FormData) {
   const userId = await getUserId();
 
-  const cvPromise = Array.from(formData.entries())
-    .filter(([name]) => name === "cv")
-    .map(async ([, value]) => {
-      if (value instanceof File) {
-        const bytes = await value.arrayBuffer();
-        const buffer = Buffer.from(bytes);
-        const bytesFormat = Buffer.from(buffer).toString("base64");
-        return bytesFormat;
-      }
+  let userCV;
+
+  if (formData.get("cv")) {
+    const cv = formData.get("cv") as File;
+
+    userCV = await put(cv.name, cv, {
+      access: "public",
     });
-
-  const cv = await Promise.all(cvPromise);
-
-  if (!cv[0])
+  } else {
     return {
       errors: { fail: "Upload Failed" },
       message: "No CV Selected. Please try again.",
     };
-
-  const existingCV = await prisma.CV.findMany({
-    where: {
-      jobSeekerId: userId,
-    },
-  });
+  }
 
   try {
-    if (existingCV.length) {
+    const existingCV = await prisma.CV.findUnique({
+      where: {
+        jobSeekerId: userId,
+      },
+    });
+
+    if (existingCV) {
+      if (existingCV.cvUrl) {
+        await del(existingCV.cvUrl);
+      }
       await prisma.CV.update({
         where: {
           jobSeekerId: userId,
         },
         data: {
-          cv: cv[0],
+          cvUrl: userCV.url,
+          cvPath: userCV.pathname,
         },
       });
     } else {
       await prisma.CV.create({
         data: {
-          cv: cv[0],
+          cvUrl: userCV.url,
+          cvPath: userCV.pathname,
           jobSeekerId: userId,
         },
       });

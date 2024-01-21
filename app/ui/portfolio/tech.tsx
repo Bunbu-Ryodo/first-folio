@@ -64,7 +64,7 @@ export default function Tech({ tech }: { tech: Tech }) {
               {experience ? experience : ""}
             </p>
           </div>
-          <div className="flex flex-row w-full md:w-1/3 items-center justify-center p-8 flex-wrap">
+          <div className="hidden lg:flex flex-row w-full items-center justify-center p-8 flex-wrap">
             {technologies?.map((skill: string, index) => (
               <div
                 key={`technology-${index}`}
