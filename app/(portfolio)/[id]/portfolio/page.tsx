@@ -6,7 +6,10 @@ import Projects from "@/app/ui/portfolio/projects";
 
 export default async function Portfolio() {
   const portfolioData = await getPortfolioData();
-  const { introduction, tech, projects, endorsements, socials } = portfolioData;
+  const { introduction, tech, projects, endorsements, socials, cv } =
+    portfolioData;
+
+  const { cvUrl } = cv;
 
   return (
     <>
@@ -15,6 +18,7 @@ export default async function Portfolio() {
         job_title={introduction.job_title}
         bio={introduction.bio}
         socials={socials}
+        cvUrl={cvUrl}
       ></PortfolioHero>
       <Testimonials endorsements={endorsements}></Testimonials>
       <Tech tech={tech}></Tech>

@@ -4,13 +4,14 @@ import React, { useState, ChangeEvent } from "react";
 import { useFormState } from "react-dom";
 import SubmitButton from "@/app/ui/general-ui/submit-button";
 import { uploadCV } from "@/app/lib/actions";
+import { FiPaperclip } from "react-icons/fi";
 
 const initialState = {
   errors: {},
   message: "",
 };
 
-export default function CVForm() {
+export default function CVForm({ pathname }: { pathname: string }) {
   const [state, dispatch] = useFormState(uploadCV, initialState);
   const [cv, setCV] = useState<File>();
   return (
@@ -38,6 +39,14 @@ export default function CVForm() {
                             "
           ></input>
           <SubmitButton noFlex1={false} label="UploadCV"></SubmitButton>
+          {pathname && (
+            <div className="flex w-full justify-center items-center p-2">
+              <>
+                <FiPaperclip className="text-monokaiOrange mr-2" />
+                <span className="text-monokaiOrange">{pathname}</span>
+              </>
+            </div>
+          )}
           {state?.message && (
             <div
               key={state.message}

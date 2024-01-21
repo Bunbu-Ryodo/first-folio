@@ -11,11 +11,12 @@ type Project = {
   url?: string | undefined;
   repo?: string | undefined;
   description?: string | undefined;
-  images?: File[] | undefined;
+  imagePaths?: string[] | undefined;
 };
 
 export default async function Projects() {
   const projects = await getProjects();
+  console.log(projects);
 
   return (
     <main className="h-full container font-light">
@@ -43,6 +44,7 @@ export default async function Projects() {
               initialRepo={project.repo}
               initialUrl={project.url}
               initialDescription={project.description}
+              initialPathnames={project.imagePaths}
             ></ProjectForm>
           </>
         ))}
@@ -54,6 +56,7 @@ export default async function Projects() {
           initialRepo={""}
           initialUrl={""}
           initialDescription={""}
+          initialPathnames={[]}
         ></ProjectForm>
       )}
       <AddProject></AddProject>
