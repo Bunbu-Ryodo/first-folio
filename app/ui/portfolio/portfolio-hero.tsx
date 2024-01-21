@@ -44,19 +44,19 @@ export default function PortfolioHero({
       <h1 className="text-copyMobile md:text-copy mb-bio">{bio}</h1>
       <div className="flex flex-row w-full justify-between">
         <div className="socials-container flex flex-row">
-          <a href={socials.x} className="pr-2 py-2">
+          <a href={socials.x} className="pr-2 py-2" target="_blank">
             <FaXTwitter className="h-iconHeight w-iconWidth hover:text-portfolioGrey" />
           </a>
-          <a href={socials.instagram} className="px-2 py-2">
+          <a href={socials.instagram} className="px-2 py-2" target="_blank">
             <FaInstagram className="h-iconHeight w-iconWidth hover:text-portfolioGrey" />
           </a>
-          <a href={socials.facebook} className="px-2 py-2">
+          <a href={socials.facebook} className="px-2 py-2" target="_blank">
             <FaFacebook className="h-iconHeight w-iconWidth hover:text-portfolioGrey" />
           </a>
-          <a href={socials.linked_in} className="px-2 py-2">
+          <a href={socials.linked_in} className="px-2 py-2" target="_blank">
             <FaLinkedin className="h-iconHeight w-iconWidth hover:text-portfolioGrey" />
           </a>
-          <a href={socials.website} className="px-2 py-2">
+          <a href={socials.website} className="px-2 py-2" target="_blank">
             <TbWorldWww className="h-iconHeight w-iconWidth hover:text-portfolioGrey" />
           </a>
         </div>
@@ -66,6 +66,7 @@ export default function PortfolioHero({
             href={cvUrl}
             className="px-2 underline hover:text-portfolioGrey"
             download
+            target="_blank"
           >
             Download CV
           </a>

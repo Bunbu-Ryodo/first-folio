@@ -67,7 +67,7 @@ const DeleteProject = z.object({
 });
 
 const Socials = z.object({
-  contact_email: z.string(),
+  contact_email: z.string().email(),
   x: z.string(),
   instagram: z.string(),
   facebook: z.string(),
@@ -311,11 +311,19 @@ export async function saveSocials(prevState: GenericState, formData: FormData) {
         },
         data: {
           contact_email: contact_email,
-          x: x,
-          instagram: instagram,
-          facebook: facebook,
-          linked_in: linked_in,
-          website: website,
+          x: x.startsWith("http://") ? x : `https://${x}`,
+          instagram: instagram.startsWith("http://")
+            ? instagram
+            : `https://${instagram}`,
+          facebook: facebook.startsWith("http://")
+            ? facebook
+            : `https://${facebook}`,
+          linked_in: linked_in.startsWith("http://")
+            ? linked_in
+            : `https://${linked_in}`,
+          website: website.startsWith("http://")
+            ? website
+            : `https://${website}`,
         },
       });
     } else {
@@ -553,8 +561,8 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
           },
           data: {
             title: title,
-            repo: repo,
-            url: url,
+            repo: repo.startsWith("http://") ? repo : `http://${repo}`,
+            url: url.startsWith("http://") ? url : `http://${url}`,
             description: description,
             imageUrls: imageUrls,
             imagePaths: imagePathnames,

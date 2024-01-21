@@ -19,7 +19,9 @@ export default function Testimonials({
   const handleScroll = () => {
     const currentPosition =
       window.scrollY || document.documentElement.scrollTop;
-    setScrollPosition(currentPosition);
+    if (currentPosition) {
+      setScrollPosition(currentPosition);
+    }
   };
 
   useEffect(() => {
@@ -30,21 +32,20 @@ export default function Testimonials({
   }, []);
 
   const getFadeClass = (index: number) => {
-    const positionThresholds = [20, 60, 80];
-    if (window != undefined) {
-      // console.log(positionThresholds[index], "Position thresholds");
-      // console.log(window.innerHeight / 100, "Hmm");
-      const threshold = positionThresholds[index] * (window.innerHeight / 100);
+    const positionThresholds = [500, 250, 0];
 
-      if (scrollPosition > threshold) {
+    const testimonialsSection = document?.getElementById("testimonials");
+    const threshold = positionThresholds[index];
+
+    if (testimonialsSection) {
+      if (testimonialsSection.getBoundingClientRect().top <= threshold) {
         return "animate-fade-in-slowest";
       }
     }
-
     return "";
   };
   return (
-    <div className="h-testimonials">
+    <div id="testimonials" className="h-testimonials">
       <div className="sticky top-0">
         <div className="flex flex-col w-full px-8 py-8">
           <div className="flex flex-row justify-center items-center">

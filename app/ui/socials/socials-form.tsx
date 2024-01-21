@@ -44,7 +44,7 @@ export default function SocialsForm({
         </label>
         <br></br>
         <input
-          type="text"
+          type="email"
           onChange={(e) => setContactEmail(e.target.value)}
           name="contact_email"
           value={contact_email}

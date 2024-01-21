@@ -73,13 +73,21 @@ function Modal({
               <h2 className="text-2xl font-bold mb-4">{project.title}</h2>
               <p className="mb-2">
                 Github Repo:{" "}
-                <a className="text-portfolioBlue underline" href={project.repo}>
+                <a
+                  className="text-portfolioBlue underline"
+                  href={project.repo}
+                  target="_blank"
+                >
                   {project.repo}
                 </a>
               </p>
               <p className="mb-2">
                 URL:{" "}
-                <a className="text-portfolioBlue underline" href={project.url}>
+                <a
+                  className="text-portfolioBlue underline"
+                  href={project.url}
+                  target="_blank"
+                >
                   {project.url}
                 </a>
               </p>
@@ -92,10 +100,10 @@ function Modal({
               <Image
                 key={`screenshot-${image}`}
                 src={image}
-                className="m-2"
                 alt="screenshot"
-                height={400}
-                width={600}
+                className="m-2"
+                height={600}
+                width={800}
               ></Image>
             ))}
           </div>
