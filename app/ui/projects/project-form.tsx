@@ -178,8 +178,8 @@ export default function ProjectForm({
           </div>
           <div className="items-center flex flex-col md:items-start w-full md:w-1/2 px-2 mb-formInput">
             <div className="flex flex-col">
-              {initialPathnames?.map((path: string) => (
-                <div className="flex flex-row">
+              {initialPathnames?.map((path: string, index) => (
+                <div key={`file-${index}`} className="flex flex-row">
                   <FiPaperclip className="text-monokaiOrange mr-2" />
                   <span className="text-monokaiOrange">{path}</span>
                 </div>
