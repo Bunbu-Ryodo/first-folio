@@ -46,7 +46,8 @@ model Project {
   repo  String?
   url String?
   description String?
-  images Bytes[]
+  imageUrls String[]
+  imagePaths String[]
   creator User @relation(fields: [creatorId], references:[id])
   creatorId String 
 }

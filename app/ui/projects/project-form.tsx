@@ -5,6 +5,7 @@ import Link from "next/link";
 import { saveProject } from "@/app/lib/actions";
 import RemoveProject from "@/app/ui/projects/remove-project";
 import { useFormState } from "react-dom";
+import { FiPaperclip } from "react-icons/fi";
 
 const initialState = {
   errors: {},
@@ -18,19 +19,24 @@ export default function ProjectForm({
   initialRepo,
   initialUrl,
   initialDescription,
+  initialPathnames,
 }: {
   id: number | undefined;
   initialTitle: string | undefined;
   initialRepo: string | undefined;
   initialUrl: string | undefined;
   initialDescription: string | undefined;
+  initialPathnames: string[] | undefined;
 }) {
   const [state, dispatch] = useFormState(saveProject, initialState);
   const [title, setTitle] = useState(initialTitle);
   const [repo, setRepo] = useState(initialRepo);
   const [url, setUrl] = useState(initialUrl);
   const [description, setDescription] = useState(initialDescription);
-  const [images, setImages] = useState<(File | undefined)[]>([]);
+  const [image1, setImage1] = useState<File | undefined>();
+  const [image2, setImage2] = useState<File | undefined>();
+  const [image3, setImage3] = useState<File | undefined>();
+  const [image4, setImage4] = useState<File | undefined>();
 
   return (
     <form action={dispatch}>
@@ -94,13 +100,10 @@ export default function ProjectForm({
           <div className="items-center flex flex-col w-full md:w-1/2 md:items-end px-2">
             <input
               type="file"
-              name="images"
+              name="image1"
               onChange={(e) => {
                 if (e.target.files && e.target.files.length > 0) {
-                  const newImages = images ? [...images] : [];
-                  newImages[0] = e.target.files[0];
-                  console.log(newImages);
-                  setImages(newImages);
+                  setImage1(e.target.files[0]);
                 }
               }}
               accept="image/jpg, image/png"
@@ -114,13 +117,11 @@ export default function ProjectForm({
             ></input>
             <input
               type="file"
-              name="images"
+              name="image2"
               onChange={(e) => {
                 if (e.target.files && e.target.files.length > 0) {
-                  const newImages = images ? [...images] : [];
-                  newImages[1] = e.target.files[1];
-                  console.log(newImages);
-                  setImages(newImages);
+                  console.log(e.target.files[0]);
+                  setImage2(e.target.files[0]);
                 }
               }}
               accept="image/jpg, image/png"
@@ -136,13 +137,10 @@ export default function ProjectForm({
           <div className="items-center flex flex-col md:items-start w-full md:w-1/2">
             <input
               type="file"
-              name="images"
+              name="image3"
               onChange={(e) => {
                 if (e.target.files && e.target.files.length > 0) {
-                  const newImages = images ? [...images] : [];
-                  newImages[2] = e.target.files[2];
-                  console.log(newImages);
-                  setImages(newImages);
+                  setImage3(e.target.files[0]);
                 }
               }}
               accept="image/jpg, image/png"
@@ -156,13 +154,10 @@ export default function ProjectForm({
             ></input>
             <input
               type="file"
-              name="images"
+              name="image4"
               onChange={(e) => {
                 if (e.target.files && e.target.files.length > 0) {
-                  const newImages = images ? [...images] : [];
-                  newImages[3] = e.target.files[3];
-                  console.log(newImages);
-                  setImages(newImages);
+                  setImage4(e.target.files[0]);
                 }
               }}
               accept="image/jpg, image/png"
@@ -175,9 +170,20 @@ export default function ProjectForm({
                             "
             ></input>
           </div>
+
           <div className="items-center flex flex-col md:items-end w-full md:w-1/2 px-2 mb-formInput">
             <div className="w-full md:w-3/4 min-w-[320px]">
               <SubmitButton noFlex1={false} label="Save()"></SubmitButton>
+            </div>
+          </div>
+          <div className="items-center flex flex-col md:items-start w-full md:w-1/2 px-2 mb-formInput">
+            <div className="flex flex-col">
+              {initialPathnames?.map((path: string) => (
+                <div className="flex flex-row">
+                  <FiPaperclip className="text-monokaiOrange mr-2" />
+                  <span className="text-monokaiOrange">{path}</span>
+                </div>
+              ))}
             </div>
           </div>
           <div className="items-center hidden md:items-end w-full px-2">

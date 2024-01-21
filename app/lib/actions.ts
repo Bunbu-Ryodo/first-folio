@@ -6,6 +6,7 @@ const { redirect } = require("next/navigation");
 const { revalidatePath } = require("next/cache");
 const bcrypt = require("bcrypt");
 import { getServerSession } from "next-auth";
+import { put, del } from "@vercel/blob";
 
 const prisma = new PrismaClient();
 
@@ -469,40 +470,79 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
     };
   }
 
-  async function turnToBytes(image: File) {
-    const bytes = await image.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    return buffer;
-  }
-
-  let images: any = [];
-
-  if (formData.getAll("images")) {
-    const imagePromises = Array.from(formData.entries())
-      .filter(([name]) => name === "images")
-      .map(async ([, value]) => {
-        if (value instanceof File) {
-          const bytes = await value.arrayBuffer();
-          const buffer = Buffer.from(bytes);
-          const bytesFormat = Buffer.from(buffer).toString("base64");
-          return bytesFormat;
-        }
-      });
-
-    images = await Promise.all(imagePromises);
-  }
-
   const { id, title, repo, description, url } = validatedFields.data;
+
+  const imageUrls = [];
+  const imagePathnames = [];
+
+  const image1 = formData.get("image1")
+    ? (formData.get("image1") as File)
+    : undefined;
+  const image2 = formData.get("image2")
+    ? (formData.get("image2") as File)
+    : undefined;
+  const image3 = formData.get("image3")
+    ? (formData.get("image3") as File)
+    : undefined;
+  const image4 = formData.get("image4")
+    ? (formData.get("image4") as File)
+    : undefined;
+
+  let uploadImage1, uploadImage2, uploadImage3, uploadImage4;
+
+  if (image1) {
+    uploadImage1 = await put(image1.name, image1, {
+      access: "public",
+    });
+
+    imageUrls.push(uploadImage1.url);
+    imagePathnames.push(uploadImage1.pathname);
+  }
+
+  if (image2) {
+    uploadImage2 = await put(image2.name, image2, {
+      access: "public",
+    });
+
+    imageUrls.push(uploadImage2.url);
+    imagePathnames.push(uploadImage2.pathname);
+  }
+
+  if (image3) {
+    uploadImage3 = await put(image3.name, image3, {
+      access: "public",
+    });
+
+    imageUrls.push(uploadImage3.url);
+    imagePathnames.push(uploadImage3.pathname);
+  }
+
+  if (image4) {
+    uploadImage4 = await put(image4.name, image4, {
+      access: "public",
+    });
+
+    imageUrls.push(uploadImage4.url);
+    imagePathnames.push(uploadImage4.pathname);
+  }
 
   try {
     if (id) {
-      const project = await prisma.Project.findMany({
+      const project = await prisma.Project.findUnique({
         where: {
+          id: id,
           creatorId: userId,
         },
       });
 
       if (project) {
+        if (project.imageUrls) {
+          const urls = project.imageUrls;
+          for (const url of urls) {
+            await del(url);
+          }
+        }
+
         await prisma.Project.update({
           where: {
             id: id,
@@ -513,7 +553,8 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
             repo: repo,
             url: url,
             description: description,
-            images: images ? images : [],
+            imageUrls: imageUrls,
+            imagePaths: imagePathnames,
           },
         });
       }
@@ -525,7 +566,8 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
           url: url,
           description: description,
           creatorId: userId,
-          images: images ? images : [],
+          imageUrls: imageUrls,
+          imagePaths: imagePathnames,
         },
       });
     }
