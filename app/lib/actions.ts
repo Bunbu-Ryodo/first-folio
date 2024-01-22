@@ -72,6 +72,7 @@ const Socials = z.object({
   instagram: z.string(),
   facebook: z.string(),
   linked_in: z.string(),
+  github: z.string(),
   website: z.string(),
 });
 
@@ -284,6 +285,7 @@ export async function saveSocials(prevState: GenericState, formData: FormData) {
     instagram: formData.get("instagram"),
     facebook: formData.get("facebook"),
     linked_in: formData.get("linked_in"),
+    github: formData.get("github"),
     website: formData.get("website"),
   });
 
@@ -294,7 +296,7 @@ export async function saveSocials(prevState: GenericState, formData: FormData) {
     };
   }
 
-  const { contact_email, x, instagram, facebook, linked_in, website } =
+  const { contact_email, x, instagram, facebook, linked_in, github, website } =
     validatedFields.data;
 
   try {
@@ -311,19 +313,12 @@ export async function saveSocials(prevState: GenericState, formData: FormData) {
         },
         data: {
           contact_email: contact_email,
-          x: x.startsWith("http://") ? x : `https://${x}`,
-          instagram: instagram.startsWith("http://")
-            ? instagram
-            : `https://${instagram}`,
-          facebook: facebook.startsWith("http://")
-            ? facebook
-            : `https://${facebook}`,
-          linked_in: linked_in.startsWith("http://")
-            ? linked_in
-            : `https://${linked_in}`,
-          website: website.startsWith("http://")
-            ? website
-            : `https://${website}`,
+          x: x,
+          instagram: instagram,
+          facebook: facebook,
+          linked_in: linked_in,
+          github: github,
+          website: website,
         },
       });
     } else {
@@ -334,6 +329,7 @@ export async function saveSocials(prevState: GenericState, formData: FormData) {
           instagram: instagram,
           facebook: facebook,
           linked_in: linked_in,
+          github: github,
           website: website,
           contactId: userId,
         },
@@ -364,6 +360,7 @@ export async function getSocials(id?: string) {
         instagram: "",
         facebook: "",
         linked_in: "",
+        github: "",
         website: "",
       };
   } else {
@@ -381,6 +378,7 @@ export async function getSocials(id?: string) {
         instagram: "",
         facebook: "",
         linked_in: "",
+        github: "",
         website: "",
       };
   }
