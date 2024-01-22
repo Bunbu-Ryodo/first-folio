@@ -4,6 +4,11 @@ import Link from "next/link";
 import { useFormState } from "react-dom";
 import { saveSocials } from "@/app/lib/actions";
 import SubmitButton from "@/app/ui/general-ui/submit-button";
+import { FaXTwitter } from "react-icons/fa6";
+import { IoLogoInstagram } from "react-icons/io5";
+import { FaFacebook } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa6";
+import { FaGithub } from "react-icons/fa";
 
 const initialState = {
   errors: {},
@@ -17,6 +22,7 @@ export default function SocialsForm({
   initialFacebook,
   initialLinkedIn,
   initialWebsite,
+  initialGithub,
 }: {
   initialEmail: string;
   initialX: string;
@@ -24,6 +30,7 @@ export default function SocialsForm({
   initialFacebook: string;
   initialLinkedIn: string;
   initialWebsite: string;
+  initialGithub: string;
 }) {
   const [state, dispatch] = useFormState(saveSocials, initialState);
   const [contact_email, setContactEmail] = useState(initialEmail);
@@ -32,6 +39,7 @@ export default function SocialsForm({
   const [facebook, setFacebook] = useState(initialFacebook);
   const [linked_in, setLinkedIn] = useState(initialLinkedIn);
   const [website, setWebsite] = useState(initialWebsite);
+  const [github, setGithub] = useState(initialGithub);
 
   return (
     <div className="flex flex-col items-center w-full mt-[24px] mr-[16px] md:w-1/2">
@@ -50,8 +58,9 @@ export default function SocialsForm({
           value={contact_email}
           className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
+        <FaXTwitter className="text-monokaiPink text-informational" />
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
-          &lt;X&gt;
+          x.com/
         </label>
         <br></br>
         <input
@@ -61,8 +70,9 @@ export default function SocialsForm({
           value={x}
           className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
+        <IoLogoInstagram className="text-monokaiPink text-informational" />
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
-          &lt;Instagram&gt;
+          instagram.com/
         </label>
         <br></br>
         <input
@@ -72,8 +82,9 @@ export default function SocialsForm({
           value={instagram}
           className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
+        <FaFacebook className="text-monokaiPink text-informational" />
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
-          &lt;Facebook&gt;
+          facebook.com/
         </label>
         <br></br>
         <input
@@ -83,8 +94,9 @@ export default function SocialsForm({
           value={facebook}
           className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
+        <FaLinkedin className="text-monokaiPink text-informational" />
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
-          &lt;Linked In&gt;
+          linkedin.com/in/
         </label>
         <br></br>
         <input
@@ -92,6 +104,18 @@ export default function SocialsForm({
           onChange={(e) => setLinkedIn(e.target.value)}
           name="linked_in"
           value={linked_in}
+          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+        ></input>
+        <FaGithub className="text-monokaiPink text-informational" />
+        <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
+          github.com/
+        </label>
+        <br></br>
+        <input
+          type="text"
+          onChange={(e) => setGithub(e.target.value)}
+          name="github"
+          value={github}
           className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">

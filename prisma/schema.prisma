@@ -59,6 +59,7 @@ model Socials {
   instagram String?
   facebook String?
   linked_in String?
+  github String?
   website String? 
   contact User @relation(fields: [contactId], references: [id])
   contactId String @unique
