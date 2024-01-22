@@ -37,12 +37,17 @@ export default function PortfolioHero({
 }) {
   let xUrl, instagramUrl, facebookUrl, linkedInUrl, gitHubUrl, websiteUrl;
 
+  const { x, instagram, facebook, linked_in, github } = socials;
+
   if (
     socials.x.startsWith("https://x.com/") ||
     socials.x.startsWith("https://twitter.com/")
   ) {
     xUrl = socials.x;
-  } else if (socials.x.startsWith("x.com/")) {
+  } else if (
+    socials.x.startsWith("x.com/") ||
+    socials.x.startsWith("twitter.com/")
+  ) {
     xUrl = `https://${socials.x}`;
   } else {
     xUrl = `https://x.com/${socials.x}`;
@@ -66,18 +71,18 @@ export default function PortfolioHero({
 
   if (socials.linked_in.startsWith("https://linkedin.com/in/")) {
     linkedInUrl = socials.linked_in;
-  } else if (socials.x.startsWith("linkedin.com/in/")) {
+  } else if (socials.linked_in.startsWith("linkedin.com/in/")) {
     linkedInUrl = `https://${socials.linked_in}`;
   } else {
     linkedInUrl = `https://linkedin.com/in/${socials.linked_in}`;
   }
 
   if (socials.github.startsWith("https://github.com/")) {
-    gitHubUrl = socials.linked_in;
-  } else if (socials.x.startsWith("github.com/")) {
-    gitHubUrl = `https://${socials.linked_in}`;
+    gitHubUrl = socials.github;
+  } else if (socials.github.startsWith("github.com/")) {
+    gitHubUrl = `https://${socials.github}`;
   } else {
-    gitHubUrl = `https://linkedin.com/in/${socials.linked_in}`;
+    gitHubUrl = `https://github.com/${socials.github}`;
   }
 
   if (

@@ -299,6 +299,8 @@ export async function saveSocials(prevState: GenericState, formData: FormData) {
   const { contact_email, x, instagram, facebook, linked_in, github, website } =
     validatedFields.data;
 
+  console.log(validatedFields.data, "DATA????");
+
   try {
     const socials = await prisma.Socials.findMany({
       where: {
