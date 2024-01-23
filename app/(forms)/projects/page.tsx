@@ -25,7 +25,7 @@ export default async function Projects() {
         current={"projects"}
       ></BreadCrumbs>
       <NextButton link={"endorsements"}></NextButton>
-      <div className="flex flex-col justify-center w-full text-monokaiYellow text-displayMobile md:text-header text-center p-2 h-headerBanner mb-titleHeader">
+      <div className="flex flex-col justify-center w-full text-monokaiYellow text-displayMobile md:text-header text-center mb-title">
         <span className="opacity-0 animate-fade-in-slower">
           Showcase Your Work
         </span>

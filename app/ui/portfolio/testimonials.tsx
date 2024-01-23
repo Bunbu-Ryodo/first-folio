@@ -45,19 +45,17 @@ export default function Testimonials({
     return "";
   };
   return (
-    <div id="testimonials" className="h-testimonials">
+    <div id="testimonials" className="h-portfolioSection">
       <div className="sticky top-0">
         <div className="flex flex-col w-full px-8 py-8">
           <div className="flex flex-row justify-center items-center">
             <h1
-              className={`opacity-0 text-display mb-testimonialsHeader ${getFadeClass(
-                0
-              )}`}
+              className={`opacity-0 text-display mb-title ${getFadeClass(0)}`}
             >
               Testimonials
             </h1>
           </div>
-          <div className="flex flex-col w-full items-center justify-center mb-testimonials">
+          <div className="flex flex-col w-full items-center justify-center mb-title">
             <span
               className={`opacity-0 ${robotoMono.className} ${getFadeClass(
                 0

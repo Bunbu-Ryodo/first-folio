@@ -14,7 +14,7 @@ export default async function Socials() {
         current="socials"
       ></BreadCrumbs>
       <NextButton link={"cv"}></NextButton>
-      <div className="w-full h-full flex justify-center items-center">
+      <div className="w-full flex justify-center items-center">
         <SocialsForm
           initialEmail={contact_email}
           initialX={x}

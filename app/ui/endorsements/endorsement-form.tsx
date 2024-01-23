@@ -42,7 +42,7 @@ export default function EndorsementForm({
           name="comments"
           onChange={(e) => setComments(e.target.value)}
           value={comments}
-          className="h-endorsementTextarea opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="h-[160px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></textarea>
         <div className="items-center hidden md:items-end w-full px-2">
           <input

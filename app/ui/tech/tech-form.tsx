@@ -24,20 +24,20 @@ export default function TechForm({
 
   return (
     <div className="flex flex-col w-full h-full">
-      <div className="flex w-full justify-center mb-titleHeader">
+      <div className="flex w-full justify-center mb-title">
         <span className="text-displayMobile md:text-header text-monokaiYellow">
           Tech Stack
         </span>
       </div>
       <form action={dispatch}>
         <div className="flex flex-col md:flex-row w-full h-full">
-          <div className="flex w-full md:w-1/2 mb-formInput justify-center md:justify-end">
+          <div className="flex w-full md:w-1/2 mb-formEnd justify-center md:justify-end">
             <div className="flex flex-col w-full md:w-2/3 mx-2">
               <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational w-full">
                 &lt;Pick the Stuff You Use&gt;
               </label>
               <br></br>
-              <div className="flex flex-wrap mb-formInput">
+              <div className="flex flex-wrap mb-formEnd">
                 {technologies.map((technology, index) => (
                   <TechnologyCheckbox
                     initialTechnologies={initialTechnologies}
@@ -59,7 +59,7 @@ export default function TechForm({
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
                 name="experience"
-                className="h-largeTextarea opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+                className="h-[270px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
               ></textarea>
               <div className="flex w-full justify-between">
                 <SubmitButton

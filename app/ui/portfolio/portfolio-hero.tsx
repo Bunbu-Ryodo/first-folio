@@ -102,30 +102,30 @@ export default function PortfolioHero({
         {name}
       </h1>
       <h1 className="text-display md:text-portfolioDisplay">{job_title}</h1>
-      <h1 className="text-copyMobile md:text-copy mb-bio">{bio}</h1>
+      <h1 className="text-copyMobile md:text-copy mb-[24px]">{bio}</h1>
       <div className="flex flex-row w-full justify-between">
         <div className="socials-container flex flex-row">
           <a href={xUrl} className="pr-2 py-2" target="_blank">
-            <FaXTwitter className="h-iconHeight w-iconWidth hover:text-portfolioGrey" />
+            <FaXTwitter className="h-icon w-icon hover:text-portfolioGrey" />
           </a>
           <a href={instagramUrl} className="px-2 py-2" target="_blank">
-            <FaInstagram className="h-iconHeight w-iconWidth hover:text-portfolioGrey" />
+            <FaInstagram className="h-icon w-icon hover:text-portfolioGrey" />
           </a>
           <a href={facebookUrl} className="px-2 py-2" target="_blank">
-            <FaFacebook className="h-iconHeight w-iconWidth hover:text-portfolioGrey" />
+            <FaFacebook className="h-icon w-icon hover:text-portfolioGrey" />
           </a>
           <a href={linkedInUrl} className="px-2 py-2" target="_blank">
-            <FaLinkedin className="h-iconHeight w-iconWidth hover:text-portfolioGrey" />
+            <FaLinkedin className="h-icon w-icon hover:text-portfolioGrey" />
           </a>
           <a href={gitHubUrl} className="px-2 py-2" target="_blank">
-            <FaGithub className="h-iconHeight w-iconWidth hover:text-portfolioGrey" />
+            <FaGithub className="h-icon w-icon hover:text-portfolioGrey" />
           </a>
           <a href={websiteUrl} className="px-2 py-2" target="_blank">
-            <TbWorldWww className="h-iconHeight w-iconWidth hover:text-portfolioGrey" />
+            <TbWorldWww className="h-icon w-icon hover:text-portfolioGrey" />
           </a>
         </div>
         <div className="flex flex-row items-center cursor-pointer">
-          <LuDownload className="h-iconHeight w-iconWidth" />
+          <LuDownload className="h-icon w-icon" />
           <a
             href={cvUrl}
             className="px-2 underline hover:text-portfolioGrey"

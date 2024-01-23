@@ -26,7 +26,7 @@ export default function IntroduceYourself({
 
   return (
     <div className="flex flex-col items-center w-full mt-[24px] md:w-1/2 px-2">
-      <div className="flex flex-col justify-center w-full text-monokaiYellow text-displayMobile md:text-header text-center p-2 h-headerBanner mb-titleHeader">
+      <div className="flex flex-col justify-center w-full text-monokaiYellow text-displayMobile md:text-header text-center mb-title">
         <span className="opacity-0 animate-fade-in-slower">
           Introduce Yourself
         </span>
@@ -62,7 +62,7 @@ export default function IntroduceYourself({
           name="bio"
           onChange={(e) => setBio(e.target.value)}
           value={bio}
-          className="h-smallTextarea opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="h-[96px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></textarea>
         <div className="flex w-full justify-between">
           <SubmitButton noFlex1={false} label="Save Progress()"></SubmitButton>

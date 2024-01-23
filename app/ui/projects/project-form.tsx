@@ -93,7 +93,7 @@ export default function ProjectForm({
                 name="description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="h-projectTextarea opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+                className="h-[260px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
               ></textarea>
             </div>
           </div>
@@ -171,12 +171,12 @@ export default function ProjectForm({
             ></input>
           </div>
 
-          <div className="items-center flex flex-col md:items-end w-full md:w-1/2 px-2 mb-formInput">
+          <div className="items-center flex flex-col md:items-end w-full md:w-1/2 px-2 mb-formEnd">
             <div className="w-full md:w-3/4 min-w-[320px]">
               <SubmitButton noFlex1={false} label="Save()"></SubmitButton>
             </div>
           </div>
-          <div className="items-center flex flex-col md:items-start w-full md:w-1/2 px-2 mb-formInput">
+          <div className="items-center flex flex-col md:items-start w-full md:w-1/2 px-2 mb-formEnd">
             <div className="flex flex-col">
               {initialPathnames?.map((path: string, index) => (
                 <div key={`file-${index}`} className="flex flex-row">
@@ -195,7 +195,7 @@ export default function ProjectForm({
               readOnly
             ></input>
           </div>
-          <div className="flex justify-center w-full mb-formInput">
+          <div className="flex justify-center w-full mb-formEnd">
             {state?.message && (
               <div
                 key={state.message}
