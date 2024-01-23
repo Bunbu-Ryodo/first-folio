@@ -71,3 +71,13 @@ body {
 .animate-fade-in-slowest-3x {
   animation: fadeIn ease-in-out 1.75s forwards;
 }
+
+@keyframes pending {
+  to {
+    visibility: hidden;
+  }
+}
+
+.npm-install {
+  animation: pending 0.5s steps(5, start) infinite;
+}
