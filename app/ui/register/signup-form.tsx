@@ -48,7 +48,7 @@ export default function SignUpForm() {
 
   return (
     <div className="flex flex-col md:w-1/2 lg:w-1/3 px-2">
-      <div className="flex flex-col justify-center w-full text-monokaiYellow text-header text-center p-2 h-headerBanner mb-titleHeader">
+      <div className="flex flex-col justify-center w-full text-monokaiYellow text-header text-center mb-title">
         <span className="opacity-0 animate-fade-in-slower">Register</span>
       </div>
       <form action={dispatch} className="w-full">
@@ -127,7 +127,7 @@ export default function SignUpForm() {
               {error}
             </div>
           ))}
-        <div className="flex w-full justify-between mt-formInput">
+        <div className="flex w-full justify-between mt-formEnd">
           <SubmitButton noFlex1={false} label="Register()"></SubmitButton>
           <Link href="/login" className="flex-1 ml-[16px]">
             <button className="w-full bg-transparent border-2 border-monokaiGreen text-monokaiGreen rounded h-button hover:bg-gunMetalHover active:bg-gunMetalActive text-button">

@@ -31,13 +31,13 @@ export default function Projects({ projects }: { projects: Project[] }) {
   return (
     <div className="flex flex-col w-full p-8">
       <div className="flex justify-center items-center">
-        <h1 className={`text-display mb-testimonialsHeader`}>Projects</h1>
+        <h1 className={`text-display mb-title`}>Projects</h1>
       </div>
       <div className="flex flex-col items-center w-full p-8">
         {projects.map((project, index) => (
           <div
             key={`project-${index}`}
-            className="cursor-pointer w-[352px] h-[181px] flex items-center justify-center text-portfolioWhite bg-portfolioBlue mb-projectTile"
+            className="cursor-pointer w-[352px] h-[181px] flex items-center justify-center text-portfolioWhite bg-portfolioBlue mb-[24px]"
             onClick={() => openModal(project) as any} // Specify the type here
           >
             {project.title}
