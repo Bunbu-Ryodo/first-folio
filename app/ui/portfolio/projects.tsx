@@ -29,7 +29,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
   };
 
   return (
-    <div className="flex flex-col w-full p-8">
+    <div id="work" className="flex flex-col w-full p-8">
       <div className="flex justify-center items-center">
         <h1 className={`text-display mb-title`}>Projects</h1>
       </div>

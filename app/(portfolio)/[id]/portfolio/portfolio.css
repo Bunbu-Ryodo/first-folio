@@ -17,8 +17,7 @@
 } */
 
 body {
-  color: #242423;
-  background: #f9f8f1;
+  background: #d6e3f8;
 }
 
 @keyframes fadeIn {
@@ -74,4 +73,9 @@ body {
 
 .animate-fade-in-slowest-3x {
   animation: fadeIn ease-in-out 1.75s forwards;
+}
+
+#portfolioHeader {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
 }
