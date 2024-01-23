@@ -57,7 +57,7 @@ export default function Tech({ tech }: { tech: Tech }) {
             <p
               className={`opacity-0 ${getFadeClass(
                 1
-              )} text-experienceMobile md:text-experience`}
+              )} text-[16px] md:text-[24px]`}
             >
               {experience ? experience : ""}
             </p>

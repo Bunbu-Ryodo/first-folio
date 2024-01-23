@@ -59,16 +59,14 @@ export default function Testimonials({
             <span
               className={`opacity-0 ${robotoMono.className} ${getFadeClass(
                 0
-              )} text-mobileEndorsement md:text-endorsement`}
+              )} text-[16px] md:text-[24px]`}
             >
               {endorsements[0].comments ? `"${endorsements[0].comments}"` : ""}
             </span>
             <span
               className={`opacity-0 ${
                 robotoMono.className
-              } text-mobileEndorsement md:text-endorsement italic ${getFadeClass(
-                0
-              )}`}
+              } text-[16px] md:text-[24px] italic ${getFadeClass(0)}`}
             >
               {endorsements[0].name ? `${endorsements[0].name}` : ""}
             </span>
@@ -78,9 +76,7 @@ export default function Testimonials({
               <span
                 className={`opacity-0 ${
                   robotoMono.className
-                } text-mobileEndorsement md:text-endorsement ${getFadeClass(
-                  1
-                )}`}
+                } text-[16px] md:text-[24px] ${getFadeClass(1)}`}
               >
                 {endorsements[1].comments
                   ? `"${endorsements[1].comments}"`
@@ -89,9 +85,7 @@ export default function Testimonials({
               <span
                 className={`opacity-0 ${
                   robotoMono.className
-                } text-mobileEndorsement md:text-endorsement italic ${getFadeClass(
-                  1
-                )}`}
+                } text-[16px] md:text-[24px] italic ${getFadeClass(1)}`}
               >
                 {endorsements[1].name ? `${endorsements[1].name}` : ""}
               </span>
@@ -100,9 +94,7 @@ export default function Testimonials({
               <span
                 className={`opacity-0 ${
                   robotoMono.className
-                } text-mobileEndorsement md:text-endorsement ${getFadeClass(
-                  2
-                )}`}
+                } text-[16px] md:text-[24px] ${getFadeClass(2)}`}
               >
                 {endorsements[2].comments
                   ? `"${endorsements[2].comments}"`
@@ -111,9 +103,7 @@ export default function Testimonials({
               <span
                 className={`opacity-0 ${
                   robotoMono.className
-                } text-mobileEndorsement md:text-endorsement italic ${getFadeClass(
-                  2
-                )}`}
+                } text-[16px] md:text-[24px] italic ${getFadeClass(2)}`}
               >
                 {endorsements[2].name ? `${endorsements[2].name}` : ""}
               </span>

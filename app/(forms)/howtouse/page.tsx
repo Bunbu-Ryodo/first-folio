@@ -25,7 +25,7 @@ export default async function HowToUse() {
           How To Use
         </span>
         <div className=" px-2 py-2">
-          <p className="opacity-0 animate-fade-in-slowest text-center text-howToUse text-monokaiPurple">
+          <p className="opacity-0 animate-fade-in-slowest text-center text-[18px] text-monokaiPurple">
             The next page will open in a new tabtake you to your portfolio! Copy
             & Paste the URL into your CV/LinkedIn/social media, or anywhere else
             you&apos;d like to use it. Purchase your own domain and point it at

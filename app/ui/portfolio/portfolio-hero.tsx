@@ -96,13 +96,11 @@ export default function PortfolioHero({
 
   return (
     <div className="px-16 py-16 border-b-[1px] border-portfolioBlack">
-      <h1
-        className={`${sourceSerif.className} text-display md:text-portfolioDisplay`}
-      >
+      <h1 className={`${sourceSerif.className} text-display md:text-[72px]`}>
         {name}
       </h1>
       <h1 className="text-display md:text-portfolioDisplay">{job_title}</h1>
-      <h1 className="text-copyMobile md:text-copy mb-[24px]">{bio}</h1>
+      <h1 className="text-[16px] md:text-[24px] mb-[24px]">{bio}</h1>
       <div className="flex flex-row w-full justify-between">
         <div className="socials-container flex flex-row">
           <a href={xUrl} className="pr-2 py-2" target="_blank">
