@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { sourceSerif } from "@/app/ui/fonts";
+import { useState, useRef } from "react";
+import { robotoMono } from "@/app/ui/fonts";
 import Image from "next/image";
 
 type Project = {
@@ -17,8 +17,23 @@ type Project = {
 export default function Projects({ projects }: { projects: Project[] }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const projectsScrollerRef = useRef<HTMLDivElement | null>(null);
 
-  const colors = ["#E4BB97", "#584B53", "#9D5C63"];
+  type ScrollDirection = "left" | "right";
+
+  const handleScroll = (direction: ScrollDirection) => {
+    const container = projectsScrollerRef.current;
+
+    if (container) {
+      const scrollAmount = 200; // Adjust the scroll amount as needed
+
+      if (direction === "left") {
+        container.scrollLeft -= scrollAmount;
+      } else if (direction === "right") {
+        container.scrollLeft += scrollAmount;
+      }
+    }
+  };
 
   const openModal = (project: Project) => {
     setSelectedProject(project);
@@ -40,26 +55,49 @@ export default function Projects({ projects }: { projects: Project[] }) {
     }
   }
 
+  function getTextColor(index: number) {
+    if (index % 3 === 0) {
+      return "text-[#D6E3F8]";
+    } else if ((index - 1) % 3 === 0) {
+      return "text-[#E4BB97]";
+    } else {
+      return "text-[#584B53]";
+    }
+  }
+
   return (
     <div
       id="work"
-      className="flex flex-col w-full p-8 bg-portfolioSeashell items-center"
+      className="flex w-full p-8 bg-portfolioSeashell justify-between items-center"
     >
       <div
+        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioWenge rounded-full border-portfolioWenge dropshadow-xl text-3xl border-2 cursor-pointer`}
+        onClick={() => handleScroll("left")}
+      >
+        &lt;
+      </div>
+      <div
         id="projectsScroller"
+        ref={projectsScrollerRef}
         className="flex min-w-[320px] w-1/3 p-8 overflow-x-scroll"
       >
         {projects.map((project, index) => (
           <div
             key={`project-${index}`}
-            className={`cursor-pointer min-w-[320px] min-h-[400px] flex items-center justify-center text-portfolioWhite border-[1px] border-portfolioDesert drop-shadow-2xl ${getBgColor(
+            className={`cursor-pointer min-w-[320px] min-h-[400px] flex items-center justify-center text-portfolioWhite border-[1px] border-portfolioDesert drop-shadow-2xl text-4xl ${getBgColor(
               index
-            )} rounded mb-[24px] mx-2`}
+            )} ${getTextColor(index)} rounded mb-[24px] mx-2`}
             onClick={() => openModal(project) as any} // Specify the type here
           >
             {project.title}
           </div>
         ))}
+      </div>
+      <div
+        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioWenge rounded-full border-portfolioWenge dropshadow-xl border-2 text-3xl cursor-pointer`}
+        onClick={() => handleScroll("right")}
+      >
+        &gt;
       </div>
 
       {isModalOpen && selectedProject && (
