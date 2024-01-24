@@ -486,18 +486,10 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
   const imageUrls = [];
   const imagePathnames = [];
 
-  const image1 = formData.get("image1")
-    ? (formData.get("image1") as File)
-    : undefined;
-  const image2 = formData.get("image2")
-    ? (formData.get("image2") as File)
-    : undefined;
-  const image3 = formData.get("image3")
-    ? (formData.get("image3") as File)
-    : undefined;
-  const image4 = formData.get("image4")
-    ? (formData.get("image4") as File)
-    : undefined;
+  const image1 = formData.get("image1") as File;
+  const image2 = formData.get("image2") as File;
+  const image3 = formData.get("image3") as File;
+  const image4 = formData.get("image4") as File;
 
   let uploadImage1, uploadImage2, uploadImage3, uploadImage4;
 
@@ -506,8 +498,10 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
       access: "public",
     });
 
-    imageUrls.push(uploadImage1.url);
-    imagePathnames.push(uploadImage1.pathname);
+    if (uploadImage1.pathname !== "undefined") {
+      imageUrls.push(uploadImage1.url);
+      imagePathnames.push(uploadImage1.pathname);
+    }
   }
 
   if (image2) {
@@ -515,8 +509,10 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
       access: "public",
     });
 
-    imageUrls.push(uploadImage2.url);
-    imagePathnames.push(uploadImage2.pathname);
+    if (uploadImage2.pathname !== "undefined") {
+      imageUrls.push(uploadImage2.url);
+      imagePathnames.push(uploadImage2.pathname);
+    }
   }
 
   if (image3) {
@@ -524,8 +520,10 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
       access: "public",
     });
 
-    imageUrls.push(uploadImage3.url);
-    imagePathnames.push(uploadImage3.pathname);
+    if (uploadImage3.pathname !== "undefined") {
+      imageUrls.push(uploadImage3.url);
+      imagePathnames.push(uploadImage3.pathname);
+    }
   }
 
   if (image4) {
@@ -533,8 +531,10 @@ export async function saveProject(prevState: GenericState, formData: FormData) {
       access: "public",
     });
 
-    imageUrls.push(uploadImage4.url);
-    imagePathnames.push(uploadImage4.pathname);
+    if (uploadImage4.pathname !== "undefined") {
+      imageUrls.push(uploadImage4.url);
+      imagePathnames.push(uploadImage4.pathname);
+    }
   }
 
   try {

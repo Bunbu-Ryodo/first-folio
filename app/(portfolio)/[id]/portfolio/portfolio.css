@@ -17,8 +17,7 @@
 } */
 
 body {
-  color: #242423;
-  background: #f9f8f1;
+  background: #d6e3f8;
 }
 
 @keyframes fadeIn {
@@ -74,4 +73,29 @@ body {
 
 .animate-fade-in-slowest-3x {
   animation: fadeIn ease-in-out 1.75s forwards;
+}
+
+#portfolioHeader,
+#projectModal {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+div {
+  scrollbar-width: thin;
+  scrollbar-color: #584b53 #e4bb97;
+}
+
+/* WebKit browsers (Chrome, Safari, etc.) */
+div::-webkit-scrollbar {
+  height: 6px;
+  border-radius: 8px;
+}
+
+div::-webkit-scrollbar-thumb {
+  background-color: #584b53;
+}
+
+div::-webkit-scrollbar-track {
+  background-color: #e4bb97;
 }

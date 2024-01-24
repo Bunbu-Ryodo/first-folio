@@ -3,6 +3,7 @@ import PortfolioHero from "@/app/ui/portfolio/portfolio-hero";
 import Testimonials from "@/app/ui/portfolio/testimonials";
 import Tech from "@/app/ui/portfolio/tech";
 import Projects from "@/app/ui/portfolio/projects";
+import Contact from "@/app/ui/portfolio/contact";
 
 export default async function Portfolio() {
   const portfolioData = await getPortfolioData();
@@ -23,6 +24,7 @@ export default async function Portfolio() {
       <Testimonials endorsements={endorsements}></Testimonials>
       <Tech tech={tech}></Tech>
       <Projects projects={projects}></Projects>
+      <Contact name={introduction.name} socials={socials}></Contact>
     </>
   );
 }

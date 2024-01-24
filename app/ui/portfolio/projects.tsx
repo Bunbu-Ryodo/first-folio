@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { sourceSerif } from "@/app/ui/fonts";
+import { useState, useRef } from "react";
+import { robotoMono } from "@/app/ui/fonts";
 import Image from "next/image";
+import { FaGithub } from "react-icons/fa";
+import { MdHttp } from "react-icons/md";
 
 type Project = {
   id: number;
@@ -17,6 +19,23 @@ type Project = {
 export default function Projects({ projects }: { projects: Project[] }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const projectsScrollerRef = useRef<HTMLDivElement | null>(null);
+
+  type ScrollDirection = "left" | "right";
+
+  const handleScroll = (direction: ScrollDirection) => {
+    const container = projectsScrollerRef.current;
+
+    if (container) {
+      const scrollAmount = 200; // Adjust the scroll amount as needed
+
+      if (direction === "left") {
+        container.scrollLeft -= scrollAmount;
+      } else if (direction === "right") {
+        container.scrollLeft += scrollAmount;
+      }
+    }
+  };
 
   const openModal = (project: Project) => {
     setSelectedProject(project);
@@ -28,21 +47,59 @@ export default function Projects({ projects }: { projects: Project[] }) {
     setModalOpen(false);
   };
 
+  function getBgColor(index: number) {
+    if (index % 3 === 0) {
+      return "bg-[#9D5C63]";
+    } else if ((index - 1) % 3 === 0) {
+      return "bg-[#584B53]";
+    } else {
+      return "bg-[#E4BB97]";
+    }
+  }
+
+  function getTextColor(index: number) {
+    if (index % 3 === 0) {
+      return "text-[#D6E3F8]";
+    } else if ((index - 1) % 3 === 0) {
+      return "text-[#E4BB97]";
+    } else {
+      return "text-[#584B53]";
+    }
+  }
+
   return (
-    <div className="flex flex-col w-full p-8">
-      <div className="flex justify-center items-center">
-        <h1 className={`text-display mb-title`}>Projects</h1>
+    <div
+      id="work"
+      className="flex w-full p-8 bg-portfolioSeashell justify-between items-center"
+    >
+      <div
+        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioWenge rounded-full border-portfolioWenge dropshadow-xl text-3xl border-2 cursor-pointer`}
+        onClick={() => handleScroll("left")}
+      >
+        &lt;
       </div>
-      <div className="flex flex-col items-center w-full p-8">
+      <div
+        id="projectsScroller"
+        ref={projectsScrollerRef}
+        className="flex min-w-[320px] w-1/3 p-8 overflow-x-scroll"
+      >
         {projects.map((project, index) => (
           <div
             key={`project-${index}`}
-            className="cursor-pointer w-[352px] h-[181px] flex items-center justify-center text-portfolioWhite bg-portfolioBlue mb-[24px]"
+            className={`cursor-pointer min-w-[320px] min-h-[400px] flex items-center justify-center text-portfolioWhite border-[1px] border-portfolioDesert drop-shadow-2xl text-4xl ${getBgColor(
+              index
+            )} ${getTextColor(index)} rounded mb-[24px] mx-2`}
             onClick={() => openModal(project) as any} // Specify the type here
           >
             {project.title}
           </div>
         ))}
+      </div>
+      <div
+        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioWenge rounded-full border-portfolioWenge dropshadow-xl border-2 text-3xl cursor-pointer`}
+        onClick={() => handleScroll("right")}
+      >
+        &gt;
       </div>
 
       {isModalOpen && selectedProject && (
@@ -60,53 +117,65 @@ function Modal({
   closeModal: () => void;
 }) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white border-[1px] border-portfolioBlack p-6 flex flex-col">
-        <div className="flex justify-end w-full">
-          <button className="p-2 hover:text-portfolioGrey" onClick={closeModal}>
-            x
-          </button>
+    <div
+      id="projectModal"
+      className="fixed inset-0 flex items-center justify-center bg-glass"
+    >
+      <div className="bg-portfolioSeashell border-[1px] border-portfolioBlack p-2 flex flex-col">
+        <div className="flex justify-end w-full h-[22px] items-center">
+          <div
+            className="flex items-center justify-center p-2 h-[32px] w-[32px] curso-pointer rounded-full text-portfolioDesert bg-portfolioWenge cursor-pointer text-[18px]"
+            onClick={closeModal}
+          >
+            <span>x</span>
+          </div>
         </div>
         <div className="flex flex-col w-full">
           <div className="flex">
-            <div className="flex flex-col w-2/3">
+            <div className="flex flex-col w-2/3 px-4">
               <h2 className="text-2xl font-bold mb-4">{project.title}</h2>
-              <p className="mb-2">
-                Github Repo:{" "}
+              <div className="mb-2 flex items-center">
+                <FaGithub className="h-icon w-icon mr-2" />
+                Github Repo:
                 <a
-                  className="text-portfolioBlue underline"
+                  className="text-blue-500 underline ml-2"
                   href={project.repo}
                   target="_blank"
                 >
                   {project.repo}
                 </a>
-              </p>
-              <p className="mb-2">
-                URL:{" "}
+              </div>
+              <div className="mb-2 flex items-center">
+                <MdHttp className="h-icon w-icon mr-2" />
+                URL:
                 <a
-                  className="text-portfolioBlue underline"
-                  href={project.url}
+                  className="text-blue-500 underline ml-2"
+                  href={project.repo}
                   target="_blank"
                 >
                   {project.url}
                 </a>
-              </p>
+              </div>
               <p className="mb-2">{project.description}</p>
             </div>
           </div>
 
-          <div className="flex items-center overflow-scroll w-full">
-            {project.imageUrls?.map((image) => (
-              <Image
-                key={`screenshot-${image}`}
-                src={image}
-                alt="screenshot"
-                className="m-2"
-                height={600}
-                width={800}
-              ></Image>
-            ))}
-          </div>
+          {project.imageUrls ? (
+            <div className="flex items-center overflow-auto w-full">
+              {project.imageUrls.map((image) => (
+                <Image
+                  key={`screenshot-${image}`}
+                  src={image}
+                  alt="screenshot"
+                  className="m-2"
+                  height={600}
+                  width={800}
+                ></Image>
+              ))}
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </div>

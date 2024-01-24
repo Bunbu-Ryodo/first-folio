@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { robotoMono } from "@/app/ui/fonts";
+import { publicSans } from "@/app/ui/fonts";
 import "./portfolio.css";
 import { getServerSession } from "next-auth";
 import Header from "@/app/ui/portfolio/header";
@@ -18,7 +18,7 @@ export default async function RootLayout({
   const activeSession = !!session;
   return (
     <html lang="en">
-      <body className={`${robotoMono.className} min-h-screen w-full`}>
+      <body className={`${publicSans.className} min-h-screen w-full`}>
         <main className="flex h-full flex-1 flex-col">
           <Header></Header>
           {children}
