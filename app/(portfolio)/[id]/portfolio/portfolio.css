@@ -75,7 +75,8 @@ body {
   animation: fadeIn ease-in-out 1.75s forwards;
 }
 
-#portfolioHeader {
+#portfolioHeader,
+#projectModal {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
 }

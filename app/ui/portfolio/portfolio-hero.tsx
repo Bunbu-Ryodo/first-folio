@@ -7,7 +7,7 @@ import {
   FaFacebook,
   FaLinkedin,
 } from "react-icons/fa6";
-import { TbWorldWww } from "react-icons/tb";
+import { MdHttp } from "react-icons/md";
 import { LuDownload } from "react-icons/lu";
 import { FaGithub } from "react-icons/fa";
 
@@ -116,7 +116,7 @@ export default function PortfolioHero({
             <FaGithub className="h-icon w-icon text-portfolioWenge hover:text-portfolioGrey" />
           </a>
           <a href={websiteUrl} className="px-2 py-2" target="_blank">
-            <TbWorldWww className="h-icon w-icon text-portfolioWenge hover:text-portfolioGrey" />
+            <MdHttp className="h-icon w-icon text-portfolioWenge hover:text-portfolioGrey" />
           </a>
         </div>
         <div className="flex flex-row items-center cursor-pointer">
