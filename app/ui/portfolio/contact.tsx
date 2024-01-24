@@ -99,7 +99,6 @@ export default function Contact({
     <div
       id="contact"
       className="flex flex-col w-full p-8 bg-portfolioWenge text-portfolioDesert items-center justify-between text-2xl"
-      h-auto
     >
       <span>Get in touch</span>
       <div className="flex items-center">
