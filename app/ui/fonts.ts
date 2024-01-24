@@ -2,6 +2,7 @@ import { JetBrains_Mono } from "next/font/google";
 import { Source_Serif_4 } from "next/font/google";
 import { Roboto_Mono } from "next/font/google";
 import { Public_Sans } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 
 export const jetbrains = JetBrains_Mono({
   weight: ["300", "400", "500"],
@@ -21,5 +22,11 @@ export const robotoMono = Roboto_Mono({
 
 export const publicSans = Public_Sans({
   weight: ["400", "700"],
+  style: ["italic", "normal"],
+  subsets: ["latin"],
+});
+
+export const playfairDisplay = Playfair_Display({
+  weight: ["400"],
   subsets: ["latin"],
 });

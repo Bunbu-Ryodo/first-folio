@@ -18,6 +18,8 @@ export default function Projects({ projects }: { projects: Project[] }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  const colors = ["#E4BB97", "#584B53", "#9D5C63"];
+
   const openModal = (project: Project) => {
     setSelectedProject(project);
     setModalOpen(true);
@@ -28,16 +30,31 @@ export default function Projects({ projects }: { projects: Project[] }) {
     setModalOpen(false);
   };
 
+  function getBgColor(index: number) {
+    if (index % 3 === 0) {
+      return "bg-[#9D5C63]";
+    } else if ((index - 1) % 3 === 0) {
+      return "bg-[#584B53]";
+    } else {
+      return "bg-[#E4BB97]";
+    }
+  }
+
   return (
-    <div id="work" className="flex flex-col w-full p-8">
-      <div className="flex justify-center items-center">
-        <h1 className={`text-display mb-title`}>Projects</h1>
-      </div>
-      <div className="flex flex-col items-center w-full p-8">
+    <div
+      id="work"
+      className="flex flex-col w-full p-8 bg-portfolioSeashell items-center"
+    >
+      <div
+        id="projectsScroller"
+        className="flex min-w-[320px] w-1/3 p-8 overflow-x-scroll"
+      >
         {projects.map((project, index) => (
           <div
             key={`project-${index}`}
-            className="cursor-pointer w-[352px] h-[181px] flex items-center justify-center text-portfolioWhite bg-portfolioBlue mb-[24px]"
+            className={`cursor-pointer min-w-[320px] min-h-[400px] flex items-center justify-center text-portfolioWhite border-[1px] border-portfolioDesert drop-shadow-2xl ${getBgColor(
+              index
+            )} rounded mb-[24px] mx-2`}
             onClick={() => openModal(project) as any} // Specify the type here
           >
             {project.title}

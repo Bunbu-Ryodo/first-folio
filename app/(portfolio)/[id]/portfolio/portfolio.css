@@ -79,3 +79,22 @@ body {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
 }
+
+div {
+  scrollbar-width: thin;
+  scrollbar-color: #584b53 #e4bb97;
+}
+
+/* WebKit browsers (Chrome, Safari, etc.) */
+div::-webkit-scrollbar {
+  height: 6px;
+  border-radius: 8px;
+}
+
+div::-webkit-scrollbar-thumb {
+  background-color: #584b53;
+}
+
+div::-webkit-scrollbar-track {
+  background-color: #e4bb97;
+}
