@@ -1,12 +1,37 @@
 "use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Header() {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    const currentPosition =
+      window.scrollY || document.documentElement.scrollTop;
+    console.log(currentPosition);
+    setScrollPosition(currentPosition);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  function getGlassBlur() {
+    if (scrollPosition > 200) {
+      return "glass-blur";
+    }
+    if (scrollPosition < 200) {
+      return "melt-glass";
+    }
+  }
+
   return (
     <div className="fixed w-full px-2 z-50">
       <div
-        id="portfolioHeader"
-        className="flex w-full justify-between items-center text-portfolioBlack h-[54px] px-16 bg-glass text-white rounded-full my-2"
+        className={`${getGlassBlur()} flex w-full justify-between items-center text-portfolioBlack h-[54px] px-16 text-white rounded-full my-2`}
       >
         <Link href="/portfolio">
           <span className="hover:text-portfolioGrey active:text-portfolioBlackActive">

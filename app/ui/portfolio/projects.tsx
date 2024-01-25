@@ -70,10 +70,10 @@ export default function Projects({ projects }: { projects: Project[] }) {
   return (
     <div
       id="work"
-      className="flex w-full p-8 bg-portfolioSeashell justify-between items-center"
+      className="flex w-full p-8 bg-portfolioNeutral justify-between items-center"
     >
       <div
-        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioWenge rounded-full border-portfolioWenge dropshadow-xl text-3xl border-2 cursor-pointer`}
+        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioSecondary rounded-full  dropshadow-xl text-3xl cursor-pointer`}
         onClick={() => handleScroll("left")}
       >
         &lt;
@@ -86,7 +86,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
         {projects.map((project, index) => (
           <div
             key={`project-${index}`}
-            className={`cursor-pointer min-w-[320px] min-h-[400px] flex items-center justify-center text-portfolioWhite border-[1px] border-portfolioDesert drop-shadow-2xl text-4xl ${getBgColor(
+            className={`cursor-pointer min-w-[320px] min-h-[400px] flex items-center justify-center text-portfolioWhite drop-shadow-2xl text-4xl ${getBgColor(
               index
             )} ${getTextColor(index)} rounded mb-[24px] mx-2`}
             onClick={() => openModal(project) as any} // Specify the type here
@@ -96,7 +96,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
         ))}
       </div>
       <div
-        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioWenge rounded-full border-portfolioWenge dropshadow-xl border-2 text-3xl cursor-pointer`}
+        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioSecondary rounded-full dropshadow-xl text-3xl cursor-pointer`}
         onClick={() => handleScroll("right")}
       >
         &gt;
@@ -121,10 +121,10 @@ function Modal({
       id="projectModal"
       className="fixed inset-0 flex items-center justify-center bg-glass"
     >
-      <div className="bg-portfolioSeashell border-[1px] border-portfolioBlack p-2 flex flex-col">
+      <div className="bg-portfolioNeutral p-2 flex flex-col">
         <div className="flex justify-end w-full h-[22px] items-center">
           <div
-            className="flex items-center justify-center p-2 h-[32px] w-[32px] curso-pointer rounded-full text-portfolioDesert bg-portfolioWenge cursor-pointer text-[18px]"
+            className="flex items-center justify-center p-2 h-[32px] w-[32px] curso-pointer rounded-full text-portfolioDesert bg-portfolioSecondary cursor-pointer text-[18px]"
             onClick={closeModal}
           >
             <span>x</span>

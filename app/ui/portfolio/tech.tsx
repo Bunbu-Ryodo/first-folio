@@ -12,7 +12,7 @@ export default function Tech({ tech }: { tech: Tech }) {
   const { technologies, experience } = tech;
 
   return (
-    <div id="skills" className="bg-portfolioDesert p-8 h-auto w-full">
+    <div id="skills" className="bg-portfolioPrimary p-8 h-auto w-full">
       <div className="flex flex-col items-center justify-center w-full h-full">
         <div className="flex w-full items-center justify-center">
           <div className="w-full md:w-2/3 text-[24px]">{experience}</div>
@@ -21,7 +21,7 @@ export default function Tech({ tech }: { tech: Tech }) {
           {technologies?.map((skill: string, index) => (
             <div
               key={`technology-${index}`}
-              className="text-portfolioDesert flex items-center justify-center bg-portfolioWenge h-button rounded-full text-portfolioWhite min-w-[160px] w-fit mx-2 my-2 drop-shadow-xl"
+              className="text-portfolioPrimary flex items-center justify-center bg-portfolioSecondary h-button rounded-full text-portfolioWhite min-w-[160px] w-fit mx-2 my-2 drop-shadow-xl"
             >
               <span>{skill}</span>
             </div>

@@ -98,7 +98,7 @@ export default function Contact({
   return (
     <div
       id="contact"
-      className="flex flex-col w-full p-8 bg-portfolioWenge text-portfolioDesert items-center justify-between text-2xl"
+      className="flex flex-col w-full p-8 bg-portfolioSecondary text-portfolioPrimary items-center justify-between text-2xl"
     >
       <span>Get in touch</span>
       <div className="flex items-center">
@@ -112,22 +112,22 @@ export default function Contact({
       </div>
       <div className="socials-container flex flex-row mt-10">
         <a href={xUrl} className="pr-2 py-2" target="_blank">
-          <FaXTwitter className="h-icon w-icon text-portfolioDesert hover:text-portfolioGrey" />
+          <FaXTwitter className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
         </a>
         <a href={instagramUrl} className="px-2 py-2" target="_blank">
-          <FaInstagram className="h-icon w-icon text-portfolioDesert hover:text-portfolioGrey" />
+          <FaInstagram className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
         </a>
         <a href={facebookUrl} className="px-2 py-2" target="_blank">
-          <FaFacebook className="h-icon w-icon text-portfolioDesert hover:text-portfolioGrey" />
+          <FaFacebook className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
         </a>
         <a href={linkedInUrl} className="px-2 py-2" target="_blank">
-          <FaLinkedin className="h-icon w-icon text-portfolioDesert hover:text-portfolioGrey" />
+          <FaLinkedin className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
         </a>
         <a href={gitHubUrl} className="px-2 py-2" target="_blank">
-          <FaGithub className="h-icon w-icon text-portfolioDesert hover:text-portfolioGrey" />
+          <FaGithub className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
         </a>
         <a href={websiteUrl} className="px-2 py-2" target="_blank">
-          <TbWorldWww className="h-icon w-icon text-portfolioDesert hover:text-portfolioGrey" />
+          <TbWorldWww className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
         </a>
       </div>
       <div className="flex items-center text-[16px]">

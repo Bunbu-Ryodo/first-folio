@@ -29,6 +29,17 @@ body {
   }
 }
 
+@keyframes meltGlass {
+  from {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+  }
+  to {
+    backdrop-filter: none;
+    background-color: none;
+  }
+}
+
 @keyframes fadeInOut {
   0% {
     opacity: 0;
@@ -75,10 +86,22 @@ body {
   animation: fadeIn ease-in-out 1.75s forwards;
 }
 
-#portfolioHeader,
 #projectModal {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+.glass-blur {
+  color: white;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  animation: fadeIn ease-in-out 1s forwards;
+}
+
+.melt-glass {
+  color: black;
+  animation: meltGlass ease-in-out 1s forwards;
 }
 
 div {
