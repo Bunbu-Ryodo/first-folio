@@ -6,6 +6,9 @@ import {
   FaFacebook,
   FaLinkedin,
 } from "react-icons/fa6";
+
+import { MdHttp } from "react-icons/md";
+
 import { TbWorldWww } from "react-icons/tb";
 import { FaGithub } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
@@ -98,18 +101,14 @@ export default function Contact({
   return (
     <div
       id="contact"
-      className="flex flex-col w-full p-8 bg-portfolioSecondary text-portfolioPrimary items-center justify-between text-2xl"
+      className="flex w-full p-4 bg-portfolioSecondary text-portfolioPrimary items-center text-2xl justify-between"
     >
-      <div className="flex items-center">
-        <MdOutlineMail />
-        <a
-          href={`mailto:${socials.contact_email}.com`}
-          className="underline mx-2 cursor-pointer "
-        >
-          {socials.contact_email}
-        </a>
+      <div className="flex items-center text-[16px]">
+        <FaCopyright />
+        <span className="mx-2">{name}</span>
+        <span>{currentYear}</span>
       </div>
-      <div className="socials-container flex flex-row mt-10">
+      <div className="socials-container flex flex-row items-center">
         <a href={xUrl} className="pr-2 py-2" target="_blank">
           <FaXTwitter className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
         </a>
@@ -126,13 +125,8 @@ export default function Contact({
           <FaGithub className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
         </a>
         <a href={websiteUrl} className="px-2 py-2" target="_blank">
-          <TbWorldWww className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
+          <MdHttp className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
         </a>
-      </div>
-      <div className="flex items-center text-[16px]">
-        <FaCopyright />
-        <span className="mx-2">{name}</span>
-        <span>{currentYear}</span>
       </div>
     </div>
   );

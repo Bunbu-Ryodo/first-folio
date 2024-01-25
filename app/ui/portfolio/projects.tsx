@@ -5,6 +5,8 @@ import { robotoMono, jetbrains } from "@/app/ui/fonts";
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { MdHttp } from "react-icons/md";
+import { FaCircleChevronRight, FaCircleChevronLeft } from "react-icons/fa6";
+import { FaRegWindowClose } from "react-icons/fa";
 
 type Project = {
   id: number;
@@ -70,7 +72,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
   return (
     <div id="work" className="flex flex-col w-full p-8 bg-portfolioNeutral">
       <div className="flex justify-center w-full">
-        <div className="w-1/3 flex flex-col items-center">
+        <div className="w-full md:w-1/3 flex flex-col items-center">
           <div className="text-portfolioPrimary flex items-center justify-center bg-portfolioSecondary h-button rounded-full text-portfolioWhite min-w-[160px] w-fit mx-2 my-2 drop-shadow-xl">
             Projects
           </div>
@@ -83,16 +85,13 @@ export default function Projects({ projects }: { projects: Project[] }) {
         </div>
       </div>
       <div className="flex justify-between items-center w-full">
-        <div
-          className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioSecondary rounded-full border-portfolioSecondary dropshadow-xl border-2 text-3xl cursor-pointer`}
-          onClick={() => handleScroll("left")}
-        >
-          &lt;
+        <div onClick={() => handleScroll("left")}>
+          <FaCircleChevronLeft className="h-[48px] w-[48px] cursor-pointer text-portfolioSecondary hover:text-portfolioButtonHover active:text-portfolioButtonActive" />
         </div>
         <div
           id="projectsScroller"
           ref={projectsScrollerRef}
-          className="flex min-w-[320px] w-1/3 p-8 overflow-x-scroll"
+          className="rounded-lg drop-shadow-xl flex min-w-[320px] w-1/3 p-8 overflow-x-scroll"
         >
           {projects.map((project, index) => (
             <div
@@ -108,11 +107,8 @@ export default function Projects({ projects }: { projects: Project[] }) {
             </div>
           ))}
         </div>
-        <div
-          className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioSecondary rounded-full border-portfolioSecondary dropshadow-xl border-2 text-3xl cursor-pointer`}
-          onClick={() => handleScroll("right")}
-        >
-          &gt;
+        <div onClick={() => handleScroll("right")}>
+          <FaCircleChevronRight className="h-[48px] w-[48px] cursor-pointer text-portfolioSecondary hover:text-portfolioButtonHover active:text-portfolioButtonActive" />
         </div>
       </div>
 
@@ -133,44 +129,46 @@ function Modal({
   return (
     <div
       id="projectModal"
-      className="fixed inset-0 flex items-center justify-center bg-glass"
+      className="fixed inset-0 flex items-center justify-center bg-glass z-50"
     >
-      <div className="bg-portfolioNeutral p-2 flex flex-col">
-        <div className="flex justify-end w-full h-[22px] items-center">
+      <div className="bg-portfolioPrimary p-8 flex flex-col">
+        <div className="flex w-full justify-between mb-4 pl-4">
+          <h2 className={`${jetbrains.className} text-2xl font-bold`}>
+            {project.title}
+          </h2>
           <div
-            className="flex items-center justify-center p-2 h-[32px] w-[32px] curso-pointer rounded-full text-portfolioDesert bg-portfolioSecondary cursor-pointer text-[18px]"
+            className="flex items-center justify-center p-2 curso-pointer text-[18px]"
             onClick={closeModal}
           >
-            <span>x</span>
+            <FaRegWindowClose className="h-[24px] w-[24px] cursor-pointer text-portfolioSecondary hover:text-portfolioButtonHover active:text-portfolioButtonActive" />
           </div>
         </div>
         <div className="flex flex-col w-full">
           <div className="flex">
-            <div className="flex flex-col w-2/3 px-4">
-              <h2 className="text-2xl font-bold mb-4">{project.title}</h2>
-              <div className="mb-2 flex items-center">
-                <FaGithub className="h-icon w-icon mr-2" />
+            <div className="flex flex-col w-full px-4">
+              <div className="mb-2 flex items-center text-[20px]">
+                <FaGithub className="h-icon w-icon mr-2 " />
                 Github Repo:
                 <a
-                  className="text-blue-500 underline ml-2"
+                  className=" underline ml-2"
                   href={project.repo}
                   target="_blank"
                 >
                   {project.repo}
                 </a>
               </div>
-              <div className="mb-2 flex items-center">
+              <div className="mb-2 flex items-center text-[20px]">
                 <MdHttp className="h-icon w-icon mr-2" />
                 URL:
                 <a
-                  className="text-blue-500 underline ml-2"
+                  className=" underline ml-2"
                   href={project.repo}
                   target="_blank"
                 >
                   {project.url}
                 </a>
               </div>
-              <p className="mb-2">{project.description}</p>
+              <p className="mb-2 text-[20px]">{project.description}</p>
             </div>
           </div>
 

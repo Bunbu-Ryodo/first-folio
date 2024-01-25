@@ -31,9 +31,11 @@ const config: Config = {
         gunMetalActive: "#20252B",
         portfolioPrimary: "#E4BB97",
         portfolioSecondary: "#584B53",
-        portfolioRoseTaupe: "#9D5C63",
+        portfolioAccent2: "#9D5C63",
         portfolioNeutral: "#FEF5EF",
-        portfolioLavenderWeb: "#D6E3F8",
+        portfolioAccent1: "#D6E3F8",
+        portfolioButtonHover: "#70636B",
+        portfolioButtonActive: "#3F353B",
         glass: "rgba(17, 25, 40, 0.75)",
       },
       fontSize: {
@@ -50,7 +52,7 @@ const config: Config = {
         button: "40px",
         loginForm: "352px",
         icon: "24px",
-        portfolioSection: "150vh",
+        portfolioSection: "250vh",
       },
       width: {
         icon: "24px",
