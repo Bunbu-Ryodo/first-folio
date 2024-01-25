@@ -17,7 +17,7 @@
 } */
 
 body {
-  background: #d6e3f8;
+  background: #2c292d;
 }
 
 @keyframes fadeIn {
@@ -26,6 +26,26 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes meltGlass {
+  from {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+  }
+  to {
+    backdrop-filter: none;
+    background-color: none;
   }
 }
 
@@ -75,10 +95,29 @@ body {
   animation: fadeIn ease-in-out 1.75s forwards;
 }
 
-#portfolioHeader,
 #projectModal {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+.section-fade-in {
+  animation: fadeIn ease-in-out 0.25s fowards;
+}
+.section-fade-out {
+  animation: fadeOut 1s ease-in-out forwards;
+}
+
+.glass-blur {
+  color: white;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  animation: fadeIn ease-in-out 1s forwards;
+}
+
+.melt-glass {
+  color: black;
+  animation: meltGlass ease-in-out 1s forwards;
 }
 
 div {
@@ -98,4 +137,14 @@ div::-webkit-scrollbar-thumb {
 
 div::-webkit-scrollbar-track {
   background-color: #e4bb97;
+}
+
+@keyframes pending {
+  to {
+    visibility: hidden;
+  }
+}
+
+.npm-install {
+  animation: pending 0.5s steps(5, start) infinite;
 }

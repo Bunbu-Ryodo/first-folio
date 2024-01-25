@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { publicSans } from "@/app/ui/fonts";
 import "./portfolio.css";
 import { getServerSession } from "next-auth";
-import Header from "@/app/ui/portfolio/header";
+// import Header from "@/app/ui/portfolio/header";
 
 export const metadata: Metadata = {
   title: "Dev Portfolio",
@@ -19,10 +19,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${publicSans.className} min-h-screen w-full`}>
-        <main className="flex h-full flex-1 flex-col">
-          <Header></Header>
-          {children}
-        </main>
+        <main className="flex h-full flex-1 flex-col">{children}</main>
       </body>
     </html>
   );

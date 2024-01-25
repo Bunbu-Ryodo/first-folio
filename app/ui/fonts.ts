@@ -3,7 +3,8 @@ import { Source_Serif_4 } from "next/font/google";
 import { Roboto_Mono } from "next/font/google";
 import { Public_Sans } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
-
+import { Crimson_Text } from "next/font/google";
+import { Roboto } from "next/font/google";
 export const jetbrains = JetBrains_Mono({
   weight: ["300", "400", "500"],
   subsets: ["latin"],
@@ -20,6 +21,11 @@ export const robotoMono = Roboto_Mono({
   subsets: ["latin"],
 });
 
+export const roboto = Roboto({
+  weight: ["400"],
+  subsets: ["latin"],
+});
+
 export const publicSans = Public_Sans({
   weight: ["400", "700"],
   style: ["italic", "normal"],
@@ -27,6 +33,11 @@ export const publicSans = Public_Sans({
 });
 
 export const playfairDisplay = Playfair_Display({
+  weight: ["400"],
+  subsets: ["latin"],
+});
+
+export const crimsonText = Crimson_Text({
   weight: ["400"],
   subsets: ["latin"],
 });

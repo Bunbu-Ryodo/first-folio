@@ -1,12 +1,37 @@
 "use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function Header() {
+export default function Header({ contact }: { contact: string }) {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    const currentPosition =
+      window.scrollY || document.documentElement.scrollTop;
+    console.log(currentPosition);
+    setScrollPosition(currentPosition);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  function getGlassBlur() {
+    if (scrollPosition > 500) {
+      return "glass-blur";
+    }
+    if (scrollPosition < 500) {
+      return "melt-glass";
+    }
+  }
+
   return (
-    <div className="fixed w-full px-2 z-50">
+    <div className="fixed w-full px-2 z-40">
       <div
-        id="portfolioHeader"
-        className="flex w-full justify-between items-center text-portfolioBlack h-[54px] px-16 bg-glass text-white rounded-full my-2"
+        className={`${getGlassBlur()} flex w-full justify-between items-center text-portfolioBlack h-[54px] px-16 text-portfolioNeutral rounded-full my-2`}
       >
         <Link href="/portfolio">
           <span className="hover:text-portfolioGrey active:text-portfolioBlackActive">
@@ -24,14 +49,12 @@ export default function Header() {
               Work
             </span>
           </Link>
-          <Link
-            className="hover:text-portfolioBlackHover active:text-portfolioBlackActive px-2"
-            href="#"
+          <a
+            href={`mailto:${contact}`}
+            className="underline mx-2 cursor-pointer "
           >
-            <span className="hover:text-portfolioGrey active:text-portfolioBlackActive">
-              Contact
-            </span>
-          </Link>
+            Contact
+          </a>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaXTwitter,
   FaInstagram,
@@ -34,6 +34,29 @@ export default function PortfolioHero({
   socials: Socials;
   cvUrl: string;
 }) {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    const currentPosition =
+      window.scrollY || document.documentElement.scrollTop;
+    console.log(currentPosition);
+    setScrollPosition(currentPosition);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  function getFadeClass() {
+    if (scrollPosition > 900) {
+      return "section-fade-out";
+    } else {
+      return "section-fade-in";
+    }
+  }
   let xUrl, instagramUrl, facebookUrl, linkedInUrl, gitHubUrl, websiteUrl;
 
   const { x, instagram, facebook, linked_in, github } = socials;
@@ -94,41 +117,49 @@ export default function PortfolioHero({
   }
 
   return (
-    <div className="px-16 py-16 border-b-[1px] bg-portfolioDesert">
-      <h1 className={`font-bold text-display md:text-[72px]`}>{name}</h1>
-      <h1 className="text-display md:text-portfolioDisplay">{job_title}</h1>
-      <h1 className=" text-[18px] mb-[24px]">{bio}</h1>
-      <div className="flex flex-row w-full justify-between">
-        <div className="socials-container flex flex-row">
-          <a href={xUrl} className="pr-2 py-2" target="_blank">
-            <FaXTwitter className="h-icon w-icon text-portfolioWenge hover:text-portfolioGrey" />
-          </a>
-          <a href={instagramUrl} className="px-2 py-2" target="_blank">
-            <FaInstagram className="h-icon w-icon text-portfolioWenge hover:text-portfolioGrey" />
-          </a>
-          <a href={facebookUrl} className="px-2 py-2" target="_blank">
-            <FaFacebook className="h-icon w-icon text-portfolioWenge hover:text-portfolioGrey" />
-          </a>
-          <a href={linkedInUrl} className="px-2 py-2" target="_blank">
-            <FaLinkedin className="h-icon w-icon text-portfolioWenge hover:text-portfolioGrey" />
-          </a>
-          <a href={gitHubUrl} className="px-2 py-2" target="_blank">
-            <FaGithub className="h-icon w-icon text-portfolioWenge hover:text-portfolioGrey" />
-          </a>
-          <a href={websiteUrl} className="px-2 py-2" target="_blank">
-            <MdHttp className="h-icon w-icon text-portfolioWenge hover:text-portfolioGrey" />
-          </a>
-        </div>
-        <div className="flex flex-row items-center cursor-pointer">
-          <LuDownload className="h-icon w-icon text-portfolioWenge" />
-          <a
-            href={cvUrl}
-            className="px-2 underline text-portfolioWenge hover:text-portfolioGrey"
-            download
-            target="_blank"
-          >
-            Download CV
-          </a>
+    <div className="px-16 py-16 bg-portfolioPrimary h-portfolioSection relative">
+      <div className={`${getFadeClass()} sticky top-[225px]`}>
+        <div className="w-full flex flex-col items-center">
+          <div className="flex flex-col w-full md:w-2/3">
+            <h1 className={`font-bold text-display md:text-[72px]`}>{name}</h1>
+            <h1 className="text-display md:text-portfolioDisplay">
+              {job_title}
+            </h1>
+            <h1 className=" text-[18px] md:text-[24px] mb-[24px]">{bio}</h1>
+            <div className="flex flex-row w-full justify-between">
+              <div className="socials-container flex flex-row">
+                <a href={xUrl} className="pr-2 py-2" target="_blank">
+                  <FaXTwitter className="h-icon w-icon text-portfolioSecondary hover:text-portfolioButtonHover active:text-portfolioButtonActive" />
+                </a>
+                <a href={instagramUrl} className="px-2 py-2" target="_blank">
+                  <FaInstagram className="h-icon w-icon text-portfolioSecondary hover:text-portfolioButtonHover active:text-portfolioButtonActive" />
+                </a>
+                <a href={facebookUrl} className="px-2 py-2" target="_blank">
+                  <FaFacebook className="h-icon w-icon text-portfolioSecondary hover:text-portfolioButtonHover active:text-portfolioButtonActive" />
+                </a>
+                <a href={linkedInUrl} className="px-2 py-2" target="_blank">
+                  <FaLinkedin className="h-icon w-icon text-portfolioSecondary hover:text-portfolioButtonHover active:text-portfolioButtonActive" />
+                </a>
+                <a href={gitHubUrl} className="px-2 py-2" target="_blank">
+                  <FaGithub className="h-icon w-icon text-portfolioSecondary hover:text-portfolioButtonHover active:text-portfolioButtonActive" />
+                </a>
+                <a href={websiteUrl} className="px-2 py-2" target="_blank">
+                  <MdHttp className="h-icon w-icon text-portfolioSecondary hover:text-portfolioButtonHover active:text-portfolioButtonActive" />
+                </a>
+              </div>
+              <div className="flex flex-row items-center cursor-pointer">
+                <LuDownload className="h-icon w-icon text-portfolioSecondary" />
+                <a
+                  href={cvUrl}
+                  className="px-2 underline text-portfolioSecondary hover:text-portfolioButtonHover active:text-portfolioButtonActive"
+                  download
+                  target="_blank"
+                >
+                  Download CV
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
