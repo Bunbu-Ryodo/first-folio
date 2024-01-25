@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { robotoMono } from "@/app/ui/fonts";
+import { robotoMono, jetbrains } from "@/app/ui/fonts";
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { MdHttp } from "react-icons/md";
@@ -68,38 +68,52 @@ export default function Projects({ projects }: { projects: Project[] }) {
   }
 
   return (
-    <div
-      id="work"
-      className="flex w-full p-8 bg-portfolioNeutral justify-between items-center"
-    >
-      <div
-        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioSecondary rounded-full  dropshadow-xl text-3xl cursor-pointer`}
-        onClick={() => handleScroll("left")}
-      >
-        &lt;
-      </div>
-      <div
-        id="projectsScroller"
-        ref={projectsScrollerRef}
-        className="flex min-w-[320px] w-1/3 p-8 overflow-x-scroll"
-      >
-        {projects.map((project, index) => (
-          <div
-            key={`project-${index}`}
-            className={`cursor-pointer min-w-[320px] min-h-[400px] flex items-center justify-center text-portfolioWhite drop-shadow-2xl text-4xl ${getBgColor(
-              index
-            )} ${getTextColor(index)} rounded mb-[24px] mx-2`}
-            onClick={() => openModal(project) as any} // Specify the type here
-          >
-            {project.title}
+    <div id="work" className="flex flex-col w-full p-8 bg-portfolioNeutral">
+      <div className="flex justify-center w-full">
+        <div className="w-1/3 flex flex-col items-center">
+          <div className="text-portfolioPrimary flex items-center justify-center bg-portfolioSecondary h-button rounded-full text-portfolioWhite min-w-[160px] w-fit mx-2 my-2 drop-shadow-xl">
+            Projects
           </div>
-        ))}
+          <p className="font-bold text-displayMobile md:text-display text-center drop-shadow-md">
+            Check Out My Work
+          </p>
+          <p className="text-center drop-shadow-md text-[18px]">
+            See the results. Inspect the code.
+          </p>
+        </div>
       </div>
-      <div
-        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioSecondary rounded-full border-portfolioSecondary dropshadow-xl border-2 text-3xl cursor-pointer`}
-        onClick={() => handleScroll("right")}
-      >
-        &gt;
+      <div className="flex justify-between items-center w-full">
+        <div
+          className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioSecondary rounded-full border-portfolioSecondary dropshadow-xl border-2 text-3xl cursor-pointer`}
+          onClick={() => handleScroll("left")}
+        >
+          &lt;
+        </div>
+        <div
+          id="projectsScroller"
+          ref={projectsScrollerRef}
+          className="flex min-w-[320px] w-1/3 p-8 overflow-x-scroll"
+        >
+          {projects.map((project, index) => (
+            <div
+              key={`project-${index}`}
+              className={`cursor-pointer min-w-[320px] min-h-[400px] flex items-center justify-center text-portfolioWhite drop-shadow-2xl text-4xl ${getBgColor(
+                index
+              )} ${getTextColor(index)} ${
+                jetbrains.className
+              } rounded mb-[24px] mx-2`}
+              onClick={() => openModal(project) as any} // Specify the type here
+            >
+              {project.title}
+            </div>
+          ))}
+        </div>
+        <div
+          className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioSecondary rounded-full border-portfolioSecondary dropshadow-xl border-2 text-3xl cursor-pointer`}
+          onClick={() => handleScroll("right")}
+        >
+          &gt;
+        </div>
       </div>
 
       {isModalOpen && selectedProject && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { sourceSerif } from "@/app/ui/fonts";
+import { roboto, playfairDisplay, sourceSerif } from "@/app/ui/fonts";
 
 type Endorsement = {
   id: number;
@@ -24,22 +24,28 @@ export default function Testimonials({
           <p className="font-bold text-displayMobile md:text-display text-center drop-shadow-md">
             Kind words
           </p>
-          <p className="text-center drop-shadow-md text-[18px]">
+          <p className="text-center drop-shadow-md text-[20px]">
             The customer is king
           </p>
         </div>
       </div>
       <div className="flex flex-col w-full items-center lg:flex-row lg:justify-between h-full">
         <div className="flex flex-col w-full lg:w-1/4 justify-center items-center bg-portfolioPrimary text-portfolioSecondary p-8 my-8 rounded-lg min-h-[352px] shadow-xl">
-          <span className="text-[18px]">{endorsements[0].comments}</span>
+          <span className={`${sourceSerif.className} text-[20px] mb-2`}>
+            {endorsements[0].comments}
+          </span>
           <span className="text-black italic">{endorsements[0].name}</span>
         </div>
         <div className="flex flex-col w-full lg:w-1/4 justify-center items-center bg-portfolioPrimary text-portfolioSecondary p-8 my-8 rounded-lg min-h-[352px] shadow-xl">
-          <span className="text-[18px]">{endorsements[1].comments}</span>
+          <span className={`${sourceSerif.className} text-[20px] mb-2`}>
+            {endorsements[1].comments}
+          </span>
           <span className="text-black italic">{endorsements[1].name}</span>
         </div>
         <div className="flex flex-col w-full lg:w-1/4 justify-center items-center bg-portfolioPrimary text-portfolioSecondary p-8 my-8 min-h-[352px] rounded shadow-xl">
-          <span className="text-[18px]">{endorsements[2].comments}</span>
+          <span className={`${sourceSerif.className} text-[20px] mb-2`}>
+            {endorsements[2].comments}
+          </span>
           <span className="text-black italic">{endorsements[2].name}</span>
         </div>
       </div>
