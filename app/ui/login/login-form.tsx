@@ -50,14 +50,6 @@ export default function LoginForm() {
           name="password"
           className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-informational text-input"
         ></input>
-        <div className="w-full">
-          <a
-            href="#"
-            className="text-monokaiPurple underline text-informational"
-          >
-            Forgot Password?
-          </a>
-        </div>
         <div className="flex w-full justify-between mt-formInput">
           <SubmitButton noFlex1={false} label="Login()"></SubmitButton>
           <Link href="/register" className="flex-1 ml-[16px]">

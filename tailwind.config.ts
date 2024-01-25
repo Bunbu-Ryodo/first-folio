@@ -27,6 +27,8 @@ const config: Config = {
         buttonPinkActive: "#FF4472",
         buttonGreenHover: "#B2D094",
         buttonGreenActive: "#95D654",
+        buttonOrangeHover: "#FFAF88",
+        buttonOrangeActive: "#FE864B",
         gunMetalHover: "#2F343A",
         gunMetalActive: "#20252B",
         portfolioPrimary: "#E4BB97",
