@@ -100,7 +100,6 @@ export default function Contact({
       id="contact"
       className="flex flex-col w-full p-8 bg-portfolioSecondary text-portfolioPrimary items-center justify-between text-2xl"
     >
-      <span>Get in touch</span>
       <div className="flex items-center">
         <MdOutlineMail />
         <a

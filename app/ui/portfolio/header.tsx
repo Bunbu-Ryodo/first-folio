@@ -20,10 +20,10 @@ export default function Header() {
   }, []);
 
   function getGlassBlur() {
-    if (scrollPosition > 200) {
+    if (scrollPosition > 500) {
       return "glass-blur";
     }
-    if (scrollPosition < 200) {
+    if (scrollPosition < 500) {
       return "melt-glass";
     }
   }

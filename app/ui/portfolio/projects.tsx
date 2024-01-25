@@ -96,7 +96,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
         ))}
       </div>
       <div
-        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioSecondary rounded-full dropshadow-xl text-3xl cursor-pointer`}
+        className={`${robotoMono.className} flex h-[48px] w-[48px] items-center justify-center text-portfolioSecondary rounded-full border-portfolioSecondary dropshadow-xl border-2 text-3xl cursor-pointer`}
         onClick={() => handleScroll("right")}
       >
         &gt;

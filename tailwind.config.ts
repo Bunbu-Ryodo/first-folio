@@ -50,7 +50,7 @@ const config: Config = {
         button: "40px",
         loginForm: "352px",
         icon: "24px",
-        portfolioSection: "250vh",
+        portfolioSection: "150vh",
       },
       width: {
         icon: "24px",
