@@ -20,7 +20,7 @@ export default function Tech({ tech }: { tech: Tech }) {
               Skills
             </div>
             <p className="font-bold text-displayMobile md:text-display text-center drop-shadow-md">
-              What`&apos;s Your Tech Stack?
+              What&apos;s Your Tech Stack?
             </p>
             <p className="text-center drop-shadow-md text-[18px]">
               The tools I use to get the job done
