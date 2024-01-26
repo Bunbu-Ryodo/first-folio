@@ -16,6 +16,11 @@ export default function Testimonials({
 }: {
   endorsements: Endorsement[];
 }) {
+  function sortEndorsements(a: Endorsement, b: Endorsement) {
+    return a.id - b.id;
+  }
+
+  endorsements.sort(sortEndorsements);
   return (
     <div id="testimonials" className="bg-portfolioNeutral p-8">
       <div className="flex justify-center w-full">
@@ -31,25 +36,28 @@ export default function Testimonials({
           </p>
         </div>
       </div>
-      <div className="flex flex-col w-full justify-between p-2 lg:flex-row lg:flex-wrap">
+      <ul className="flex flex-col w-full justify-between p-2 md:flex-row md:max-h-[400px] md:overflow-hidden">
         {endorsements &&
           endorsements
             .reverse()
             .map((endorsement: Endorsement, index: number) => (
-              <div
+              <li
                 key={`endorsement-${index}`}
-                className="flex flex-col flex-1 w-full lg:w-1/3 m-2 bg-portfolioAccent1 p-8 drop-shadow-xl rounded-lg flex-wrap"
+                className="flex flex-1 flex-col w-full md:w-1/3 m-2 bg-portfolioAccent1 p-8 drop-shadow-xl rounded-lg"
               >
-                <p
-                  className={`${sourceSerif.className} text-[20px] mb-2 w-full`}
-                  style={{ wordWrap: "break-word", overflowWrap: "break-word" }}
+                <div
+                  className={`${sourceSerif.className} text-[20px] mb-2 md:max-h-[90%] w-full md:overflow-hidden md:text-overflow-ellipsis`}
+                  style={{
+                    wordWrap: "break-word",
+                    overflowWrap: "break-word",
+                  }}
                 >
                   {endorsement.comments}
-                </p>
+                </div>
                 <a className="text-black italic">{endorsement.name}</a>
-              </div>
+              </li>
             ))}
-      </div>
+      </ul>
     </div>
   );
 }
