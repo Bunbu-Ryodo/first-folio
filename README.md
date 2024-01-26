@@ -14,3 +14,5 @@ I'm going to update the register/login functionality to take an email with a mag
 
 ## Figma Wireframes
 https://www.figma.com/file/MHAZtPB5qVDvGRHM5OTzS2/Asset-Library-%2B-First-Folio-Wireframes?type=design&node-id=303%3A1245&mode=design&t=MwrKcSTR66QxQF00-1
+
+
