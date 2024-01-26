@@ -110,22 +110,22 @@ export default function Contact({
       </div>
       <div className="socials-container flex flex-row items-center">
         <a href={xUrl} className="pr-2 py-2" target="_blank">
-          <FaXTwitter className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
+          <FaXTwitter className="h-icon w-icon text-portfolioPrimary hover:text-portfolioPrimaryButtonHover active:text-portfolioPrimaryButtonActive" />
         </a>
         <a href={instagramUrl} className="px-2 py-2" target="_blank">
-          <FaInstagram className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
+          <FaInstagram className="h-icon w-icon text-portfolioPrimary hover:text-portfolioPrimaryButtonHover active:text-portfolioPrimaryButtonActive" />
         </a>
         <a href={facebookUrl} className="px-2 py-2" target="_blank">
-          <FaFacebook className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
+          <FaFacebook className="h-icon w-icon text-portfolioPrimary hover:text-portfolioPrimaryButtonHover active:text-portfolioPrimaryButtonActive" />
         </a>
         <a href={linkedInUrl} className="px-2 py-2" target="_blank">
-          <FaLinkedin className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
+          <FaLinkedin className="h-icon w-icon text-portfolioPrimary hover:text-portfolioPrimaryButtonHover active:text-portfolioPrimaryButtonActive" />
         </a>
         <a href={gitHubUrl} className="px-2 py-2" target="_blank">
-          <FaGithub className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
+          <FaGithub className="h-icon w-icon text-portfolioPrimary hover:text-portfolioPrimaryButtonHover active:text-portfolioPrimaryButtonActive" />
         </a>
         <a href={websiteUrl} className="px-2 py-2" target="_blank">
-          <MdHttp className="h-icon w-icon text-portfolioPrimary hover:text-portfolioGrey" />
+          <MdHttp className="h-icon w-icon text-portfolioPrimary hover:text-portfolioPrimaryButtonHover active:text-portfolioPrimaryButtonActive" />
         </a>
       </div>
     </div>

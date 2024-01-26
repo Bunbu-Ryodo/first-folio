@@ -38,6 +38,8 @@ const config: Config = {
         portfolioAccent1: "#D6E3F8",
         portfolioButtonHover: "#70636B",
         portfolioButtonActive: "#3F353B",
+        portfolioPrimaryButtonHover: "#D6C1AF",
+        portfolioPrimaryButtonActive: "#E6AF7F",
         glass: "rgba(17, 25, 40, 0.75)",
       },
       fontSize: {

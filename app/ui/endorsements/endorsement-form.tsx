@@ -108,7 +108,7 @@ export default function EndorsementForm({
           <div className="items-center flex flex-col md:items-start w-full md:w-1/2 px-2">
             <div className="flex flex-col px-2">
               {initialCommenterPhotoPathname && (
-                <div className="flex flex-row items-center">
+                <div className="flex flex-col">
                   <FiPaperclip className="text-monokaiOrange mr-2" />
                   <span className="text-monokaiOrange">
                     {initialCommenterPhotoPathname}
