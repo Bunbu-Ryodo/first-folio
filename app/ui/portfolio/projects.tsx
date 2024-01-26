@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { robotoMono, jetbrains } from "@/app/ui/fonts";
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
@@ -22,6 +22,25 @@ export default function Projects({ projects }: { projects: Project[] }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const projectsScrollerRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setVisible] = React.useState(false);
+  const headerRef = React.useRef<HTMLParagraphElement | null>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => setVisible(entry.isIntersecting));
+    });
+
+    const domNode = headerRef.current;
+    if (domNode) {
+      observer.observe(domNode);
+    }
+
+    return () => {
+      if (domNode) {
+        observer.unobserve(domNode);
+      }
+    };
+  }, []);
 
   type ScrollDirection = "left" | "right";
 
@@ -76,11 +95,16 @@ export default function Projects({ projects }: { projects: Project[] }) {
           <div className="text-portfolioPrimary flex items-center justify-center bg-portfolioSecondary h-button rounded-full text-portfolioWhite min-w-[160px] w-fit mx-2 my-2 drop-shadow-xl">
             Projects
           </div>
-          <p className="font-bold text-displayMobile md:text-display text-center drop-shadow-md">
+          <p
+            ref={headerRef}
+            className={`${
+              isVisible ? "typewriter" : "animate-fade-out"
+            } font-bold text-displayMobile md:text-display text-center drop-shadow-md`}
+          >
             Check Out My Work
           </p>
           <p className="text-center drop-shadow-md text-[18px]">
-            See the results. Inspect the code.
+            See the results. Inspect the code. 👀
           </p>
         </div>
       </div>

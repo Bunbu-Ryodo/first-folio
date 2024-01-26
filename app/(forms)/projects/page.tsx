@@ -16,7 +16,12 @@ type Project = {
 
 export default async function Projects() {
   const projects = await getProjects();
-  console.log(projects);
+
+  function sortProjects(a: Project, b: Project) {
+    return a.id - b.id;
+  }
+
+  projects.sort(sortProjects);
 
   return (
     <main className="h-full container font-light">
@@ -31,7 +36,7 @@ export default async function Projects() {
         </span>
       </div>
       {projects &&
-        projects.reverse().map((project: Project) => (
+        projects.map((project: Project) => (
           <>
             <RemoveProject
               key={`Remove-${project.id}`}
@@ -40,17 +45,19 @@ export default async function Projects() {
             <ProjectForm
               key={`Old-${project.id}`}
               id={project.id}
-              initialTitle={project.title}
-              initialRepo={project.repo}
-              initialUrl={project.url}
-              initialDescription={project.description}
-              initialPathnames={project.imagePaths}
+              initialTitle={project.title ? project.title : ""}
+              initialRepo={project.repo ? project.repo : ""}
+              initialUrl={project.url ? project.url : ""}
+              initialDescription={
+                project.description ? project.description : ""
+              }
+              initialPathnames={project.imagePaths ? project.imagePaths : []}
             ></ProjectForm>
           </>
         ))}
       {(!projects || projects.length === 0) && (
         <ProjectForm
-          key={`New Project-${Math.random()}`}
+          key={`New Project`}
           id={undefined}
           initialTitle={""}
           initialRepo={""}

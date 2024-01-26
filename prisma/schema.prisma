@@ -77,6 +77,9 @@ model Endorsement {
   id Int @id @default(autoincrement())
   name String?
   comments String?
+  commenterPhotoUrl String?
+  commenterPhotoPathname String?
+  commenterLink String?
   candidate User @relation(fields: [candidateId], references: [id])
   candidateId String 
 }

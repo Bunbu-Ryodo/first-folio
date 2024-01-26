@@ -2,7 +2,7 @@ import { jetbrains } from "@/app/ui/fonts";
 
 export default function NpmInstall({ label }: { label?: string }) {
   return (
-    <div className="w-full h-full flex justify-start animate-pulse">
+    <div className="w-full h-full flex justify-start">
       <div className="flex w-full text-displayMobile md:text-header mb-title mt-2 px-2">
         <span className={`${jetbrains.className} text-white mr-[24px]`}>
           &gt; {`npm i ${label ? label : ""}`}

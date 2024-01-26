@@ -117,7 +117,7 @@ export default function PortfolioHero({
   }
 
   return (
-    <div className="px-16 py-16 bg-portfolioPrimary h-portfolioSection relative">
+    <div className="px-16 py-16 bg-portfolioPrimary h-portfolioSection relative z-[1]">
       <div className={`${getFadeClass()} sticky top-[225px]`}>
         <div className="w-full flex flex-col items-center">
           <div className="flex flex-col w-full md:w-2/3">
