@@ -18,8 +18,6 @@ export default async function CV() {
     pathname = cv.cvPath;
   }
 
-  console.log(cv);
-
   return (
     <main className="h-full container font-light">
       <BreadCrumbs

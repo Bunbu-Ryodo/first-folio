@@ -120,7 +120,6 @@ export default function ProjectForm({
               name="image2"
               onChange={(e) => {
                 if (e.target.files && e.target.files.length > 0) {
-                  console.log(e.target.files[0]);
                   setImage2(e.target.files[0]);
                 }
               }}

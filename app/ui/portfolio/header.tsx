@@ -8,7 +8,6 @@ export default function Header({ contact }: { contact: string }) {
   const handleScroll = () => {
     const currentPosition =
       window.scrollY || document.documentElement.scrollTop;
-    console.log(currentPosition);
     setScrollPosition(currentPosition);
   };
 

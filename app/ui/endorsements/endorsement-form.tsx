@@ -65,7 +65,6 @@ export default function EndorsementForm({
           name="commenterPhoto"
           onChange={(e) => {
             if (e.target.files && e.target.files.length > 0) {
-              console.log(e.target.files[0]);
               setCommenterPhoto(e.target.files[0]);
             }
           }}

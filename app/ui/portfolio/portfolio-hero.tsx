@@ -39,7 +39,6 @@ export default function PortfolioHero({
   const handleScroll = () => {
     const currentPosition =
       window.scrollY || document.documentElement.scrollTop;
-    console.log(currentPosition);
     setScrollPosition(currentPosition);
   };
 
