@@ -17,7 +17,6 @@ export default function LoginForm() {
       password: formData.get("password"),
       redirect: false,
     });
-    console.log({ response });
     if (!response?.error) {
       router.push("/mystuff");
       router.refresh();

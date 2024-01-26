@@ -136,14 +136,13 @@ export async function saveEndorsements(
     if (uploadCommenterPhoto.pathname !== "undefined") {
       commenterPhotoUrl = uploadCommenterPhoto.url;
       commenterPhotoPathname = uploadCommenterPhoto.pathname;
+    } else {
+      commenterPhotoUrl = "";
+      commenterPhotoPathname = "";
     }
   }
 
   const { name, comments, commenterLink, id } = validatedFields.data;
-
-  console.log(commenterLink, "CommenterLink");
-  console.log(commenterPhotoUrl, "CommenterPhotoURL");
-  console.log(commenterPhotoPathname, "CommenterPhotoURL");
 
   try {
     if (id) {
