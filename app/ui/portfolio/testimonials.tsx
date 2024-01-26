@@ -6,6 +6,8 @@ type Endorsement = {
   id: number;
   name?: string;
   comments?: string;
+  commenterLink?: string;
+  commenterPhotoUrl?: string;
   candidateId?: string;
 };
 
@@ -29,16 +31,22 @@ export default function Testimonials({
           </p>
         </div>
       </div>
-      <div className="flex flex-col w-full justify-between p-2 md:flex-row md:flex-wrap">
+      <div className="flex flex-col w-full justify-between p-2 lg:flex-row lg:flex-wrap">
         {endorsements &&
           endorsements
             .reverse()
             .map((endorsement: Endorsement, index: number) => (
-              <div className="flex flex-col flex-1 w-full m-2 bg-portfolioAccent1 p-8 drop-shadow-xl rounded-lg">
-                <span className={`${sourceSerif.className} text-[20px] mb-2`}>
+              <div
+                key={`endorsement-${index}`}
+                className="flex flex-col flex-1 w-full lg:w-1/3 m-2 bg-portfolioAccent1 p-8 drop-shadow-xl rounded-lg flex-wrap"
+              >
+                <p
+                  className={`${sourceSerif.className} text-[20px] mb-2 w-full`}
+                  style={{ wordWrap: "break-word", overflowWrap: "break-word" }}
+                >
                   {endorsement.comments}
-                </span>
-                <span className="text-black italic">{endorsement.name}</span>
+                </p>
+                <a className="text-black italic">{endorsement.name}</a>
               </div>
             ))}
       </div>

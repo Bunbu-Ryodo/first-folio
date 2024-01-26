@@ -19,7 +19,6 @@ export default async function HowToUse() {
         ]}
         current="how-to-use"
       ></BreadCrumbs>
-      <NextButton newTab={true} link={`${userId}/portfolio`}></NextButton>
       <div className="flex flex-col w-full md:w-1/3 h-full items-center justify-center px-2">
         <span className="opacity-0 animate-fade-in text-monokaiYellow text-displayMobile md:text-header font-light">
           How To Use
@@ -33,11 +32,11 @@ export default async function HowToUse() {
           </p>
         </div>
 
-        <Link className="w-full" href={`/${userId}/portfolio`} target="_blank">
+        <a className="w-full" href={`/${userId}/portfolio`} target="_blank">
           <button className="bg-monokaiGreen text-button text-monokaiBlack rounded h-button hover:bg-buttonGreenHover active:bg-buttonGreenActive mr-[16px] mt-buttons disabled:bg-slate-500 w-full">
             Go()
           </button>
-        </Link>
+        </a>
       </div>
     </main>
   );
