@@ -66,6 +66,10 @@ const DeleteProject = z.object({
   id: z.number(),
 });
 
+const DeleteEndorsement = z.object({
+  id: z.number(),
+});
+
 const Socials = z.object({
   contact_email: z.string().email(),
   x: z.string(),
@@ -80,6 +84,7 @@ const Endorsements = z.object({
   id: z.number().nullable(),
   name: z.string(),
   comments: z.string(),
+  commenterLink: z.string(),
 });
 
 export async function getUserId() {
@@ -105,6 +110,7 @@ export async function saveEndorsements(
     id: Number(formData.get("id")),
     name: formData.get("name"),
     comments: formData.get("comments"),
+    commenterLink: formData.get("commenterLink"),
   });
 
   if (!validatedFields.success) {
@@ -114,7 +120,30 @@ export async function saveEndorsements(
     };
   }
 
-  const { name, comments, id } = validatedFields.data;
+  let commenterPhotoUrl;
+  let commenterPhotoPathname;
+
+  const commenterPhoto = formData.get("commenterPhoto") as File;
+  if (commenterPhoto) {
+    const uploadCommenterPhoto = await put(
+      commenterPhoto.name,
+      commenterPhoto,
+      {
+        access: "public",
+      }
+    );
+
+    if (uploadCommenterPhoto.pathname !== "undefined") {
+      commenterPhotoUrl = uploadCommenterPhoto.url;
+      commenterPhotoPathname = uploadCommenterPhoto.pathname;
+    }
+  }
+
+  const { name, comments, commenterLink, id } = validatedFields.data;
+
+  console.log(commenterLink, "CommenterLink");
+  console.log(commenterPhotoUrl, "CommenterPhotoURL");
+  console.log(commenterPhotoPathname, "CommenterPhotoURL");
 
   try {
     if (id) {
@@ -134,6 +163,9 @@ export async function saveEndorsements(
           data: {
             name: name,
             comments: comments,
+            commenterLink: commenterLink,
+            commenterPhotoUrl: commenterPhotoUrl,
+            commenterPhotoPathname: commenterPhotoPathname,
           },
         });
       }
@@ -143,6 +175,9 @@ export async function saveEndorsements(
           name: name,
           comments: comments,
           candidateId: userId,
+          commenterLink: commenterLink,
+          commenterPhotoUrl: commenterPhotoUrl,
+          commenterPhotoPathname: commenterPhotoPathname,
         },
       });
     }
@@ -422,6 +457,18 @@ export async function addNewProject() {
   return { errors: {}, message: null };
 }
 
+export async function addNewEndorsement() {
+  const userId = await getUserId();
+  await prisma.Endorsement.create({
+    data: {
+      candidateId: userId,
+    },
+  });
+
+  revalidatePath("/endorsements");
+  return { errors: {}, message: null };
+}
+
 export async function deleteProject(
   prevState: GenericState,
   formData: FormData
@@ -460,6 +507,46 @@ export async function deleteProject(
     return { errors: {}, message: "Someting went wrong" };
   }
   revalidatePath("/projects");
+  return { errors: {}, message: null };
+}
+
+export async function deleteEndorsement(
+  prevState: GenericState,
+  formData: FormData
+) {
+  const userId = await getUserId();
+  const validatedFields = DeleteEndorsement.safeParse({
+    id: Number(formData.get("id")),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Stop trying to break the form you're not clever",
+    };
+  }
+
+  const { id } = validatedFields.data;
+
+  try {
+    if (id) {
+      await prisma.Endorsement.delete({
+        where: {
+          id: id,
+          candidateId: userId,
+        },
+      });
+    } else {
+      return {
+        errors: {},
+        message: "Stop tryingto break the form, you're not clever",
+      };
+    }
+  } catch (e) {
+    console.log(e);
+    return { errors: {}, message: "Something went wrong" };
+  }
+  revalidatePath("/endorsements");
   return { errors: {}, message: null };
 }
 

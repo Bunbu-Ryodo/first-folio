@@ -29,47 +29,19 @@ export default function Testimonials({
           </p>
         </div>
       </div>
-      <div className="flex flex-col w-full justify-between p-2 md:flex-row">
-        <div className="flex flex-col flex-1 w-full m-2 bg-portfolioAccent1 p-8 drop-shadow-xl rounded-lg">
-          <span className={`${sourceSerif.className} text-[20px] mb-2`}>
-            {endorsements[0].comments}
-          </span>
-          <span className="text-black italic">{endorsements[0].name}</span>
-        </div>
-        <div className="flex flex-col flex-1 w-full m-2 bg-portfolioAccent1 p-8 drop-shadow-xl rounded-lg">
-          <span className={`${sourceSerif.className} text-[20px] mb-2`}>
-            {endorsements[1].comments}
-          </span>
-          <span className="text-black italic">{endorsements[1].name}</span>
-        </div>
-        <div className="flex flex-col flex-1 w-full m-2 bg-portfolioAccent1 p-8 drop-shadow-xl rounded-lg">
-          <span className={`${sourceSerif.className} text-[20px] mb-2`}>
-            {endorsements[2].comments}
-          </span>
-          <span className="text-black italic">{endorsements[2].name}</span>
-        </div>
+      <div className="flex flex-col w-full justify-between p-2 md:flex-row md:flex-wrap">
+        {endorsements &&
+          endorsements
+            .reverse()
+            .map((endorsement: Endorsement, index: number) => (
+              <div className="flex flex-col flex-1 w-full m-2 bg-portfolioAccent1 p-8 drop-shadow-xl rounded-lg">
+                <span className={`${sourceSerif.className} text-[20px] mb-2`}>
+                  {endorsement.comments}
+                </span>
+                <span className="text-black italic">{endorsement.name}</span>
+              </div>
+            ))}
       </div>
-      {/* <div className="flex flex-col w-full items-center lg:flex-row lg:justify-between h-full">
-        <div className="flex flex-col w-full lg:w-1/4 justify-center items-center bg-portfolioPrimary text-portfolioSecondary p-8 my-8 min-h-full rounded-lg shadow-xl">
-          <span className={`${sourceSerif.className} text-[20px] mb-2`}>
-            {endorsements[0].comments}
-          </span>
-          <span className="text-black italic">{endorsements[0].name}</span>
-        </div>
-        <div className="flex flex-col w-full lg:w-1/4 justify-center items-center bg-portfolioPrimary text-portfolioSecondary p-8 my-8 min-h-full rounded-lg shadow-xl">
-          <span className={`${sourceSerif.className} text-[20px] mb-2`}>
-            {endorsements[1].comments}
-          </span>
-          <span className="text-black italic">{endorsements[1].name}</span>
-        </div>
-        <div className="flex flex-col w-full lg:w-1/4 justify-center items-center bg-portfolioPrimary text-portfolioSecondary p-8 my-8 min-h-full rounded shadow-xl">
-          <span className={`${sourceSerif.className} text-[20px] mb-2`}>
-            {endorsements[2].comments}
-          </span>
-          <span className="text-black italic">{endorsements[2].name}</span>
-        </div>
-      </div> */}
     </div>
   );
 }
-``;
