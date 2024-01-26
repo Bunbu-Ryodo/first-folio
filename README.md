@@ -4,7 +4,7 @@ First Folio is an easy Portfolio Builder for web developers/software engineers (
 # Q&A
 
 ## Where does the name come from?
-I was trying to think of some kind of pun. Something + folio. Settled on First Folio after the collection of Shakespeare's plays. I like literature
+I was trying to think of some kind of pun. Something + folio. Settled on First Folio after the collection of Shakespeare's plays. I like literature.
 
 ## I want more than one color scheme/theme. Why are there no options?
 You don't know what you want.
