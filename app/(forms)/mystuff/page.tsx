@@ -16,11 +16,16 @@ export default async function MyStuff() {
             ChangeMySettings()
           </button>
         </Link>
-        <a className="w-full" href={`/${userId}/portfolio`} target="_blank">
+        <Link
+          className="w-full"
+          href={`/${userId}/portfolio`}
+          target="_blank"
+          prefetch={false}
+        >
           <button className="bg-monokaiOrange text-button text-monokaiBlack rounded h-button hover:bg-buttonOrangeHover active:bg-buttonOrangeActive mr-[16px] mt-[24px] disabled:bg-slate-500 w-full">
             VisitPortfolio()
           </button>
-        </a>
+        </Link>
       </div>
     </div>
   );

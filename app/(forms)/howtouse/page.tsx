@@ -32,11 +32,16 @@ export default async function HowToUse() {
           </p>
         </div>
 
-        <a className="w-full" href={`/${userId}/portfolio`} target="_blank">
+        <Link
+          prefetch={false}
+          className="w-full"
+          href={`/${userId}/portfolio`}
+          target="_blank"
+        >
           <button className="bg-monokaiGreen text-button text-monokaiBlack rounded h-button hover:bg-buttonGreenHover active:bg-buttonGreenActive mr-[16px] mt-buttons disabled:bg-slate-500 w-full">
             Go()
           </button>
-        </a>
+        </Link>
       </div>
     </main>
   );
