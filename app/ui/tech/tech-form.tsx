@@ -59,7 +59,7 @@ export default function TechForm({
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
                 name="experience"
-                className="h-[270px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+                className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange h-[270px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
               ></textarea>
               <div className="flex w-full justify-between">
                 <SubmitButton

@@ -56,7 +56,7 @@ export default function SocialsForm({
           onChange={(e) => setContactEmail(e.target.value)}
           name="contact_email"
           value={contact_email}
-          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
         <FaXTwitter className="text-monokaiPink text-informational" />
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
@@ -68,7 +68,7 @@ export default function SocialsForm({
           onChange={(e) => setX(e.target.value)}
           name="x"
           value={x}
-          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
         <IoLogoInstagram className="text-monokaiPink text-informational" />
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
@@ -80,7 +80,7 @@ export default function SocialsForm({
           onChange={(e) => setInstagram(e.target.value)}
           name="instagram"
           value={instagram}
-          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
         <FaFacebook className="text-monokaiPink text-informational" />
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
@@ -92,7 +92,7 @@ export default function SocialsForm({
           onChange={(e) => setFacebook(e.target.value)}
           name="facebook"
           value={facebook}
-          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
         <FaLinkedin className="text-monokaiPink text-informational" />
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
@@ -104,7 +104,7 @@ export default function SocialsForm({
           onChange={(e) => setLinkedIn(e.target.value)}
           name="linked_in"
           value={linked_in}
-          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
         <FaGithub className="text-monokaiPink text-informational" />
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
@@ -116,7 +116,7 @@ export default function SocialsForm({
           onChange={(e) => setGithub(e.target.value)}
           name="github"
           value={github}
-          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
           &lt;Website&gt;
@@ -127,7 +127,7 @@ export default function SocialsForm({
           onChange={(e) => setWebsite(e.target.value)}
           name="website"
           value={website}
-          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
         <div className="flex w-full justify-between mb-formEnd">
           <SubmitButton noFlex1={false} label="Save Progress()"></SubmitButton>

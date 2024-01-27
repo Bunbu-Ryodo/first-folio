@@ -44,7 +44,7 @@ export default function EndorsementForm({
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-informational text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-informational text-input"
         ></input>
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
           &lt;Referee Website/Social Media&gt;
@@ -54,7 +54,7 @@ export default function EndorsementForm({
           name="commenterLink"
           value={commenterLink}
           onChange={(e) => setCommenterLink(e.target.value)}
-          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-informational text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-informational text-input"
         ></input>
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
           &lt;Referee Photo&gt;{" "}
@@ -69,7 +69,7 @@ export default function EndorsementForm({
             }
           }}
           accept="image/jpg, image/png"
-          className="file:cursor-pointer cursor-pointer w-full opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange file:cursor-pointer cursor-pointer w-full opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
@@ -84,7 +84,7 @@ export default function EndorsementForm({
           name="comments"
           onChange={(e) => setComments(e.target.value)}
           value={comments}
-          className="h-[160px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange h-[160px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></textarea>
 
         <div className="items-center hidden md:items-end w-full px-2">
@@ -92,7 +92,7 @@ export default function EndorsementForm({
             type="number"
             name="id"
             value={id ? id : ""}
-            className="hidden opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+            className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange hidden opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
             readOnly
           ></input>
         </div>

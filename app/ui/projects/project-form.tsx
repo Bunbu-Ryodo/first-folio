@@ -53,7 +53,7 @@ export default function ProjectForm({
                 name="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+                className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
               ></input>
             </div>
             <div className="w-full md:w-3/4 min-w-[320px]">
@@ -66,7 +66,7 @@ export default function ProjectForm({
                 name="repo"
                 value={repo}
                 onChange={(e) => setRepo(e.target.value)}
-                className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+                className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
               ></input>
             </div>
             <div className="w-full md:w-3/4 min-w-[320px]">
@@ -79,7 +79,7 @@ export default function ProjectForm({
                 name="url"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+                className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
               ></input>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function ProjectForm({
                 name="description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="h-[260px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+                className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange h-[260px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
               ></textarea>
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function ProjectForm({
                 }
               }}
               accept="image/jpg, image/png"
-              className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
+              className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
@@ -124,7 +124,7 @@ export default function ProjectForm({
                 }
               }}
               accept="image/jpg, image/png"
-              className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
+              className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
@@ -143,7 +143,7 @@ export default function ProjectForm({
                 }
               }}
               accept="image/jpg, image/png"
-              className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
+              className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
@@ -160,7 +160,7 @@ export default function ProjectForm({
                 }
               }}
               accept="image/jpg, image/png"
-              className="file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
+              className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange file:cursor-pointer cursor-pointer w-full md:w-3/4 min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold

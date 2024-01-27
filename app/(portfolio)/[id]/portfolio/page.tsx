@@ -8,14 +8,18 @@ import Header from "@/app/ui/portfolio/header";
 
 export default async function Portfolio() {
   const portfolioData = await getPortfolioData();
-  const { introduction, tech, projects, endorsements, socials, cv } =
+  const { introduction, tech, projects, endorsements, socials, cv, id } =
     portfolioData;
 
   const { cvUrl } = cv;
 
   return (
     <>
-      <Header contact={socials.contact_email}></Header>
+      <Header
+        name={introduction.name}
+        id={id}
+        contact={socials.contact_email}
+      ></Header>
       <PortfolioHero
         name={introduction.name}
         job_title={introduction.job_title}

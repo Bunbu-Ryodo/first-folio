@@ -41,7 +41,7 @@ export default function IntroduceYourself({
           onChange={(e) => setName(e.target.value)}
           name="name"
           value={name}
-          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
           &lt;Job Title&gt;
@@ -52,7 +52,7 @@ export default function IntroduceYourself({
           onChange={(e) => setJobTitle(e.target.value)}
           name="job_title"
           value={jobTitle}
-          className="opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></input>
         <label className="opacity-0 animate-fade-in-slowest text-monokaiPink text-informational">
           &lt;Write a Short Bio&gt;
@@ -62,7 +62,7 @@ export default function IntroduceYourself({
           name="bio"
           onChange={(e) => setBio(e.target.value)}
           value={bio}
-          className="h-[96px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
+          className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange h-[96px] opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input"
         ></textarea>
         <div className="flex w-full justify-between">
           <SubmitButton noFlex1={false} label="Save Progress()"></SubmitButton>
