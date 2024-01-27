@@ -2,7 +2,15 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function Header({ contact }: { contact: string }) {
+export default function Header({
+  contact,
+  id,
+  name,
+}: {
+  contact: string;
+  id: string;
+  name: string;
+}) {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleScroll = () => {
@@ -32,9 +40,9 @@ export default function Header({ contact }: { contact: string }) {
       <div
         className={`${getGlassBlur()} flex w-full justify-between items-center text-portfolioBlack h-[54px] px-16 text-portfolioNeutral rounded-full my-2`}
       >
-        <Link href="/portfolio">
+        <Link href={`/${id}/portfolio`}>
           <span className="hover:text-portfolioGrey active:text-portfolioBlackActive">
-            Home
+            {`${name}`}
           </span>
         </Link>
         <div className="nav-container">

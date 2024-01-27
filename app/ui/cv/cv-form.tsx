@@ -30,7 +30,7 @@ export default function CVForm({ pathname }: { pathname: string }) {
               }
             }}
             accept="application/pdf"
-            className="file:cursor-pointer cursor-pointer w-full min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
+            className="focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange file:cursor-pointer cursor-pointer w-full min-w-[320px] opacity-0 animate-fade-in rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 border-monokaiBlue placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold

@@ -83,7 +83,7 @@ export default function Testimonials({
                   >
                     {endorsement.comments}
                   </div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col justify-start">
                     <a
                       href={
                         endorsement.commenterLink?.startsWith("https://")
@@ -102,11 +102,11 @@ export default function Testimonials({
                       <Image
                         src={endorsement.commenterPhotoUrl}
                         alt="screenshot"
-                        className="m-2 rounded-full drop-shadow-lg border-4 border-portfolioAccent1"
-                        height={128}
-                        width={128}
+                        className="my-2 rounded-full drop-shadow-xl border-[1px] border-portfolioPrimary"
+                        height={72}
+                        width={72}
                         objectFit="cover"
-                        style={{ maxWidth: "44px", maxHeight: "44px" }}
+                        style={{ maxWidth: "72px", maxHeight: "72px" }}
                       ></Image>
                     )}
                   </div>

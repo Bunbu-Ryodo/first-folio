@@ -201,6 +201,7 @@ export async function getPortfolioData() {
   const cv = await getCV(userId);
 
   const portfolioData = {
+    id: userId,
     introduction: introduction,
     tech: tech,
     projects: projects,

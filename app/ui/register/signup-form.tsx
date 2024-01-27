@@ -60,7 +60,7 @@ export default function SignUpForm() {
           name="email"
           onChange={handleSetEmail}
           className={clsx(
-            "opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input",
+            "focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 placeholder:text-monokaiOrange mt-inputLabel mb-formInput text-input",
             {
               "border-red-500": state?.errors.email,
               "border-monokaiBlue": !state?.errors.email,
@@ -85,7 +85,7 @@ export default function SignUpForm() {
           name="password"
           onChange={handlePasswordChange}
           className={clsx(
-            "opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 placeholder:text-monokaiOrange mt-inputLabel mb-informational text-input",
+            "focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 placeholder:text-monokaiOrange mt-inputLabel mb-informational text-input",
             {
               "border-red-500": state?.errors.password,
               "border-monokaiBlue": !state?.errors.password,
@@ -110,7 +110,7 @@ export default function SignUpForm() {
           name="confirmPassword"
           onChange={handleConfirmPasswordChange}
           className={clsx(
-            "opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 placeholder:text-monokaiOrange mt-inputLabel mb-informational text-input",
+            "focus:border-monokaiOrange focus:ring-[1px] focus:ring-monokaiOrange opacity-0 animate-fade-in w-full rounded-md text-monokaiYellow bg-transparent border-[1px] px-inputX py-inputY border-1 placeholder:text-monokaiOrange mt-inputLabel mb-informational text-input",
             {
               "border-red-500": !passwordsMatch,
               "border-monokaiBlue": passwordsMatch,
