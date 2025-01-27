@@ -29,8 +29,6 @@ portfolioAccent1: "#F7F7F2",
 portfolioHeroText: black
 pillText: white
 
-Possiblyu create entirely new page instead of re-colouring.
-
 ## Figma Wireframes
 https://www.figma.com/file/MHAZtPB5qVDvGRHM5OTzS2/Asset-Library-%2B-First-Folio-Wireframes?type=design&node-id=303%3A1245&mode=design&t=MwrKcSTR66QxQF00-1
 
